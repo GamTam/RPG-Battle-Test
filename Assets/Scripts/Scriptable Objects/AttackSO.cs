@@ -11,4 +11,5 @@ public class AttackSO : ScriptableObject
     public string Name;
     public int Strength;
     public int Cost;
+    public DamageTypes CostType;
 }
