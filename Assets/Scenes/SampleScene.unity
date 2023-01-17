@@ -4486,6 +4486,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _PFP
+      value: 
+      objectReference: {fileID: 21300000, guid: 54f23dc7ce884f9479057666760eb12d, type: 3}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _name
       value: Agent 3
       objectReference: {fileID: 0}
