@@ -248,6 +248,18 @@ PrefabInstance:
       value: Agent 8
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _level
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _maxHP
+      value: 888
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _maxMP
+      value: 444
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _speed
       value: 1
       objectReference: {fileID: 0}
@@ -1097,6 +1109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18cb6929277364c8805e5e46642dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _song: VS Big Man
 --- !u!1 &588207195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,7 +1335,6 @@ GameObject:
   - component: {fileID: 676816603}
   - component: {fileID: 676816602}
   - component: {fileID: 676816601}
-  - component: {fileID: 676816605}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1409,19 +1421,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &676816605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 676816600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c9bdcc83c0d4754b8468bc80c3f2f39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _song: VS Big Man
 --- !u!1 &728673377
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,6 +2170,14 @@ PrefabInstance:
       value: Marie
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _level
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _maxHP
+      value: 1473
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _speed
       value: 3
       objectReference: {fileID: 0}
@@ -2889,6 +2896,18 @@ PrefabInstance:
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _name
       value: Callie
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _level
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _maxHP
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _maxMP
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _speed
@@ -4388,6 +4407,22 @@ PrefabInstance:
     - target: {fileID: 6838250752640113955, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _name
+      value: Agent 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _level
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _maxHP
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _maxMP
+      value: 341
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _speed

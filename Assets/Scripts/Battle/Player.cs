@@ -18,7 +18,7 @@ public class Player : Battleable
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _hpText;
     [SerializeField] private TMP_Text _mpText;
-    
+
     [Header("Temp")]
     [SerializeField] private string _name;
     [SerializeField] private int _level;

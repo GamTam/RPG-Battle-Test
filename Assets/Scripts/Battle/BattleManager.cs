@@ -6,11 +6,16 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    [SerializeField] private string _song;
+    
     private State _state;
     private List<Battleable> _fighters;
+    private MusicManager _musicManager;
 
-    private void Awake()
+    private void Start()
     {
+        _musicManager = GameObject.FindWithTag("Audio").GetComponent<MusicManager>();
+        _musicManager.Play(_song);
         SwitchStates(new Opening(this));
     }
 
