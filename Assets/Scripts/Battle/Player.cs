@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class Player : Battleable
 {
@@ -20,21 +19,18 @@ public class Player : Battleable
     [SerializeField] private TMP_Text _mpText;
 
     [Header("Temp")]
-    [SerializeField] private string _name;
-    [SerializeField] private int _level;
-    [SerializeField] private int _HP;
-    [SerializeField] private int _maxHP;
-    [SerializeField] private int _MP;
-    [SerializeField] private int _maxMP;
-    [SerializeField] private int _pow;
-    [SerializeField] private int _def;
-    [SerializeField] private int _speed;
+    public int _MP;
+    public int _maxMP;
+
+    [HideInInspector] public Vector2 StartingLocation;
     private AttackSO[] _attacks;
     
-    void Start()
+    void Awake()
     {
-        _HP = _maxHP;
-        _MP = _maxMP;
+        Random rand = new Random();
+        _HP = (int) (_maxHP * rand.NextDouble());
+        _MP = (int) (_maxMP * rand.NextDouble());
+        _speed = rand.Next(5000);
 
         _PFPSlot.sprite = _PFP;
         
@@ -42,6 +38,9 @@ public class Player : Battleable
         _smallHealthSlider.maxValue = _maxHP;
         _bigMagicSlider.maxValue = _maxMP;
         _smallMagicSlider.maxValue = _maxMP;
+
+        StartingLocation = transform.localPosition;
+        transform.localPosition = new Vector2(transform.localPosition.x - 500, transform.localPosition.y);
     }
 
     private void Update()
@@ -53,5 +52,10 @@ public class Player : Battleable
         _smallHealthSlider.value = _HP;
         _bigMagicSlider.value = _MP;
         _smallMagicSlider.value = _MP;
+    }
+
+    public void SetNameText()
+    {
+        _nameText.SetText(_name);
     }
 }

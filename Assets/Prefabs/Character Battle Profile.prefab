@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 6207b40d225d0b045bfd426b4b32d06d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 6207b40d225d0b045bfd426b4b32d06d, type: 2}
   m_Color: {r: 0.25943398, g: 0.6737508, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -925,11 +925,11 @@ RectTransform:
   m_Father: {fileID: 6838250753181335954}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.13378906, y: -0.0010147}
-  m_SizeDelta: {x: 4075.8, y: 964.94}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 4075.8, y: 964.95}
+  m_Pivot: {x: 0.000000024568749, y: 1}
 --- !u!222 &6838250752461527740
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 6207b40d225d0b045bfd426b4b32d06d, type: 2}
   m_Color: {r: 0.2627451, g: 0.6745098, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1569,7 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 6207b40d225d0b045bfd426b4b32d06d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1598,6 +1598,7 @@ GameObject:
   - component: {fileID: 6838250753181335954}
   - component: {fileID: 6838250753181335955}
   - component: {fileID: 6838250753181335916}
+  - component: {fileID: 8600689832091424419}
   m_Layer: 5
   m_Name: Character Battle Profile
   m_TagString: Untagged
@@ -1647,6 +1648,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49ed45ce97848daadc72807bccabb98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: Mabel
+  _level: 18
+  _HP: 0
+  _maxHP: 4
+  _pow: 0
+  _def: 0
+  _speed: 0
   _PFP: {fileID: 21300000, guid: 54f23dc7ce884f9479057666760eb12d, type: 3}
   _PFPSlot: {fileID: 6838250752740354897}
   _bigHealthSlider: {fileID: 6838250751953441290}
@@ -1656,15 +1664,29 @@ MonoBehaviour:
   _nameText: {fileID: 0}
   _hpText: {fileID: 6838250752658508426}
   _mpText: {fileID: 6838250752394212857}
-  _name: Mabel
-  _level: 18
-  _HP: 0
-  _maxHP: 4
-  _pow: 0
-  _def: 0
-  _speed: 0
   _MP: 0
   _maxMP: 147
+  StartingLocation: {x: 0, y: 0}
+--- !u!95 &8600689832091424419
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838250753181335953}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dc16597061b314848bcde100ed94b590, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &6838250753211901510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,7 +1921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 6207b40d225d0b045bfd426b4b32d06d, type: 2}
   m_Color: {r: 0.3973346, g: 1, b: 0.2216981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2216,7 +2238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 6207b40d225d0b045bfd426b4b32d06d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2381,7 +2403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 6207b40d225d0b045bfd426b4b32d06d, type: 2}
   m_Color: {r: 0.3803922, g: 0.95294124, b: 0.21176472, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2457,7 +2479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 6207b40d225d0b045bfd426b4b32d06d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

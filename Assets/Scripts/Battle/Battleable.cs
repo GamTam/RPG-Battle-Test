@@ -2,11 +2,11 @@
 
 public class Battleable : MonoBehaviour
 {
-    protected string _name;
-    protected int _level;
-    protected int _HP;
-    protected int _maxHP;
-    protected int _pow;
-    protected int _def;
-    protected int _speed;
+    public string _name;
+    public int _level;
+    public int _HP;
+    public int _maxHP;
+    public int _pow;
+    public int _def;
+    public int _speed;
 }
