@@ -12,6 +12,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private GameObject _playerList;
     [SerializeField] private GameObject _enemyList;
     
+    public TMP_Text _textBoxText;
+    
     [Header("Player Box")]
     public TMP_Text _nameTagText;
     public Image _nameTagImage;
@@ -23,6 +25,7 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public List<GameObject> _enemies = new List<GameObject>();
     [HideInInspector] public List<Vector3> _profilePoints = new List<Vector3>();
     private MusicManager _musicManager;
+    private int _currentIndex = 0;
 
     private void Start()
     {
@@ -45,6 +48,20 @@ public class BattleManager : MonoBehaviour
         SwitchStates(new Opening(this));
     }
 
+    public void PickTurn()
+    {
+        if (_fighters[_currentIndex].GetType() == typeof(Player))
+        {
+            SwitchStates(new PlayerTurn(this, (Player) _fighters[_currentIndex]));
+        }
+        else
+        {
+            SwitchStates(new EnemyTurn(this, (Enemy) _fighters[_currentIndex]));
+        }
+
+        _currentIndex = _currentIndex + 1 >= _fighters.Count ? 0 : _currentIndex + 1;
+    }
+
     public void Click()
     {
         StartCoroutine(_state.OnClick());
@@ -52,6 +69,7 @@ public class BattleManager : MonoBehaviour
 
     public void SwitchStates(State state)
     {
+        if (_state != null) StartCoroutine(_state.ExitState());
         _state = state;
         StartCoroutine(state.EnterState());
     }

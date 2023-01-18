@@ -72,6 +72,8 @@ namespace Battle.State_Machine
 
                 yield return null;
             }
+
+            _battleManager.PickTurn();
         }
     }
 }

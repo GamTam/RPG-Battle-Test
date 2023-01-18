@@ -28,7 +28,8 @@ public class Player : Battleable
     void Awake()
     {
         Random rand = new Random();
-        _HP = (int) (_maxHP * rand.NextDouble());
+        //_HP = (int) (_maxHP * rand.NextDouble());
+        _HP = _maxHP;
         _MP = (int) (_maxMP * rand.NextDouble());
         _speed = rand.Next(5000);
 
