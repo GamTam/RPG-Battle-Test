@@ -20,12 +20,13 @@ public class BattleManager : MonoBehaviour
     public Image[] _buttonImages;
     
     private State _state;
-    [HideInInspector] public List<Battleable> _fighters = new List<Battleable>();
-    [HideInInspector] public List<Animator> _players = new List<Animator>();
-    [HideInInspector] public List<GameObject> _enemies = new List<GameObject>();
-    [HideInInspector] public List<Vector3> _profilePoints = new List<Vector3>();
+    public List<Battleable> _fighters = new List<Battleable>();
+    public List<Animator> _players = new List<Animator>();
+    public List<GameObject> _enemies = new List<GameObject>();
+    public List<Vector3> _profilePoints = new List<Vector3>();
     private MusicManager _musicManager;
-    private int _currentIndex = 0;
+    private int _currentFighterIndex = 0;
+    [HideInInspector] public int _currentPlayerIndex = 0;
 
     private void Start()
     {
@@ -50,16 +51,18 @@ public class BattleManager : MonoBehaviour
 
     public void PickTurn()
     {
-        if (_fighters[_currentIndex].GetType() == typeof(Player))
+        SortFighters(false);
+        if (_fighters[_currentFighterIndex].GetType() == typeof(Player))
         {
-            SwitchStates(new PlayerTurn(this, (Player) _fighters[_currentIndex]));
+            SwitchStates(new PlayerTurn(this, (Player) _fighters[_currentFighterIndex]));
+            _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Count;
         }
         else
         {
-            SwitchStates(new EnemyTurn(this, (Enemy) _fighters[_currentIndex]));
+            SwitchStates(new EnemyTurn(this, (Enemy) _fighters[_currentFighterIndex]));
         }
 
-        _currentIndex = _currentIndex + 1 >= _fighters.Count ? 0 : _currentIndex + 1;
+        _currentFighterIndex = (_currentFighterIndex + 1) % _fighters.Count;
     }
 
     public void Click()
@@ -74,16 +77,17 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(state.EnterState());
     }
 
-    public void SortFighters()
+    public void SortFighters(bool position = true)
     {
         _profilePoints.Sort((x, y) => x.y.CompareTo(y.y));
         _fighters.Sort((x, y) => y._speed.CompareTo(x._speed));
 
+        if (!position) return;
         int i = 0;
         foreach (Battleable bat in _fighters)
         {
             if (bat.GetType() != typeof(Player)) continue;
-            bat.transform.localPosition = _profilePoints[i];
+            bat.transform.localPosition = _profilePoints[(i + _currentPlayerIndex) % _players.Count];
             Vector2 vec = ((Player) bat).StartingLocation;
             ((Player) bat).StartingLocation = new Vector2(vec.x, bat.transform.localPosition.y);
             i++;

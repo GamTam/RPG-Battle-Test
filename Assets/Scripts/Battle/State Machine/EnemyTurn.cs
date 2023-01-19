@@ -16,13 +16,13 @@ namespace Battle.State_Machine
 
         public override IEnumerator EnterState()
         {
-            _battleManager._textBoxText.SetText("BIG MAN's turn!");
+            _battleManager._textBoxText.SetText("* BIG MAN's turn!");
             int target = _rand.Next(_battleManager._players.Count - 1);
             Player player = _battleManager._players[target].gameObject.GetComponent<Player>();
             
             yield return new WaitForSeconds(1);
             
-            _battleManager._textBoxText.SetText($"BIG MAN attacks {player._name}!");
+            _battleManager._textBoxText.SetText($"* BIG MAN attacks {player._name}!");
             
             yield return new WaitForSeconds(1);
            

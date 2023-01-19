@@ -17,6 +17,6 @@ MonoBehaviour:
   HP: 515
   Pow: 12
   Def: 3
-  Speed: 2500
+  Speed: 0
   Attacks:
   - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
