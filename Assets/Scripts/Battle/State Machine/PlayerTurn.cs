@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Battle.State_Machine
@@ -16,7 +17,12 @@ namespace Battle.State_Machine
 
         public override IEnumerator EnterState()
         {
-            if (_battleManager._turnIndex == 0 && _battleManager._currentPlayerIndex == 0) goto movedIcons;
+            _battleManager._playerInput.SwitchCurrentActionMap("Null");
+            if ((_battleManager._turnIndex == 0 && _battleManager._currentPlayerIndex == 0) || _battleManager._players.Count == 1)
+            {
+                _battleManager._textBoxText.SetText($"* {_player._name}'s turn!");
+                goto movedIcons;
+            }
 
             Player currentPlayer = null;
             Player startingPlayer = null;
@@ -105,10 +111,23 @@ namespace Battle.State_Machine
             }
             
             movedIcons:
-            
-            yield return new WaitForSeconds(5);
+            _battleManager._playerInput.SwitchCurrentActionMap("Menu");
+            EventSystem.current.SetSelectedGameObject(_battleManager._buttons[0].gameObject);
 
+            foreach (Button button in _battleManager._buttons)
+            {
+                button.interactable = true;
+            }
+        }
+
+        public override IEnumerator OnClick()
+        {
+            foreach (Button button in _battleManager._buttons)
+            {
+                button.interactable = false;
+            }
             _battleManager.PickTurn();
+            yield break;
         }
     }
 }

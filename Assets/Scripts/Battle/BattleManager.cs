@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Battle.State_Machine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
@@ -17,7 +18,8 @@ public class BattleManager : MonoBehaviour
     [Header("Player Box")]
     public TMP_Text _nameTagText;
     public Image _nameTagImage;
-    public Image[] _buttonImages;
+    public Button[] _buttons;
+    [HideInInspector] public List<Image> _buttonImages = new List<Image>();
     
     private State _state;
     [HideInInspector] public List<Battleable> _fighters = new List<Battleable>();
@@ -28,9 +30,12 @@ public class BattleManager : MonoBehaviour
     private int _currentFighterIndex = 0;
     [HideInInspector] public int _currentPlayerIndex = 0;
     [HideInInspector] public int _turnIndex = 0;
+    
+    [HideInInspector] public PlayerInput _playerInput;
 
     private void Start()
     {
+        _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
         foreach (Battleable chara in _playerList.GetComponentsInChildren<Battleable>())
         {
             _players.Add(chara.gameObject.GetComponent<Animator>());
@@ -44,6 +49,11 @@ public class BattleManager : MonoBehaviour
             _fighters.Add(chara);
         }
         SortFighters();
+
+        foreach (Button button in _buttons)
+        {
+            _buttonImages.Add(button.GetComponent<Image>());
+        }
         
         _musicManager = GameObject.FindWithTag("Audio").GetComponent<MusicManager>();
         _musicManager.Play(_song);

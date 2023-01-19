@@ -14,7 +14,7 @@ namespace Battle.State_Machine
         public override IEnumerator EnterState()
         {
             Color nameColor = _battleManager._nameTagText.color;
-            Color[] buttonColor = new Color[_battleManager._buttonImages.Length];
+            Color[] buttonColor = new Color[_battleManager._buttonImages.Count];
             Player firstPlayer = null;
             
             _battleManager._nameTagText.color = Color.clear;

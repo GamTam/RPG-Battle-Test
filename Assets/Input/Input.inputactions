@@ -189,6 +189,12 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Null",
+            "id": "79ed8a23-a4d1-4cfb-a2c2-48e161702573",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [

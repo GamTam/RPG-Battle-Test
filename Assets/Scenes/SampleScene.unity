@@ -291,6 +291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Profile - Agent 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335953, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335954, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.118452616
@@ -954,11 +958,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 508419434}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 577502587}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &508419434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,6 +1265,12 @@ MonoBehaviour:
   _textBoxText: {fileID: 1274762956}
   _nameTagText: {fileID: 1136997477}
   _nameTagImage: {fileID: 6355899}
+  _buttons:
+  - {fileID: 508419433}
+  - {fileID: 1951827940}
+  - {fileID: 1216796804}
+  - {fileID: 878100834}
+  - {fileID: 2046676793}
   _buttonImages:
   - {fileID: 508419434}
   - {fileID: 1951827941}
@@ -1261,6 +1283,7 @@ MonoBehaviour:
   _profilePoints: []
   _currentPlayerIndex: 0
   _turnIndex: 0
+  _playerInput: {fileID: 0}
 --- !u!1 &588207195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,11 +2009,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 878100835}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 577502587}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &878100835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2341,6 +2376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Profile - Marie
       objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335953, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335954, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.118452616
@@ -2448,6 +2487,68 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6838250753181335954, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
   m_PrefabInstance: {fileID: 1099375149}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1115276473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115276474}
+  - component: {fileID: 1115276475}
+  m_Layer: 0
+  m_Name: Controller Manager
+  m_TagString: Controller Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1115276474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115276473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1115276475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115276473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 1860c721cf7410446a0ede84d31addaa, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Menu
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1136997475
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,11 +2763,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1216796805}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 577502587}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1216796805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3076,6 +3189,10 @@ PrefabInstance:
     - target: {fileID: 6838250753181335953, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_Name
       value: Profile - Callie
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335953, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335954, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_Pivot.x
@@ -4047,11 +4164,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1951827941}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 577502587}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1951827941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4304,11 +4433,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2046676794}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 577502587}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2046676794
 MonoBehaviour:
   m_ObjectHideFlags: 0
