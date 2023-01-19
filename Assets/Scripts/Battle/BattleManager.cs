@@ -27,6 +27,7 @@ public class BattleManager : MonoBehaviour
     private MusicManager _musicManager;
     private int _currentFighterIndex = 0;
     [HideInInspector] public int _currentPlayerIndex = 0;
+    [HideInInspector] public int _turnIndex = 0;
 
     private void Start()
     {
@@ -63,6 +64,7 @@ public class BattleManager : MonoBehaviour
         }
 
         _currentFighterIndex = (_currentFighterIndex + 1) % _fighters.Count;
+        if (_currentFighterIndex == 0) _turnIndex += 1;
     }
 
     public void Click()

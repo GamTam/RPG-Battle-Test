@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Battle.State_Machine
 {
@@ -14,6 +16,8 @@ namespace Battle.State_Machine
 
         public override IEnumerator EnterState()
         {
+            if (_battleManager._turnIndex == 0 && _battleManager._currentPlayerIndex == 0) goto movedIcons;
+
             Player currentPlayer = null;
             Player startingPlayer = null;
             int i = 0;
@@ -34,12 +38,29 @@ namespace Battle.State_Machine
                 if (anim.gameObject == startingPlayer.gameObject) anim.Play("Shrink From Wide");
                 else anim.Play("Shrink From Tall");
             }
+            
+            float timeElapsed = 0;
+            float movementDuration = 1;
+            while (timeElapsed < movementDuration)
+            {
+                timeElapsed += Time.deltaTime;
+                _battleManager._nameTagText.color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+                _battleManager._nameTagImage.color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+                
+                foreach (Image img in _battleManager._buttonImages)
+                {
+                    img.color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+                    img.GetComponentInChildren<TMP_Text>().color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+                }
+
+                yield return null;
+            }
 
             _battleManager._textBoxText.SetText($"* {_player._name}'s turn!");
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
             
-            float movementDuration = 1;
-            float timeElapsed = 0;
+            movementDuration = 1;
+            timeElapsed = 0;
 
             while (timeElapsed < movementDuration)
             {
@@ -52,11 +73,38 @@ namespace Battle.State_Machine
                 yield return null;
             }
             
+            currentPlayer.SetNameText();
+            
+            foreach (Battleable obj in _battleManager._fighters)
+            {
+                if(obj.GetType() != typeof(Player)) continue;
+                _battleManager.InitFinalSlide((Player) obj);
+            }
+            
             foreach (Animator anim in _battleManager._players)
             {
                 if (anim.gameObject == currentPlayer.gameObject) anim.Play("Wide From Shrink");
                 else anim.Play("Tall From Shrink");
             }
+            
+            timeElapsed = 0;
+            movementDuration = 1;
+            while (timeElapsed < movementDuration)
+            {
+                timeElapsed += Time.deltaTime;
+                _battleManager._nameTagText.color = Color.Lerp(Color.clear, Color.white, timeElapsed/movementDuration);
+                _battleManager._nameTagImage.color = Color.Lerp(Color.clear, Color.white, timeElapsed/movementDuration);
+                
+                foreach (Image img in _battleManager._buttonImages)
+                {
+                    img.color = Color.Lerp(Color.clear, Color.white, timeElapsed/movementDuration);
+                    img.GetComponentInChildren<TMP_Text>().color = Color.Lerp(Color.clear, Color.white, timeElapsed/movementDuration);
+                }
+
+                yield return null;
+            }
+            
+            movedIcons:
             
             yield return new WaitForSeconds(5);
 
