@@ -20,10 +20,10 @@ public class BattleManager : MonoBehaviour
     public Image[] _buttonImages;
     
     private State _state;
-    public List<Battleable> _fighters = new List<Battleable>();
-    public List<Animator> _players = new List<Animator>();
-    public List<GameObject> _enemies = new List<GameObject>();
-    public List<Vector3> _profilePoints = new List<Vector3>();
+    [HideInInspector] public List<Battleable> _fighters = new List<Battleable>();
+    [HideInInspector] public List<Animator> _players = new List<Animator>();
+    [HideInInspector] public List<GameObject> _enemies = new List<GameObject>();
+    [HideInInspector] public List<Vector3> _profilePoints = new List<Vector3>();
     private MusicManager _musicManager;
     private int _currentFighterIndex = 0;
     [HideInInspector] public int _currentPlayerIndex = 0;
