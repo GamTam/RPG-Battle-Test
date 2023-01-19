@@ -146,6 +146,28 @@
                 },
                 {
                     "name": "",
+                    "id": "40e04c68-0ec4-49e8-9239-2829d3ca6645",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec048c61-dcec-417d-bec3-4de629213b63",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9894fdee-8073-4056-938a-ed23c1dfd10c",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -168,6 +190,17 @@
                 },
                 {
                     "name": "",
+                    "id": "6ce47e22-cf6f-4be3-ae99-081b343c3a6f",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "299db0cc-4065-4f4b-a0ea-5ccd82bcd05f",
                     "path": "<Keyboard>/backspace",
                     "interactions": "",
@@ -184,6 +217,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "81057417-4f72-4e16-b9e1-0104a3e0d082",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false

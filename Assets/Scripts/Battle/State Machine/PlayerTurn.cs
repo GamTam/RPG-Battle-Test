@@ -18,6 +18,16 @@ namespace Battle.State_Machine
         public override IEnumerator EnterState()
         {
             _battleManager._playerInput.SwitchCurrentActionMap("Null");
+            
+            _battleManager._nameTagText.color = Color.white;
+            _battleManager._nameTagImage.color = Color.white;
+                
+            foreach (Image img in _battleManager._buttonImages)
+            {
+                img.color =Color.white;
+                img.GetComponentInChildren<TMP_Text>().color = Color.white;
+            }
+            
             if ((_battleManager._turnIndex == 0 && _battleManager._currentPlayerIndex == 0) || _battleManager._players.Count == 1)
             {
                 _battleManager._textBoxText.SetText($"* {_player._name}'s turn!");
@@ -112,7 +122,7 @@ namespace Battle.State_Machine
             
             movedIcons:
             _battleManager._playerInput.SwitchCurrentActionMap("Menu");
-            EventSystem.current.SetSelectedGameObject(_battleManager._buttons[0].gameObject);
+            EventSystem.current.SetSelectedGameObject(_battleManager._buttons[_battleManager._currentButton].gameObject);
 
             foreach (Button button in _battleManager._buttons)
             {
@@ -122,10 +132,13 @@ namespace Battle.State_Machine
 
         public override IEnumerator OnClick()
         {
-            foreach (Button button in _battleManager._buttons)
+            for (int i = 0; i < _battleManager._buttons.Length; i++)
             {
-                button.interactable = false;
+                if (_battleManager._buttons[i].gameObject == EventSystem.current.currentSelectedGameObject)
+                    _battleManager._currentButton = i;
+                _battleManager._buttons[i].interactable = false;
             }
+            
             _battleManager.PickTurn();
             yield break;
         }

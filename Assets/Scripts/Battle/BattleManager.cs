@@ -30,6 +30,7 @@ public class BattleManager : MonoBehaviour
     private int _currentFighterIndex = 0;
     [HideInInspector] public int _currentPlayerIndex = 0;
     [HideInInspector] public int _turnIndex = 0;
+    [HideInInspector] public int _currentButton = 0;
     
     [HideInInspector] public PlayerInput _playerInput;
 
