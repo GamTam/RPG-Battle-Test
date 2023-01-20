@@ -169,7 +169,7 @@
                 {
                     "name": "",
                     "id": "9894fdee-8073-4056-938a-ed23c1dfd10c",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -213,7 +213,7 @@
                 {
                     "name": "",
                     "id": "afed2d3c-aefd-4ed7-9376-c5a0663e9c87",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",

@@ -41,4 +41,11 @@ public static class Globals
         int r = x%m;
         return r<0 ? r+m : r;
     }
+    
+    public static String NumberToChar(int num, bool capital) {
+        Char c = (Char)((capital ? 65 : 97) + (num - 1));
+
+        return c.ToString();
+
+    }
 }

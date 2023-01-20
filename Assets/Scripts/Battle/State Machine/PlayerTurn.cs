@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -132,14 +134,40 @@ namespace Battle.State_Machine
 
         public override IEnumerator OnClick()
         {
-            for (int i = 0; i < _battleManager._buttons.Length; i++)
+            switch (EventSystem.current.currentSelectedGameObject.name)
             {
-                if (_battleManager._buttons[i].gameObject == EventSystem.current.currentSelectedGameObject)
-                    _battleManager._currentButton = i;
-                _battleManager._buttons[i].interactable = false;
+                case "Fight":
+                case "Check":
+                    _battleManager._selectionBoxes[0].gameObject.SetActive(true);
+                    _battleManager._selectionBoxes[0].ResetButtons();
+                    
+                    Dictionary<String, int> names = new Dictionary<string, int>();
+                    
+                    for (int i = _battleManager._enemies.Count - 1; i >= 0; i--)
+                    {
+                        string text = _battleManager._enemies[i]._name;
+                        
+                        if (!names.ContainsKey(text)) names.Add(text, 0);
+                        names[text] += 1;
+                        if (names[text] > 1)
+                        {
+                            text += $" {Globals.NumberToChar(names[text], true)}";
+                        }
+                        
+                        if (_battleManager._enemies[i]._HP > 0) _battleManager._selectionBoxes[0].AddButton(text);
+                    }
+                    
+                    _battleManager.DisableButtons();
+
+                    EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0][0]
+                        .gameObject);
+                    break;
+                default:
+                    _battleManager.DisableButtons();
+                    _battleManager.PickTurn();
+                    break;
             }
-            
-            _battleManager.PickTurn();
+
             yield break;
         }
     }

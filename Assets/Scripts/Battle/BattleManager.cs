@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Battle.State_Machine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -19,12 +20,13 @@ public class BattleManager : MonoBehaviour
     public TMP_Text _nameTagText;
     public Image _nameTagImage;
     public Button[] _buttons;
+    public TextSelection[] _selectionBoxes;
     [HideInInspector] public List<Image> _buttonImages = new List<Image>();
     
     private State _state;
     [HideInInspector] public List<Battleable> _fighters = new List<Battleable>();
     [HideInInspector] public List<Animator> _players = new List<Animator>();
-    [HideInInspector] public List<GameObject> _enemies = new List<GameObject>();
+    [HideInInspector] public List<Enemy> _enemies = new List<Enemy>();
     [HideInInspector] public List<Vector3> _profilePoints = new List<Vector3>();
     private MusicManager _musicManager;
     private int _currentFighterIndex = 0;
@@ -46,7 +48,7 @@ public class BattleManager : MonoBehaviour
 
         foreach (Battleable chara in _enemyList.GetComponentsInChildren<Battleable>())
         {
-            _enemies.Add(chara.gameObject);
+            _enemies.Add((Enemy) chara);
             _fighters.Add(chara);
         }
         SortFighters();
@@ -126,6 +128,26 @@ public class BattleManager : MonoBehaviour
         }
 
         obj.gameObject.transform.localPosition = obj.StartingLocation;
+    }
+    
+    public void DisableButtons()
+    {
+        for (int i = 0; i < _buttons.Length; i++)
+        {
+            if (_buttons[i].gameObject == EventSystem.current.currentSelectedGameObject)
+                _currentButton = i;
+            _buttons[i].interactable = false;
+        }
+    }
+    
+    public void EnableButtons()
+    {
+        for (int i = 0; i < _buttons.Length; i++)
+        {
+            _buttons[i].interactable = true;
+        }
+
+        EventSystem.current.SetSelectedGameObject(_buttons[_currentButton].gameObject);
     }
 }
 
