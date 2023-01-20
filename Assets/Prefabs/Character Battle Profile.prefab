@@ -1599,6 +1599,7 @@ GameObject:
   - component: {fileID: 6838250753181335955}
   - component: {fileID: 6838250753181335916}
   - component: {fileID: 8600689832091424419}
+  - component: {fileID: 6493300707624306521}
   m_Layer: 5
   m_Name: Character Battle Profile
   m_TagString: Untagged
@@ -1687,6 +1688,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &6493300707624306521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838250753181335953}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7aaca86005a27448d5ec9c2773b049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 0}
+  maxShakeDuration: 0
+  multiplier: 1
+  _interval: 0.033333335
 --- !u!1 &6838250753211901510
 GameObject:
   m_ObjectHideFlags: 0

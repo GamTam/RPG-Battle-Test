@@ -23,7 +23,7 @@ public class BattleManager : MonoBehaviour
     public TextSelection[] _selectionBoxes;
     [HideInInspector] public List<Image> _buttonImages = new List<Image>();
     
-    private State _state;
+    public State _state;
     [HideInInspector] public List<Battleable> _fighters = new List<Battleable>();
     [HideInInspector] public List<Animator> _players = new List<Animator>();
     [HideInInspector] public List<Enemy> _enemies = new List<Enemy>();

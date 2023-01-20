@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Enemy : Battleable
 {
     [SerializeField] private EnemySO _baseEnemy;
-    [SerializeField] private Slider _slider;
+    [SerializeField] public Slider _slider;
     
     private AttackSO[] _attacks;
     

@@ -153,6 +153,8 @@ namespace Battle.State_Machine
                         {
                             text += $" {Globals.NumberToChar(names[text], true)}";
                         }
+
+                        _battleManager._enemies[i].gameObject.name = text;
                         
                         if (_battleManager._enemies[i]._HP > 0) _battleManager._selectionBoxes[0].AddButton(text);
                     }
@@ -161,13 +163,43 @@ namespace Battle.State_Machine
 
                     EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0][0]
                         .gameObject);
-                    break;
-                default:
+                    yield break;
+                case "Special":
+                case "Item":
+                case "Flee":
                     _battleManager.DisableButtons();
+                    _battleManager.PickTurn();
+                    yield break;
+            }
+
+            switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
+            {
+                case "Fight":
+                    Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
+                    _battleManager._textBoxText.SetText($"* {_player._name} attacked {enemy._name}!");
+                    
+                    _battleManager._selectionBoxes[0].ResetButtons();
+                    _battleManager._selectionBoxes[0].gameObject.SetActive(false);
+
+                    yield return new WaitForSeconds(0.5f);
+                    enemy._slider.gameObject.SetActive(true);
+                    yield return new WaitForSeconds(0.5f);
+                    
+                    Shake shake = enemy.gameObject.GetComponent<Shake>();
+                    enemy._HP -= 100;
+                    shake.maxShakeDuration = 0.25f;
+                    shake.enabled = true;
+                    
+                    yield return new WaitForSeconds(1);
+                    
+                    _battleManager._textBoxText.SetText($"* {enemy._name} took 100 damage!");
+                    enemy._slider.gameObject.SetActive(false);
+                    
+                    yield return new WaitForSeconds(2f);
                     _battleManager.PickTurn();
                     break;
             }
-
+            
             yield break;
         }
     }

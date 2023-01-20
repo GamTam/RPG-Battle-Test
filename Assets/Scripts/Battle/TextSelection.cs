@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TextSelection : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class TextSelection : MonoBehaviour
 
     private PlayerInput _input;
     private InputAction _cancel;
+    private InputAction _confirm;
     private Vector2 _prevMoveVector;
 
     private void Start()
@@ -29,6 +31,7 @@ public class TextSelection : MonoBehaviour
         _input = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
         _battleManager = GameObject.FindWithTag("Battle Manager").GetComponent<BattleManager>();
         _cancel = _input.actions["Cancel"];
+        _confirm = _input.actions["Confirm"];
     }
 
     public void ResetButtons()
@@ -70,6 +73,11 @@ public class TextSelection : MonoBehaviour
             gameObject.SetActive(false);
             _battleManager.EnableButtons();
             return;
+        }
+
+        if (_confirm.triggered)
+        {
+            _battleManager.Click();
         }
         
         if (_currentSelectedObject == EventSystem.current.currentSelectedGameObject) return;
