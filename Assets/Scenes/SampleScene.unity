@@ -568,6 +568,7 @@ MonoBehaviour:
   _speed: 0
   _baseEnemy: {fileID: 11400000, guid: 8ea17a56499924441a71a010845a2533, type: 2}
   _slider: {fileID: 1756969515}
+  _description: 
 --- !u!114 &250273163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1730,6 +1731,7 @@ MonoBehaviour:
   _speed: 0
   _baseEnemy: {fileID: 11400000, guid: 86317bacee3ea2846b72010663af8f32, type: 2}
   _slider: {fileID: 491668763}
+  _description: 
 --- !u!222 &644687526
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2926,7 +2928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _maxHP
-      value: 1473
+      value: 503
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _speed
@@ -3479,7 +3481,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -55.8
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -5399,10 +5401,6 @@ PrefabInstance:
     - target: {fileID: 6493300707624306521, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6838250751953441290, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
-      propertyPath: m_Value
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6838250752391949703, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_AnchorMax.x

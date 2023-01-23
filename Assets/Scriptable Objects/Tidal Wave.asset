@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: Tidal Wave
   Strength: 13
   Cost: 0
+  CostType: 0

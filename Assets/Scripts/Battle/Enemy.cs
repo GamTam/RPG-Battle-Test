@@ -10,6 +10,7 @@ public class Enemy : Battleable
     [SerializeField] public Slider _slider;
     
     private AttackSO[] _attacks;
+    [HideInInspector] public string _description;
     
     void Start()
     {
@@ -21,8 +22,10 @@ public class Enemy : Battleable
         _def = _baseEnemy.Def;
         _speed = _baseEnemy.Speed;
         _attacks = _baseEnemy.Attacks;
+        _description = _baseEnemy.Description;
 
         _slider.maxValue = _maxHP;
+        _slider.gameObject.transform.SetParent(gameObject.transform.parent);
     }
 
     private void Update()

@@ -171,15 +171,16 @@ namespace Battle.State_Machine
                     _battleManager.PickTurn();
                     yield break;
             }
+            
+            Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
+            _battleManager._selectionBoxes[0].ResetButtons();
+            _battleManager._selectionBoxes[0].gameObject.SetActive(false);
 
             switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
             {
                 case "Fight":
-                    Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
-                    _battleManager._textBoxText.SetText($"* {_player._name} attacked {enemy._name}!");
                     
-                    _battleManager._selectionBoxes[0].ResetButtons();
-                    _battleManager._selectionBoxes[0].gameObject.SetActive(false);
+                    _battleManager._textBoxText.SetText($"* {_player._name} attacked {enemy._name}!");
 
                     yield return new WaitForSeconds(0.5f);
                     enemy._slider.gameObject.SetActive(true);
@@ -196,11 +197,14 @@ namespace Battle.State_Machine
                     enemy._slider.gameObject.SetActive(false);
                     
                     yield return new WaitForSeconds(2f);
-                    _battleManager.PickTurn();
+                    break;
+                case "Check":
+                    _battleManager._textBoxText.SetText(enemy._description);
+                    yield return new WaitForSeconds(2f);
                     break;
             }
             
-            yield break;
+            _battleManager.PickTurn();
         }
     }
 }
