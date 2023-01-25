@@ -19,8 +19,16 @@ namespace Battle.State_Machine
             _battleManager._textBoxText.SetText($"* {_enemy._name}'s turn!");
             int target = _rand.Next(_battleManager._players.Count - 1);
             Player player = _battleManager._players[target].gameObject.GetComponent<Player>();
-            
-            yield return new WaitForSeconds(2);
+
+            yield return null;
+            while (true)
+            {
+                if (_battleManager._confirm.triggered)
+                {
+                    break;
+                }
+                yield return null;
+            }
             
             _battleManager._textBoxText.SetText($"* {_enemy._name} attacks {player._name}!");
             

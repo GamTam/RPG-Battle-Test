@@ -35,10 +35,13 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public int _currentButton = 0;
     
     [HideInInspector] public PlayerInput _playerInput;
+    [HideInInspector] public InputAction _confirm;
 
     private void Start()
     {
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
+        _confirm = _playerInput.actions["Confirm"];
+        
         foreach (Battleable chara in _playerList.GetComponentsInChildren<Battleable>())
         {
             _players.Add(chara.gameObject.GetComponent<Animator>());
