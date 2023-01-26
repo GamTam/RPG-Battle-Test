@@ -207,6 +207,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 264117427}
     m_Modifications:
+    - target: {fileID: 4471261867315760637, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000015258789
+      objectReference: {fileID: 0}
     - target: {fileID: 6838250751992622468, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_LocalPosition.z
       value: -7.99996
@@ -1591,6 +1595,15 @@ MonoBehaviour:
   _turnIndex: 0
   _currentButton: 0
   _playerInput: {fileID: 0}
+  _confirm:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &588207195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,6 +2891,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 264117427}
     m_Modifications:
+    - target: {fileID: 4471261867315760637, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000015258789
+      objectReference: {fileID: 0}
     - target: {fileID: 6493300707624306521, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3809,6 +3826,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 264117427}
     m_Modifications:
+    - target: {fileID: 4471261867315760637, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000015258789
+      objectReference: {fileID: 0}
     - target: {fileID: 6493300707624306521, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5398,6 +5419,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 264117427}
     m_Modifications:
+    - target: {fileID: 4471261867315760637, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000015258789
+      objectReference: {fileID: 0}
     - target: {fileID: 6493300707624306521, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: m_Enabled
       value: 0
