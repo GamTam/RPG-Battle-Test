@@ -72,11 +72,13 @@ public class TextSelection : MonoBehaviour
             ResetButtons();
             gameObject.SetActive(false);
             _battleManager.EnableButtons();
+            _battleManager._soundManager.Play("back");
             return;
         }
 
         if (_confirm.triggered)
         {
+            _battleManager._soundManager.Play("confirm");
             _battleManager.Click();
         }
         

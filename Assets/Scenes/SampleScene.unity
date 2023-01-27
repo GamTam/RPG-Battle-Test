@@ -1710,13 +1710,24 @@ MonoBehaviour:
   _enemies: []
   _profilePoints: []
   _musicManager: {fileID: 0}
+  _soundManager: {fileID: 0}
   _deadPlayers: []
   _deadEnemies: []
   _currentPlayerIndex: -1
   _turnIndex: -1
   _currentButton: 0
+  _cancelMovement: 0
   _playerInput: {fileID: 0}
   _confirm:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _back:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 

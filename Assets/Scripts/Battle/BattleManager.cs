@@ -30,6 +30,7 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public List<Enemy> _enemies = new List<Enemy>();
     [HideInInspector] public List<Vector3> _profilePoints = new List<Vector3>();
     [HideInInspector] public MusicManager _musicManager;
+    [HideInInspector] public SoundManager _soundManager;
     private int _currentFighterIndex;
     [HideInInspector] public List<Animator> _deadPlayers = new List<Animator>();
     [HideInInspector] public List<Enemy> _deadEnemies = new List<Enemy>();
@@ -41,11 +42,15 @@ public class BattleManager : MonoBehaviour
     
     [HideInInspector] public PlayerInput _playerInput;
     [HideInInspector] public InputAction _confirm;
+    [HideInInspector] public InputAction _back;
+
+    private GameObject _selectedObj;
 
     private void Start()
     {
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
         _confirm = _playerInput.actions["Confirm"];
+        _back = _playerInput.actions["Cancel"];
         
         foreach (Battleable chara in _playerList.GetComponentsInChildren<Battleable>())
         {
@@ -73,10 +78,26 @@ public class BattleManager : MonoBehaviour
         {
             _buttonImages.Add(button.GetComponent<Image>());
         }
+
+        _selectedObj = EventSystem.current.currentSelectedGameObject;
         
         _musicManager = GameObject.FindWithTag("Audio").GetComponent<MusicManager>();
         _musicManager.Play(_song);
+        _soundManager = GameObject.FindWithTag("Audio").GetComponent<SoundManager>();
         SwitchStates(new Opening(this));
+    }
+
+    private void Update()
+    {
+        if (!Equals(_selectedObj, EventSystem.current.currentSelectedGameObject) && EventSystem.current.currentSelectedGameObject != null)
+        {
+            _selectedObj = EventSystem.current.currentSelectedGameObject;
+
+            if (!_confirm.triggered && !_back.triggered && _playerInput.currentActionMap.name != "Null")
+            {
+                _soundManager.Play("select");
+            }
+        }
     }
 
     public void PickTurn()
@@ -209,7 +230,13 @@ public class BattleManager : MonoBehaviour
             _buttons[i].interactable = true;
         }
 
+        SelectButton();
+    }
+
+    public void SelectButton()
+    {
         EventSystem.current.SetSelectedGameObject(_buttons[_currentButton].gameObject);
+        _selectedObj = _buttons[_currentButton].gameObject;
     }
 }
 

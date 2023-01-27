@@ -133,7 +133,7 @@ namespace Battle.State_Machine
             }
             
             _battleManager._playerInput.SwitchCurrentActionMap("Menu");
-            EventSystem.current.SetSelectedGameObject(_battleManager._buttons[_battleManager._currentButton].gameObject);
+            _battleManager.SelectButton();
 
             foreach (Button button in _battleManager._buttons)
             {
@@ -169,6 +169,7 @@ namespace Battle.State_Machine
                     }
                     
                     _battleManager.DisableButtons();
+                    _battleManager._soundManager.Play("confirm");
 
                     EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0][0]
                         .gameObject);
@@ -176,6 +177,7 @@ namespace Battle.State_Machine
                 case "Special":
                 case "Item":
                 case "Flee":
+                    _battleManager._soundManager.Play("confirm");
                     _battleManager.DisableButtons();
                     _battleManager.PickTurn();
                     yield break;
@@ -189,13 +191,13 @@ namespace Battle.State_Machine
             {
                 case "Fight":
                     _battleManager._textBoxText.SetText($"* {_player._name} attacked {enemy._name}!");
-
-                    yield return new WaitForSeconds(0.5f);
+                        
                     enemy._slider.gameObject.SetActive(true);
                     yield return new WaitForSeconds(0.5f);
                     
                     Shake shake = enemy.gameObject.GetComponent<Shake>();
                     enemy._HP -= 100;
+                    _battleManager._soundManager.Play("hit");
                     shake.maxShakeDuration = 0.25f;
                     shake.enabled = true;
                     
@@ -213,6 +215,7 @@ namespace Battle.State_Machine
                         _battleManager._textBoxText.SetText($"* {enemy._name} defeated!");
                         _battleManager._deadEnemies.Add(enemy);
                         enemy._killable = true;
+                        _battleManager._soundManager.Play("enemyDie");
                         yield return new WaitForSeconds(1f);
                     }
                     
@@ -229,6 +232,7 @@ namespace Battle.State_Machine
                         }
                         yield return null;
                     }
+                    _battleManager._soundManager.Play("confirm");
                     break;
             }
             

@@ -32,7 +32,8 @@ namespace Battle.State_Machine
             _battleManager._textBoxText.SetText($"* {_enemy._name} attacks {player._name}!");
             
             yield return new WaitForSeconds(1);
-           
+
+            _battleManager._soundManager.Play("playerHit");
             Shake shake = player.gameObject.GetComponent<Shake>();
             shake.maxShakeDuration = 0.25f;
             shake.enabled = true;
