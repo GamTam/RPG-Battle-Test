@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Enemy : Battleable
 {
     [SerializeField] private EnemySO _baseEnemy;
-    [SerializeField] public Slider _slider;
     
     private AttackSO[] _attacks;
     [HideInInspector] public string _description;
@@ -25,6 +24,8 @@ public class Enemy : Battleable
         _description = _baseEnemy.Description;
 
         _slider.maxValue = _maxHP;
+        _redSlider.maxValue = _maxHP;
+        _redSlider.value = _maxHP;
         _slider.gameObject.transform.SetParent(gameObject.transform.parent);
     }
 

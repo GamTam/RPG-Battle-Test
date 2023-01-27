@@ -191,12 +191,15 @@ namespace Battle.State_Machine
                     shake.maxShakeDuration = 0.25f;
                     shake.enabled = true;
                     
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
+                    enemy.InitSetRedSlider(enemy._HP);
+                    yield return new WaitForSeconds(0.5f);
                     
                     _battleManager._textBoxText.SetText($"* {enemy._name} took 100 damage!");
-                    enemy._slider.gameObject.SetActive(false);
                     
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(1f);
+                    enemy._slider.gameObject.SetActive(false);
+                    yield return new WaitForSeconds(1f);
                     break;
                 case "Check":
                     _battleManager._textBoxText.SetText(enemy._description);
