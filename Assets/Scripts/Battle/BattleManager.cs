@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Battle.State_Machine;
 using TMPro;
 using UnityEngine;
@@ -28,10 +29,12 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public List<Animator> _players = new List<Animator>();
     [HideInInspector] public List<Enemy> _enemies = new List<Enemy>();
     [HideInInspector] public List<Vector3> _profilePoints = new List<Vector3>();
-    private MusicManager _musicManager;
-    private int _currentFighterIndex = 0;
-    [HideInInspector] public int _currentPlayerIndex = 0;
-    [HideInInspector] public int _turnIndex = 0;
+    [HideInInspector] public MusicManager _musicManager;
+    private int _currentFighterIndex;
+    [HideInInspector] public List<Animator> _deadPlayers = new List<Animator>();
+    [HideInInspector] public List<Enemy> _deadEnemies = new List<Enemy>();
+    [HideInInspector] public int _currentPlayerIndex;
+    [HideInInspector] public int _turnIndex;
     [HideInInspector] public int _currentButton = 0;
     
     [HideInInspector] public PlayerInput _playerInput;
@@ -54,7 +57,15 @@ public class BattleManager : MonoBehaviour
             _enemies.Add((Enemy) chara);
             _fighters.Add(chara);
         }
+        
+        _currentPlayerIndex = 0;
+        _currentFighterIndex = 0;
+        _turnIndex = 0;
+        
         SortFighters();
+
+        _currentFighterIndex = -1;
+        _turnIndex = -1;
 
         foreach (Button button in _buttons)
         {
@@ -68,19 +79,64 @@ public class BattleManager : MonoBehaviour
 
     public void PickTurn()
     {
-        SortFighters(false);
-        if (_fighters[_currentFighterIndex].GetType() == typeof(Player))
-        {
-            SwitchStates(new PlayerTurn(this, (Player) _fighters[_currentFighterIndex]));
-            _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Count;
-        }
-        else
-        {
-            SwitchStates(new EnemyTurn(this, (Enemy) _fighters[_currentFighterIndex]));
-        }
-
         _currentFighterIndex = (_currentFighterIndex + 1) % _fighters.Count;
         if (_currentFighterIndex == 0) _turnIndex += 1;
+        
+        bool playersDead = true;
+        foreach (Animator player in _players)
+        {
+            if (!_deadPlayers.Contains(player))
+            {
+                playersDead = false;
+                break;
+            }
+        }
+
+        if (playersDead)
+        {
+            SwitchStates(new LoseState(this));
+            return;
+        }
+        
+        bool enemysDead = true;
+        foreach (Enemy enemy in _enemies)
+        {
+            if (!_deadEnemies.Contains(enemy))
+            {
+                enemysDead = false;
+                break;
+            }
+        }
+
+        if (enemysDead)
+        {
+            SwitchStates(new WinState(this));
+            return;
+        }
+        
+        SortFighters(false);
+        
+        if (_fighters[_currentFighterIndex]._HP > 0)
+        {
+            if (_fighters[_currentFighterIndex].GetType() == typeof(Player))
+            {
+                SwitchStates(new PlayerTurn(this, (Player) _fighters[_currentFighterIndex]));
+                _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Count;
+            }
+            else
+            {
+                SwitchStates(new EnemyTurn(this, (Enemy) _fighters[_currentFighterIndex]));
+            }
+
+            return;
+        }
+
+        if (_fighters[_currentFighterIndex].GetType() == typeof(Player))
+        {
+            _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Count;
+        }
+
+        PickTurn();
     }
 
     public void Click()

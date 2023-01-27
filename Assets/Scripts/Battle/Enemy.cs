@@ -7,9 +7,13 @@ using UnityEngine.UI;
 public class Enemy : Battleable
 {
     [SerializeField] private EnemySO _baseEnemy;
+    [SerializeField] private Image _image;
+    private Material _mat;
     
     private AttackSO[] _attacks;
     [HideInInspector] public string _description;
+    float fade = 1;
+    [HideInInspector] public bool _killable;
     
     void Start()
     {
@@ -23,6 +27,9 @@ public class Enemy : Battleable
         _attacks = _baseEnemy.Attacks;
         _description = _baseEnemy.Description;
 
+        _image.material = new Material(_image.material);
+        _mat = _image.material;
+
         _slider.maxValue = _maxHP;
         _redSliders[0].maxValue = _maxHP;
         _redSliders[0].value = _maxHP;
@@ -32,5 +39,15 @@ public class Enemy : Battleable
     private void Update()
     {
         _slider.value = _HP;
+        
+        if (_killable) {
+            fade -= Time.deltaTime;
+            if (fade <= 0f) {
+                fade = 0;
+                gameObject.SetActive(false);
+            }
+
+            _mat.SetFloat("_Fade", fade);
+        }
     }
 }

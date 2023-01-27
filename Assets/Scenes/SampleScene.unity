@@ -626,13 +626,13 @@ RectTransform:
   m_GameObject: {fileID: 199220724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 302508129}
   - {fileID: 1370978373}
   m_Father: {fileID: 1516180280}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: 
   _level: 0
-  _HP: 0
+  _HP: 12
   _maxHP: 0
   _pow: 0
   _def: 0
@@ -678,6 +678,7 @@ MonoBehaviour:
   _redSliders:
   - {fileID: 1100409473}
   _baseEnemy: {fileID: 11400000, guid: 8ea17a56499924441a71a010845a2533, type: 2}
+  _image: {fileID: 302508131}
   _description: 
 --- !u!222 &199220728
 CanvasRenderer:
@@ -721,7 +722,7 @@ RectTransform:
   - {fileID: 890054848}
   - {fileID: 1756969514}
   m_Father: {fileID: 1516180280}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -750,7 +751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: 
   _level: 0
-  _HP: 0
+  _HP: 12
   _maxHP: 0
   _pow: 0
   _def: 0
@@ -759,6 +760,7 @@ MonoBehaviour:
   _redSliders:
   - {fileID: 756798680}
   _baseEnemy: {fileID: 11400000, guid: 86317bacee3ea2846b72010663af8f32, type: 2}
+  _image: {fileID: 890054849}
   _description: 
 --- !u!114 &250273163
 MonoBehaviour:
@@ -1016,8 +1018,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e426db448f4ba1a40bb2a2ea69cc7fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 50
-  frequency: 1
+  amplitude: 55
+  frequency: 0.8
   sinOffset: 0
 --- !u!114 &302508131
 MonoBehaviour:
@@ -1031,7 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 68d870a6f1eaa7647b8664e037e2b707, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1705,8 +1707,11 @@ MonoBehaviour:
   _players: []
   _enemies: []
   _profilePoints: []
-  _currentPlayerIndex: 0
-  _turnIndex: 0
+  _musicManager: {fileID: 0}
+  _deadPlayers: []
+  _deadEnemies: []
+  _currentPlayerIndex: -1
+  _turnIndex: -1
   _currentButton: 0
   _playerInput: {fileID: 0}
   _confirm:
@@ -2916,7 +2921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 68d870a6f1eaa7647b8664e037e2b707, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -4195,8 +4200,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 250273159}
   - {fileID: 199220725}
+  - {fileID: 250273159}
   m_Father: {fileID: 860310581}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -17,8 +17,18 @@ namespace Battle.State_Machine
         public override IEnumerator EnterState()
         {
             _battleManager._textBoxText.SetText($"* {_enemy._name}'s turn!");
-            int target = _rand.Next(_battleManager._players.Count - 1);
-            Player player = _battleManager._players[target].gameObject.GetComponent<Player>();
+            Player player;
+
+            do
+            {
+                var target = _rand.Next(_battleManager._players.Count);
+                player = _battleManager._players[target].gameObject.GetComponent<Player>();
+
+                if (player._HP > 0) break;
+                
+                Debug.Log(target);
+                yield return null;
+            } while (true);
 
             yield return null;
             while (true)
@@ -46,6 +56,13 @@ namespace Battle.State_Machine
             _battleManager._textBoxText.SetText($"* {player._name} took 100 damage!");
                     
             yield return new WaitForSeconds(1f);
+            
+            if (player._HP <= 0)
+            {
+                _battleManager._textBoxText.SetText($"* {player._name} defeated!");
+                _battleManager._deadPlayers.Add(player.gameObject.GetComponent<Animator>());
+                yield return new WaitForSeconds(2f);
+            }
             _battleManager.PickTurn();
         }
     }

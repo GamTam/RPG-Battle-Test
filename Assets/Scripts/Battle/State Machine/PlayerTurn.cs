@@ -26,7 +26,7 @@ namespace Battle.State_Machine
                 
             foreach (Image img in _battleManager._buttonImages)
             {
-                img.color =Color.white;
+                img.color = Color.white;
                 img.GetComponentInChildren<TMP_Text>().color = Color.white;
             }
             
@@ -53,7 +53,7 @@ namespace Battle.State_Machine
             
             foreach (Animator anim in _battleManager._players)
             {
-                if (anim.gameObject == startingPlayer.gameObject) anim.Play("Shrink From Wide");
+                if (anim.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("Wide")) anim.Play("Shrink From Wide");
                 else anim.Play("Shrink From Tall");
             }
             
@@ -92,7 +92,7 @@ namespace Battle.State_Machine
             }
             
             currentPlayer.SetNameText();
-            
+
             foreach (Battleable obj in _battleManager._fighters)
             {
                 if(obj.GetType() != typeof(Player)) continue;
@@ -123,6 +123,14 @@ namespace Battle.State_Machine
             }
             
             movedIcons:
+            if (_player._HP <= 0)
+            {
+                _battleManager._textBoxText.SetText($"* {_player._name} is unable to participate!");
+                yield return new WaitForSeconds(2f);
+                _battleManager.PickTurn();
+                yield break;
+            }
+            
             _battleManager._playerInput.SwitchCurrentActionMap("Menu");
             EventSystem.current.SetSelectedGameObject(_battleManager._buttons[_battleManager._currentButton].gameObject);
 
@@ -179,7 +187,6 @@ namespace Battle.State_Machine
             switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
             {
                 case "Fight":
-                    
                     _battleManager._textBoxText.SetText($"* {_player._name} attacked {enemy._name}!");
 
                     yield return new WaitForSeconds(0.5f);
@@ -199,6 +206,15 @@ namespace Battle.State_Machine
                     
                     yield return new WaitForSeconds(1f);
                     enemy._slider.gameObject.SetActive(false);
+
+                    if (enemy._HP <= 0)
+                    {
+                        _battleManager._textBoxText.SetText($"* {enemy._name} defeated!");
+                        _battleManager._deadEnemies.Add(enemy);
+                        enemy._killable = true;
+                        yield return new WaitForSeconds(1f);
+                    }
+                    
                     yield return new WaitForSeconds(1f);
                     break;
                 case "Check":
