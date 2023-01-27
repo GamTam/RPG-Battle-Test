@@ -37,6 +37,8 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public int _turnIndex;
     [HideInInspector] public int _currentButton = 0;
     
+    [HideInInspector] public bool _cancelMovement;
+    
     [HideInInspector] public PlayerInput _playerInput;
     [HideInInspector] public InputAction _confirm;
 
@@ -175,18 +177,19 @@ public class BattleManager : MonoBehaviour
     
     private IEnumerator FinalSlide(Player obj)
     {
+        _cancelMovement = false;
         float movementDuration = 2;
         float timeElapsed = 0;
             
-        while (timeElapsed < movementDuration)
+        while (timeElapsed < movementDuration && !_cancelMovement)
         {
             timeElapsed += Time.deltaTime;
             obj.gameObject.transform.localPosition = Vector3.Lerp(obj.gameObject.transform.localPosition, obj.StartingLocation, Time.deltaTime * 5);
                     
             yield return null;
         }
-
-        obj.gameObject.transform.localPosition = obj.StartingLocation;
+        
+        if (!_cancelMovement) obj.gameObject.transform.localPosition = obj.StartingLocation;
     }
     
     public void DisableButtons()

@@ -20,6 +20,7 @@ namespace Battle.State_Machine
         public override IEnumerator EnterState()
         {
             _battleManager._playerInput.SwitchCurrentActionMap("Null");
+            _battleManager._cancelMovement = true;
             
             _battleManager._nameTagText.color = Color.white;
             _battleManager._nameTagImage.color = Color.white;
