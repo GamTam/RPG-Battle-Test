@@ -13,7 +13,7 @@ namespace Battle.State_Machine
 
         public override IEnumerator EnterState()
         {
-            _battleManager._musicManager.fadeOut();
+            _battleManager._musicManager.fadeOut(0.25f);
             yield return new WaitForSeconds(0.5f);
             _battleManager._musicManager.Play("Victory");
             
