@@ -219,7 +219,15 @@ namespace Battle.State_Machine
                     break;
                 case "Check":
                     _battleManager._textBoxText.SetText(enemy._description);
-                    yield return new WaitForSeconds(2f);
+                    yield return null;
+                    while (true)
+                    {
+                        if (_battleManager._confirm.triggered)
+                        {
+                            break;
+                        }
+                        yield return null;
+                    }
                     break;
             }
             

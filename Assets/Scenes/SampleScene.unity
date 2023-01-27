@@ -680,6 +680,7 @@ MonoBehaviour:
   _baseEnemy: {fileID: 11400000, guid: 8ea17a56499924441a71a010845a2533, type: 2}
   _image: {fileID: 302508131}
   _description: 
+  _killable: 0
 --- !u!222 &199220728
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -762,6 +763,7 @@ MonoBehaviour:
   _baseEnemy: {fileID: 11400000, guid: 86317bacee3ea2846b72010663af8f32, type: 2}
   _image: {fileID: 890054849}
   _description: 
+  _killable: 0
 --- !u!114 &250273163
 MonoBehaviour:
   m_ObjectHideFlags: 0

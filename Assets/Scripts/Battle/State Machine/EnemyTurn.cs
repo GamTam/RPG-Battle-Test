@@ -25,21 +25,10 @@ namespace Battle.State_Machine
                 player = _battleManager._players[target].gameObject.GetComponent<Player>();
 
                 if (player._HP > 0) break;
-                
-                Debug.Log(target);
-                yield return null;
             } while (true);
 
-            yield return null;
-            while (true)
-            {
-                if (_battleManager._confirm.triggered)
-                {
-                    break;
-                }
-                yield return null;
-            }
-            
+            yield return new WaitForSeconds(1f);
+
             _battleManager._textBoxText.SetText($"* {_enemy._name} attacks {player._name}!");
             
             yield return new WaitForSeconds(1);
