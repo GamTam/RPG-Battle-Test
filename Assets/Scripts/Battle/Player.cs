@@ -7,6 +7,7 @@ using Random = System.Random;
 public class Player : Battleable
 {
     [SerializeField] private Sprite _PFP;
+    [SerializeField] private Sprite _deadPFP;
     [SerializeField] private Image _PFPSlot;
     [Header("Sliders")]
     [SerializeField] private Slider _bigHealthSlider;
@@ -40,6 +41,11 @@ public class Player : Battleable
         _bigMagicSlider.maxValue = _maxMP;
         _smallMagicSlider.maxValue = _maxMP;
 
+        _redSliders[0].maxValue = _maxHP;
+        _redSliders[0].value = _maxHP;
+        _redSliders[1].maxValue = _maxHP;
+        _redSliders[1].value = _maxHP;
+
         StartingLocation = transform.localPosition;
         transform.localPosition = new Vector2(transform.localPosition.x - 500, transform.localPosition.y);
     }
@@ -53,6 +59,8 @@ public class Player : Battleable
         _smallHealthSlider.value = _HP;
         _bigMagicSlider.value = _MP;
         _smallMagicSlider.value = _MP;
+
+        if (_HP <= 0 && _PFPSlot.sprite != _deadPFP) _PFPSlot.sprite = _deadPFP;
     }
 
     public void SetNameText()

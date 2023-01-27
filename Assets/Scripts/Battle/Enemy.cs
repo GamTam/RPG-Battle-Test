@@ -24,8 +24,8 @@ public class Enemy : Battleable
         _description = _baseEnemy.Description;
 
         _slider.maxValue = _maxHP;
-        _redSlider.maxValue = _maxHP;
-        _redSlider.value = _maxHP;
+        _redSliders[0].maxValue = _maxHP;
+        _redSliders[0].value = _maxHP;
         _slider.gameObject.transform.SetParent(gameObject.transform.parent);
     }
 

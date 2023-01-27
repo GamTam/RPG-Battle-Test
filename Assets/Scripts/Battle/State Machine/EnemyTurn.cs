@@ -34,8 +34,18 @@ namespace Battle.State_Machine
             
             yield return new WaitForSeconds(1);
            
+            Shake shake = player.gameObject.GetComponent<Shake>();
+            shake.maxShakeDuration = 0.25f;
+            shake.enabled = true;
             player._HP -= 100;
-            yield return new WaitForSeconds(1);
+            
+            yield return new WaitForSeconds(0.5f);
+            player.InitSetRedSlider(player._HP);
+            yield return new WaitForSeconds(0.5f);
+                    
+            _battleManager._textBoxText.SetText($"* {player._name} took 100 damage!");
+                    
+            yield return new WaitForSeconds(1f);
             _battleManager.PickTurn();
         }
     }

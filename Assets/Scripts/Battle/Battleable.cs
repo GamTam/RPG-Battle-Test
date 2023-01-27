@@ -13,7 +13,7 @@ public class Battleable : MonoBehaviour
     public int _def;
     public int _speed;
     public Slider _slider;
-    public Slider _redSlider;
+    public Slider[] _redSliders;
 
     public void InitSetRedSlider(float targetValue)
     {
@@ -27,11 +27,17 @@ public class Battleable : MonoBehaviour
         while (timeElapsed < movementDuration)
         {
             timeElapsed += Time.deltaTime;
-            _redSlider.value = Mathf.Lerp(_redSlider.value, targetValue, Time.deltaTime * 5);
+            foreach (Slider slider in _redSliders)
+            {
+                slider.value = Mathf.Lerp(slider.value, targetValue, Time.deltaTime * 5);
+            }
                     
             yield return null;
         }
 
-        _redSlider.value = targetValue;
+        foreach (Slider slider in _redSliders)
+        {
+             slider.value = targetValue;
+        }
     }
 }
