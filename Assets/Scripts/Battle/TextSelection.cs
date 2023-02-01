@@ -10,13 +10,12 @@ using UnityEngine.UI;
 public class TextSelection : MonoBehaviour
 {
     public TMP_Text _buttonPrefab;
-    [SerializeField] private GameObject[] _columns;
     [SerializeField] private GameObject _selectionHead;
+    [SerializeField] private GameObject _grid;
     private GameObject _currentSelectedObject;
     private BattleManager _battleManager;
     
-    public List<List<TMP_Text>> _buttons = new List<List<TMP_Text>>();
-    private int _activeButtons;
+    public List<TMP_Text> _buttons = new List<TMP_Text>();
     
     private int _currentColum;
     private int _currentRow;
@@ -35,33 +34,24 @@ public class TextSelection : MonoBehaviour
     }
 
     public void ResetButtons()
-    {
-        foreach (List<TMP_Text> list in _buttons)
+    { 
+        foreach (TMP_Text text in _buttons)
         {
-            foreach (TMP_Text text in list)
-            {
-                Destroy(text.gameObject);
-            }
+            Destroy(text.gameObject);
         }
         
         _currentSelectedObject = null;
-        _activeButtons = 0;
-        _buttons = new List<List<TMP_Text>>();
-        for (int i = 0; i < _columns.Length; i++)
-        {
-            _buttons.Add(new List<TMP_Text>());
-        }
+        _buttons = new List<TMP_Text>();
     }
 
     public void AddButton(string text)
     {
-        TMP_Text button = Instantiate(_buttonPrefab, _columns[_activeButtons % 2].transform);
+        TMP_Text button = Instantiate(_buttonPrefab, _grid.transform);
         button.gameObject.SetActive(true);
         button.gameObject.name = text;
         
-        _buttons[_activeButtons % 2].Add(button);
+        _buttons.Add(button);
 
-        _activeButtons += 1;
         button.text = text;
     }
 

@@ -171,7 +171,7 @@ namespace Battle.State_Machine
                     _battleManager.DisableButtons();
                     _battleManager._soundManager.Play("confirm");
 
-                    EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0][0]
+                    EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0]
                         .gameObject);
                     yield break;
                 case "Special":
