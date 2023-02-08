@@ -191,12 +191,14 @@ namespace Battle.State_Machine
             {
                 case "Fight":
                     _battleManager._textBoxText.SetText($"* {_player._name} attacked {enemy._name}!");
+
+                    int damage = Globals.DamageFormula(_player._pow, enemy._def);
                         
                     enemy._slider.gameObject.SetActive(true);
                     yield return new WaitForSeconds(0.5f);
                     
                     Shake shake = enemy.gameObject.GetComponent<Shake>();
-                    enemy._HP -= 100;
+                    enemy._HP -= damage;
                     _battleManager._soundManager.Play("hit");
                     shake.maxShakeDuration = 0.25f;
                     shake.enabled = true;
@@ -205,7 +207,7 @@ namespace Battle.State_Machine
                     enemy.InitSetRedSlider(enemy._HP);
                     yield return new WaitForSeconds(0.5f);
                     
-                    _battleManager._textBoxText.SetText($"* {enemy._name} took 100 damage!");
+                    _battleManager._textBoxText.SetText($"* {enemy._name} took {damage} damage!");
                     
                     yield return new WaitForSeconds(1f);
                     enemy._slider.gameObject.SetActive(false);

@@ -352,6 +352,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 61ed285c9c635cc46837e571e35438ac, type: 3}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _def
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _pow
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _name
       value: Agent 8
       objectReference: {fileID: 0}
@@ -3458,6 +3466,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 7afa1bf23b94a2742bafed6115f363cc, type: 3}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _def
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _pow
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _name
       value: Marie
       objectReference: {fileID: 0}
@@ -4705,6 +4721,14 @@ PrefabInstance:
       propertyPath: _PFP
       value: 
       objectReference: {fileID: 21300000, guid: 75c8946dae36cdb408087a9b6d493612, type: 3}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _def
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _pow
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _name
       value: Callie
@@ -6536,6 +6560,14 @@ PrefabInstance:
       propertyPath: _PFP
       value: 
       objectReference: {fileID: 21300000, guid: 54f23dc7ce884f9479057666760eb12d, type: 3}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _def
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _pow
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _name
       value: Agent 3

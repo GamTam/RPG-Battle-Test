@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public static class Globals
 {
@@ -27,6 +28,11 @@ public static class Globals
 
         return dictionary;
     }
+
+    public static int DamageFormula(int atk, int def)
+    {
+        return Mathf.Max(Mathf.RoundToInt((float) ((atk * 4 - def * 2) * GetRandomNumber(0.7f, 1.2f))), 1);
+    }
     
     public static bool IsAnimationPlaying(Animator anim, string stateName, int animLayer=0)
     {
@@ -46,6 +52,11 @@ public static class Globals
         Char c = (Char)((capital ? 65 : 97) + (num - 1));
 
         return c.ToString();
-
+    }
+    
+    public static double GetRandomNumber(double minimum, double maximum)
+    { 
+        Random random = new Random();
+        return random.NextDouble() * (maximum - minimum) + minimum;
     }
 }
