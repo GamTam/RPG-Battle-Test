@@ -5,12 +5,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Random = System.Random;
 
 namespace Battle.State_Machine
 {
     public class PlayerTurn : State
     {
         private Player _player;
+        private Random _rand = new Random();
         
         public PlayerTurn(BattleManager bm, Player player) : base(bm)
         {
@@ -176,11 +178,73 @@ namespace Battle.State_Machine
                     yield break;
                 case "Special":
                 case "Item":
-                case "Flee":
                     _battleManager._soundManager.Play("confirm");
                     _battleManager.DisableButtons();
                     _battleManager.PickTurn();
                     yield break;
+                case "Flee":
+                    _battleManager.DisableButtons();
+
+                    #region Cannot Flee
+                    if (!_battleManager._canFlee)
+                    {
+                        _battleManager._textBoxText.SetText("* Cannot flee!");
+                        yield return null;
+                        while (true)
+                        {
+                            if (_battleManager._confirm.triggered)
+                            {
+                                break;
+                            }
+
+                            yield return null;
+                        }
+
+                        _battleManager._soundManager.Play("confirm");
+                        _battleManager._textBoxText.SetText($"* {_player._name}'s turn!");
+                        _battleManager.EnableButtons();
+                        yield break;
+                    }
+                    #endregion
+
+                    #region Can Flee
+
+                    float partySpeed = 0;
+                    float enemySpeed = 0;
+                    foreach (Battleable bat in _battleManager._fighters)
+                    {
+                        if (bat.GetType() == typeof(Player)) partySpeed += bat._speed;
+                        else enemySpeed += bat._speed;
+                    }
+
+                    partySpeed /= _battleManager._players.Count;
+                    enemySpeed /= _battleManager._enemies.Count;
+
+                    int threshold = (int) (((enemySpeed / partySpeed) * 100) / 2);
+
+                    int chance = _rand.Next(101);
+                    
+                    _battleManager._textBoxText.SetText("* You tried to escape...");
+                    yield return new WaitForSeconds(1);
+
+                    if (chance > threshold)
+                    {
+                        _battleManager._textBoxText.SetText("Escaped!");
+                        yield return new WaitForSeconds(1);
+                        Application.Quit();
+                    }
+                    else
+                    {
+                        _battleManager._textBoxText.SetText("* ...but failed.");
+                        yield return new WaitForSeconds(1);
+                    }
+                    
+                    Debug.Log($"Party Speed: {partySpeed}, Enemy Speed: {enemySpeed}, Threshold: {threshold}, Random Number: {chance}");
+                    
+                    _battleManager.PickTurn();
+
+                    #endregion
+                yield break;
             }
             
             Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();

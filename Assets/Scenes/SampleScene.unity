@@ -1706,6 +1706,7 @@ MonoBehaviour:
   _playerList: {fileID: 264117426}
   _enemyList: {fileID: 1516180279}
   _textBoxText: {fileID: 1274762956}
+  _canFlee: 1
   _nameTagText: {fileID: 1136997477}
   _nameTagImage: {fileID: 6355899}
   _buttons:
@@ -4179,7 +4180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '* BIG MAN blocks the way!'
+  m_text: '* BIG MEN block the way!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 21d123a36923a6f40b5e1ad23d917e5b, type: 2}
   m_sharedMaterial: {fileID: -7690834590175792545, guid: 21d123a36923a6f40b5e1ad23d917e5b, type: 2}

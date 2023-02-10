@@ -16,6 +16,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private GameObject _enemyList;
     
     public TMP_Text _textBoxText;
+    public bool _canFlee;
     
     [Header("Player Box")]
     public TMP_Text _nameTagText;
