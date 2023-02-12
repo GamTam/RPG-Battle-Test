@@ -16,7 +16,7 @@ namespace Battle.State_Machine
 
         public override IEnumerator EnterState()
         {
-            _battleManager._textBoxText.SetText($"* {_enemy._name}'s turn!");
+            _battleManager.SetBattleText($"* {_enemy._name}'s turn!", true);
             Player player;
 
             do
@@ -29,7 +29,7 @@ namespace Battle.State_Machine
 
             yield return new WaitForSeconds(1f);
 
-            _battleManager._textBoxText.SetText($"* {_enemy._name} attacks {player._name}!");
+            _battleManager.SetBattleText($"* {_enemy._name} attacks {player._name}!");
             
             yield return new WaitForSeconds(1);
 
@@ -45,13 +45,13 @@ namespace Battle.State_Machine
             player.InitSetRedSlider(player._HP);
             yield return new WaitForSeconds(0.5f);
                     
-            _battleManager._textBoxText.SetText($"* {player._name} took {damage} damage!");
+            _battleManager.SetBattleText($"* {player._name} took {damage} damage!");
                     
             yield return new WaitForSeconds(1f);
             
             if (player._HP <= 0)
             {
-                _battleManager._textBoxText.SetText($"* {player._name} defeated!");
+                _battleManager.SetBattleText($"* {player._name} defeated!");
                 _battleManager._deadPlayers.Add(player.gameObject.GetComponent<Animator>());
                 yield return new WaitForSeconds(2f);
             }

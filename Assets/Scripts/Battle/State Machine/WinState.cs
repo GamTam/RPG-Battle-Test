@@ -40,7 +40,7 @@ namespace Battle.State_Machine
                 yield return null;
             }
 
-            _battleManager._textBoxText.SetText($"* You defeated the enemies!");
+            _battleManager.SetBattleText($"* You defeated the enemies!", true);
         }
     }
 }

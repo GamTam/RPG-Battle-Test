@@ -1705,8 +1705,8 @@ MonoBehaviour:
   _song: Pursuit_AJAA
   _playerList: {fileID: 264117426}
   _enemyList: {fileID: 1516180279}
-  _textBoxText: {fileID: 1274762956}
-  _canFlee: 1
+  _textBox: {fileID: 1274762956}
+  _canFlee: 0
   _nameTagText: {fileID: 1136997477}
   _nameTagImage: {fileID: 6355899}
   _buttons:

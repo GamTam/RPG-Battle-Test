@@ -15,7 +15,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private GameObject _playerList;
     [SerializeField] private GameObject _enemyList;
     
-    public TMP_Text _textBoxText;
+    public TMP_Text _textBox;
+    private List<string> _textBoxText = new List<string>();
+    private int _currentTextBoxLine;
     public bool _canFlee;
     
     [Header("Player Box")]
@@ -238,6 +240,28 @@ public class BattleManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(_buttons[_currentButton].gameObject);
         _selectedObj = _buttons[_currentButton].gameObject;
+    }
+
+    public void SetBattleText(string text, bool reset = false)
+    {
+        StartCoroutine(SetBattleTextCoroutine(text, reset));
+    }
+    
+    public IEnumerator SetBattleTextCoroutine(string text, bool reset)
+    {
+        if (reset) _textBoxText = new List<string>();
+        _textBoxText.Add(text);
+        if (_textBoxText.Count > 3)
+        {
+            _textBoxText.RemoveAt(0);
+        }
+
+        string[] tempList = new string[3];
+        _textBoxText.CopyTo(tempList);
+
+        _textBox.SetText($"{tempList[0]}\n{tempList[1]}\n{tempList[2]}");
+        
+        yield break;
     }
 }
 

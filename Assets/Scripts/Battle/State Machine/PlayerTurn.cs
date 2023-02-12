@@ -35,7 +35,7 @@ namespace Battle.State_Machine
             
             if ((_battleManager._turnIndex == 0 && _battleManager._currentPlayerIndex == 0) || _battleManager._players.Count == 1)
             {
-                _battleManager._textBoxText.SetText($"* {_player._name}'s turn!");
+                _battleManager.SetBattleText($"* {_player._name}'s turn!", true);
                 goto movedIcons;
             }
 
@@ -77,7 +77,7 @@ namespace Battle.State_Machine
                 yield return null;
             }
 
-            _battleManager._textBoxText.SetText($"* {_player._name}'s turn!");
+            _battleManager.SetBattleText($"* {_player._name}'s turn!", true);
             yield return new WaitForSeconds(0.5f);
             
             movementDuration = 1;
@@ -128,7 +128,7 @@ namespace Battle.State_Machine
             movedIcons:
             if (_player._HP <= 0)
             {
-                _battleManager._textBoxText.SetText($"* {_player._name} is unable to participate!");
+                _battleManager.SetBattleText($"* {_player._name} is unable to participate!");
                 yield return new WaitForSeconds(2f);
                 _battleManager.PickTurn();
                 yield break;
@@ -188,7 +188,8 @@ namespace Battle.State_Machine
                     #region Cannot Flee
                     if (!_battleManager._canFlee)
                     {
-                        _battleManager._textBoxText.SetText("* Cannot flee!");
+                        _battleManager._soundManager.Play("confirm");
+                        _battleManager.SetBattleText("* Cannot flee!", true);
                         yield return null;
                         while (true)
                         {
@@ -201,7 +202,7 @@ namespace Battle.State_Machine
                         }
 
                         _battleManager._soundManager.Play("confirm");
-                        _battleManager._textBoxText.SetText($"* {_player._name}'s turn!");
+                        _battleManager.SetBattleText($"* {_player._name}'s turn!", true);
                         _battleManager.EnableButtons();
                         yield break;
                     }
@@ -224,26 +225,25 @@ namespace Battle.State_Machine
 
                     int chance = _rand.Next(101);
                     
-                    _battleManager._textBoxText.SetText("* You tried to escape...");
+                    _battleManager.SetBattleText("* You tried to escape...");
                     yield return new WaitForSeconds(1);
 
                     if (chance > threshold)
                     {
-                        _battleManager._textBoxText.SetText("Escaped!");
+                        _battleManager.SetBattleText("* Escaped!");
                         yield return new WaitForSeconds(1);
                         Application.Quit();
                     }
                     else
                     {
-                        _battleManager._textBoxText.SetText("* ...but failed.");
+                        _battleManager.SetBattleText("* ...but failed.");
                         yield return new WaitForSeconds(1);
                     }
-                    
-                    Debug.Log($"Party Speed: {partySpeed}, Enemy Speed: {enemySpeed}, Threshold: {threshold}, Random Number: {chance}");
                     
                     _battleManager.PickTurn();
 
                     #endregion
+                    
                 yield break;
             }
             
@@ -254,7 +254,7 @@ namespace Battle.State_Machine
             switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
             {
                 case "Fight":
-                    _battleManager._textBoxText.SetText($"* {_player._name} attacked {enemy._name}!");
+                    _battleManager.SetBattleText($"* {_player._name} attacked {enemy._name}!");
 
                     int damage = Globals.DamageFormula(_player._pow, enemy._def);
                         
@@ -271,14 +271,14 @@ namespace Battle.State_Machine
                     enemy.InitSetRedSlider(enemy._HP);
                     yield return new WaitForSeconds(0.5f);
                     
-                    _battleManager._textBoxText.SetText($"* {enemy._name} took {damage} damage!");
+                    _battleManager.SetBattleText($"* {enemy._name} took {damage} damage!");
                     
                     yield return new WaitForSeconds(1f);
                     enemy._slider.gameObject.SetActive(false);
 
                     if (enemy._HP <= 0)
                     {
-                        _battleManager._textBoxText.SetText($"* {enemy._name} defeated!");
+                        _battleManager.SetBattleText($"* {enemy._name} defeated!");
                         _battleManager._deadEnemies.Add(enemy);
                         enemy._killable = true;
                         _battleManager._soundManager.Play("enemyDie");
@@ -288,7 +288,7 @@ namespace Battle.State_Machine
                     yield return new WaitForSeconds(1f);
                     break;
                 case "Check":
-                    _battleManager._textBoxText.SetText(enemy._description);
+                    _battleManager.SetBattleText(enemy._description, true);
                     yield return null;
                     while (true)
                     {
