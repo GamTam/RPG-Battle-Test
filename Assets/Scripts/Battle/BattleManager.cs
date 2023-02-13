@@ -46,6 +46,10 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public PlayerInput _playerInput;
     [HideInInspector] public InputAction _confirm;
     [HideInInspector] public InputAction _back;
+    
+    [SerializeField][TextArea(4, 4)] private string _startingText;
+    
+    public DialogueVertexAnimator dialogueVertexAnimator;
 
     private GameObject _selectedObj;
 
@@ -54,6 +58,8 @@ public class BattleManager : MonoBehaviour
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
         _confirm = _playerInput.actions["Confirm"];
         _back = _playerInput.actions["Cancel"];
+
+        dialogueVertexAnimator = new DialogueVertexAnimator(_textBox);
         
         foreach (Battleable chara in _playerList.GetComponentsInChildren<Battleable>())
         {
@@ -87,6 +93,24 @@ public class BattleManager : MonoBehaviour
         _musicManager = GameObject.FindWithTag("Audio").GetComponent<MusicManager>();
         _musicManager.Play(_song);
         _soundManager = GameObject.FindWithTag("Audio").GetComponent<SoundManager>();
+        
+        SetBattleText(_startingText);
+        
+        Dictionary<String, int> names = new Dictionary<string, int>();
+        for (int i = _enemies.Count - 1; i >= 0; i--)
+        {
+            string text = _enemies[i]._name;
+                        
+            if (!names.ContainsKey(text)) names.Add(text, 0);
+            names[text] += 1;
+            if (names[text] > 1)
+            {
+                text += $" {Globals.NumberToChar(names[text], true)}";
+            }
+
+            _enemies[i].gameObject.name = text;
+        }
+        
         SwitchStates(new Opening(this));
     }
 
@@ -244,24 +268,52 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattleText(string text, bool reset = false)
     {
-        StartCoroutine(SetBattleTextCoroutine(text, reset));
-    }
-    
-    public IEnumerator SetBattleTextCoroutine(string text, bool reset)
-    {
-        if (reset) _textBoxText = new List<string>();
+        // if (reset) _textBoxText = new List<string>();
         _textBoxText.Add(text);
-        if (_textBoxText.Count > 3)
+        
+        Queue<string> textQueue = new Queue<string>();
+        
+        // if (_textBoxText.Count > 3)
+        // {
+        //     _textBoxText.RemoveAt(0);
+        // }
+        
+        string str = "";
+        for (int i = 0; i < _textBoxText.Count; i++)
         {
-            _textBoxText.RemoveAt(0);
+                str += $"{_textBoxText[i]}\n";
         }
 
-        string[] tempList = new string[3];
-        _textBoxText.CopyTo(tempList);
+        string[] tempList = str.Split("\n");
 
-        _textBox.SetText($"{tempList[0]}\n{tempList[1]}\n{tempList[2]}");
+        for (int i = 0; i < tempList.Length - 1; i++)
+        {
+            textQueue.Enqueue(tempList[i]);
+        }
+
+        while (textQueue.Count > 3)
+        {
+            textQueue.Dequeue();
+        }
+
+        str = "";
+        int startIndex = 0;
+        while (textQueue.Count != 0)
+        {
+            var tempStr = textQueue.Dequeue();
+            str += tempStr + "\n";
+        }
         
-        yield break;
+        _textBox.SetText(str);
+        _textBox.ForceMeshUpdate();
+        
+        string[] asteriskList = _textBox.GetParsedText().Split("*");
+        for (int i = 0; i < asteriskList.Length - 1; i++)
+        {
+            startIndex += asteriskList[i].Length;
+        }
+        
+        StartCoroutine(dialogueVertexAnimator.AnimateTextIn(new List<DialogueCommand>(), str, "typewriter", null, startIndex));
     }
 }
 

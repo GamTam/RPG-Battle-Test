@@ -15,7 +15,7 @@ public class Enemy : Battleable
     float fade = 1;
     [HideInInspector] public bool _killable;
     
-    void Start()
+    void Awake()
     {
         _name = _baseEnemy.Name;
         _level = _baseEnemy.Level;

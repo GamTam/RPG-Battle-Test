@@ -20,4 +20,4 @@ MonoBehaviour:
   Speed: 1000
   Attacks:
   - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
-  Description: "* An even bigger man who wants \n  to have a good time."
+  Description: '* Beeg'

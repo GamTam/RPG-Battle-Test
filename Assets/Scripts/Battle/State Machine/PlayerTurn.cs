@@ -35,7 +35,7 @@ namespace Battle.State_Machine
             
             if ((_battleManager._turnIndex == 0 && _battleManager._currentPlayerIndex == 0) || _battleManager._players.Count == 1)
             {
-                _battleManager.SetBattleText($"* {_player._name}'s turn!", true);
+                _battleManager.SetBattleText($"* {_player._name.ToUpper()}'s turn!", true);
                 goto movedIcons;
             }
 
@@ -77,7 +77,7 @@ namespace Battle.State_Machine
                 yield return null;
             }
 
-            _battleManager.SetBattleText($"* {_player._name}'s turn!", true);
+            _battleManager.SetBattleText($"* {_player._name.ToUpper()}'s turn!", true);
             yield return new WaitForSeconds(0.5f);
             
             movementDuration = 1;
@@ -128,7 +128,7 @@ namespace Battle.State_Machine
             movedIcons:
             if (_player._HP <= 0)
             {
-                _battleManager.SetBattleText($"* {_player._name} is unable to participate!");
+                _battleManager.SetBattleText($"* {_player._name.ToUpper()} is unable to participate!");
                 yield return new WaitForSeconds(2f);
                 _battleManager.PickTurn();
                 yield break;
@@ -202,7 +202,7 @@ namespace Battle.State_Machine
                         }
 
                         _battleManager._soundManager.Play("confirm");
-                        _battleManager.SetBattleText($"* {_player._name}'s turn!", true);
+                        _battleManager.SetBattleText($"* {_player._name.ToUpper()}'s turn!", true);
                         _battleManager.EnableButtons();
                         yield break;
                     }
@@ -254,7 +254,7 @@ namespace Battle.State_Machine
             switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
             {
                 case "Fight":
-                    _battleManager.SetBattleText($"* {_player._name} attacked {enemy.gameObject.name}!");
+                    _battleManager.SetBattleText($"* {_player._name.ToUpper()} attacked {enemy.gameObject.name.ToUpper()}!");
 
                     int damage = Globals.DamageFormula(_player._pow, enemy._def);
                         
@@ -271,14 +271,14 @@ namespace Battle.State_Machine
                     enemy.InitSetRedSlider(enemy._HP);
                     yield return new WaitForSeconds(0.5f);
                     
-                    _battleManager.SetBattleText($"* {enemy.gameObject.name} took {damage} damage!");
+                    _battleManager.SetBattleText($"* {enemy.gameObject.name.ToUpper()} took <color=red>{damage}</color> damage!");
                     
                     yield return new WaitForSeconds(1f);
                     enemy._slider.gameObject.SetActive(false);
 
                     if (enemy._HP <= 0)
                     {
-                        _battleManager.SetBattleText($"* {_player._name} defeated {enemy.gameObject.name}!");
+                        _battleManager.SetBattleText($"* {_player._name.ToUpper()} <color=red>defeated {enemy.gameObject.name.ToUpper()}</color>!");
                         _battleManager._deadEnemies.Add(enemy);
                         enemy._killable = true;
                         _battleManager._soundManager.Play("enemyDie");
@@ -288,7 +288,7 @@ namespace Battle.State_Machine
                     yield return new WaitForSeconds(1f);
                     break;
                 case "Check":
-                    _battleManager.SetBattleText(enemy._description, true);
+                    _battleManager.SetBattleText(enemy._description);
                     yield return null;
                     while (true)
                     {
