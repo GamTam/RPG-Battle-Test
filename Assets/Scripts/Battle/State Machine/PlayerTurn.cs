@@ -254,7 +254,7 @@ namespace Battle.State_Machine
             switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
             {
                 case "Fight":
-                    _battleManager.SetBattleText($"* {_player._name} attacked {enemy._name}!");
+                    _battleManager.SetBattleText($"* {_player._name} attacked {enemy.gameObject.name}!");
 
                     int damage = Globals.DamageFormula(_player._pow, enemy._def);
                         
@@ -271,14 +271,14 @@ namespace Battle.State_Machine
                     enemy.InitSetRedSlider(enemy._HP);
                     yield return new WaitForSeconds(0.5f);
                     
-                    _battleManager.SetBattleText($"* {enemy._name} took {damage} damage!");
+                    _battleManager.SetBattleText($"* {enemy.gameObject.name} took {damage} damage!");
                     
                     yield return new WaitForSeconds(1f);
                     enemy._slider.gameObject.SetActive(false);
 
                     if (enemy._HP <= 0)
                     {
-                        _battleManager.SetBattleText($"* {enemy._name} defeated!");
+                        _battleManager.SetBattleText($"* {_player._name} defeated {enemy.gameObject.name}!");
                         _battleManager._deadEnemies.Add(enemy);
                         enemy._killable = true;
                         _battleManager._soundManager.Play("enemyDie");

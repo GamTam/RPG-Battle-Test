@@ -16,7 +16,7 @@ namespace Battle.State_Machine
 
         public override IEnumerator EnterState()
         {
-            _battleManager.SetBattleText($"* {_enemy._name}'s turn!", true);
+            _battleManager.SetBattleText($"* {_enemy.gameObject.name}'s turn!", true);
             Player player;
 
             do
@@ -29,7 +29,7 @@ namespace Battle.State_Machine
 
             yield return new WaitForSeconds(1f);
 
-            _battleManager.SetBattleText($"* {_enemy._name} attacks {player._name}!");
+            _battleManager.SetBattleText($"* {_enemy.gameObject.name} attacks {player._name}!");
             
             yield return new WaitForSeconds(1);
 
