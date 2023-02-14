@@ -270,7 +270,7 @@ namespace Battle.State_Machine
             switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
             {
                 case "Fight":
-                    _battleManager.SetBattleText($"* {_player._name.ToUpper()} attacked {enemy.gameObject.name.ToUpper()}!");
+                    _battleManager.SetBattleText($"* {_player._name.ToUpper()} attacked {enemy.gameObject.name.ToUpper()}!", true);
                     
                     while (_battleManager.dialogueVertexAnimator.textAnimating)
                     {
