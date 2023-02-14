@@ -11,7 +11,7 @@ public class Enemy : Battleable
     private Material _mat;
     
     private AttackSO[] _attacks;
-    [HideInInspector] public string _description;
+    [HideInInspector] public string[] _description;
     float fade = 1;
     [HideInInspector] public bool _killable;
     

@@ -149,6 +149,7 @@ namespace Battle.State_Machine
             {
                 case "Fight":
                 case "Check":
+                    _battleManager._soundManager.Play("confirm");
                     _battleManager._selectionBoxes[0].gameObject.SetActive(true);
                     _battleManager._selectionBoxes[0].ResetButtons();
                     
@@ -183,6 +184,7 @@ namespace Battle.State_Machine
                     _battleManager.PickTurn();
                     yield break;
                 case "Flee":
+                    _battleManager._soundManager.Play("confirm");
                     _battleManager.DisableButtons();
 
                     #region Cannot Flee
@@ -190,18 +192,14 @@ namespace Battle.State_Machine
                     {
                         _battleManager._soundManager.Play("confirm");
                         _battleManager.SetBattleText("* Cannot flee!", true);
-                        yield return null;
-                        while (true)
+                        
+                        while (_battleManager.dialogueVertexAnimator.textAnimating)
                         {
-                            if (_battleManager._confirm.triggered)
-                            {
-                                break;
-                            }
-
                             yield return null;
                         }
 
-                        _battleManager._soundManager.Play("confirm");
+                        yield return new WaitForSeconds(1);
+
                         _battleManager.SetBattleText($"* {_player._name.ToUpper()}'s turn!", true);
                         _battleManager.EnableButtons();
                         yield break;
@@ -226,17 +224,35 @@ namespace Battle.State_Machine
                     int chance = _rand.Next(101);
                     
                     _battleManager.SetBattleText("* You tried to escape...");
+                    
+                    while (_battleManager.dialogueVertexAnimator.textAnimating)
+                    {
+                        yield return null;
+                    }
+                    
                     yield return new WaitForSeconds(1);
 
                     if (chance > threshold)
                     {
                         _battleManager.SetBattleText("* Escaped!");
+                        
+                        while (_battleManager.dialogueVertexAnimator.textAnimating)
+                        {
+                            yield return null;
+                        }
+                        
                         yield return new WaitForSeconds(1);
                         Application.Quit();
                     }
                     else
                     {
                         _battleManager.SetBattleText("* ...but failed.");
+                        
+                        while (_battleManager.dialogueVertexAnimator.textAnimating)
+                        {
+                            yield return null;
+                        }
+                        
                         yield return new WaitForSeconds(1);
                     }
                     
@@ -255,11 +271,16 @@ namespace Battle.State_Machine
             {
                 case "Fight":
                     _battleManager.SetBattleText($"* {_player._name.ToUpper()} attacked {enemy.gameObject.name.ToUpper()}!");
+                    
+                    while (_battleManager.dialogueVertexAnimator.textAnimating)
+                    {
+                        yield return null;
+                    }
 
                     int damage = Globals.DamageFormula(_player._pow, enemy._def);
                         
                     enemy._slider.gameObject.SetActive(true);
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.2f);
                     
                     Shake shake = enemy.gameObject.GetComponent<Shake>();
                     enemy._HP -= damage;
@@ -273,7 +294,12 @@ namespace Battle.State_Machine
                     
                     _battleManager.SetBattleText($"* {enemy.gameObject.name.ToUpper()} took <color=red>{damage}</color> damage!");
                     
-                    yield return new WaitForSeconds(1f);
+                    while (_battleManager.dialogueVertexAnimator.textAnimating)
+                    {
+                        yield return null;
+                    }
+                        
+                    yield return new WaitForSeconds(0.5f);
                     enemy._slider.gameObject.SetActive(false);
 
                     if (enemy._HP <= 0)
@@ -282,23 +308,44 @@ namespace Battle.State_Machine
                         _battleManager._deadEnemies.Add(enemy);
                         enemy._killable = true;
                         _battleManager._soundManager.Play("enemyDie");
-                        yield return new WaitForSeconds(1f);
+                        while (_battleManager.dialogueVertexAnimator.textAnimating)
+                        {
+                            yield return null;
+                        }
+                        
+                        yield return new WaitForSeconds(0.5f);
                     }
                     
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(0.5f);
                     break;
                 case "Check":
-                    _battleManager.SetBattleText(enemy._description);
-                    yield return null;
-                    while (true)
+
+                    foreach (string desc in enemy._description)
                     {
-                        if (_battleManager._confirm.triggered)
-                        {
-                            break;
-                        }
                         yield return null;
+                        _battleManager.SetBattleText(desc, true);
+
+                        while (_battleManager.dialogueVertexAnimator.textAnimating)
+                        {
+                            if (_battleManager._confirm.triggered)
+                            {
+                                _battleManager.dialogueVertexAnimator.QuickEnd();
+                            }
+                            yield return null;
+                        }
+
+                        while (true)
+                        {
+                            if (_battleManager._confirm.triggered)
+                            {
+                                break;
+                            }
+                            
+                            yield return null;
+                        }
+                        _battleManager._soundManager.Play("confirm");
                     }
-                    _battleManager._soundManager.Play("confirm");
+                    
                     break;
             }
             

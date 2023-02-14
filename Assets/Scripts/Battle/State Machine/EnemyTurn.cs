@@ -47,13 +47,24 @@ namespace Battle.State_Machine
                     
             _battleManager.SetBattleText($"* {player._name.ToUpper()} took <color=red>{damage}</color> damage!");
                     
-            yield return new WaitForSeconds(1f);
+            while (_battleManager.dialogueVertexAnimator.textAnimating)
+            {
+                yield return null;
+            }
+                        
+            yield return new WaitForSeconds(0.5f);
             
             if (player._HP <= 0)
             {
                 _battleManager.SetBattleText($"<color=red>* {player._name.ToUpper()} defeated!</color>");
                 _battleManager._deadPlayers.Add(player.gameObject.GetComponent<Animator>());
-                yield return new WaitForSeconds(2f);
+                
+                while (_battleManager.dialogueVertexAnimator.textAnimating)
+                {
+                    yield return null;
+                }
+                        
+                yield return new WaitForSeconds(0.5f);
             }
             _battleManager.PickTurn();
         }

@@ -20,4 +20,13 @@ MonoBehaviour:
   Speed: 1492
   Attacks:
   - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
-  Description: "* A very big man who wants \n  to have a good time."
+  Description:
+  - "* The third and final member of <color=red>Deep Cut</color>,\n  Big Man is the
+    one who mixes\n  all of their music together."
+  - '* Attack is 12
+
+    * Defense is 3
+
+    * Speed is 1492.'
+  - "* He just wants to have a\n  good time."
+  - "* Unfortunately, you're trying to kill\n  him."

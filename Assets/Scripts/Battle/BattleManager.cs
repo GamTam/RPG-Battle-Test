@@ -268,7 +268,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattleText(string text, bool reset = false)
     {
-        // if (reset) _textBoxText = new List<string>();
+        if (reset) _textBoxText = new List<string>();
         _textBoxText.Add(text);
         
         Queue<string> textQueue = new Queue<string>();
@@ -297,21 +297,14 @@ public class BattleManager : MonoBehaviour
         }
 
         str = "";
-        int startIndex = 0;
         while (textQueue.Count != 0)
         {
             var tempStr = textQueue.Dequeue();
             str += tempStr + "\n";
         }
         
-        _textBox.SetText(str);
-        _textBox.ForceMeshUpdate();
         
-        string[] asteriskList = _textBox.GetParsedText().Split("*");
-        for (int i = 0; i < asteriskList.Length - 1; i++)
-        {
-            startIndex += asteriskList[i].Length;
-        }
+        int startIndex = Globals.RemoveRichText(str).Length - Globals.RemoveRichText(text).Length;
         
         StartCoroutine(dialogueVertexAnimator.AnimateTextIn(new List<DialogueCommand>(), str, "typewriter", null, startIndex));
     }
