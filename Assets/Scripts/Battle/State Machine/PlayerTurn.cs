@@ -162,11 +162,23 @@ namespace Battle.State_Machine
                     foreach (AttackSO attack in _player._attacks)
                     {
                         string text = $"{attack.Name}\n<size=75%><color=blue>{attack.Cost} {attack.CostType}";
+
+                        bool enableButton = false;
                         
-                        _battleManager._selectionBoxes[0].AddButton(text);
+                        switch (attack.CostType)
+                        {
+                            case DamageTypes.HP:
+                                enableButton = _player._HP >= attack.Cost;
+                                break;
+                            case DamageTypes.MP:
+                                enableButton = _player._MP >= attack.Cost;
+                                break;
+                        }
+                        
+                        _battleManager._selectionBoxes[0].AddButton(text, enableButton);
                     }
                     
-                    EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0].gameObject);
+                    EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0].Key.gameObject);
                     yield break;
                 case "Item":
                     _battleManager._soundManager.Play("confirm");

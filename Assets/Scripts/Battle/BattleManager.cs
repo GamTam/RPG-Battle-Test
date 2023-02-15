@@ -341,6 +341,8 @@ public class BattleManager : MonoBehaviour
     public void EnableEnemySelection()
     {
         Dictionary<String, int> names = new Dictionary<string, int>();
+
+        Enemy enemy = null;
             
         for (int i = _enemies.Count - 1; i >= 0; i--)
         {
@@ -354,14 +356,18 @@ public class BattleManager : MonoBehaviour
             }
 
             _enemies[i].gameObject.name = text;
-                        
-            if (_enemies[i]._HP > 0) _enemies[i].GetComponent<Button>().interactable = true;
+
+            if (_enemies[i]._HP > 0)
+            {
+                _enemies[i].GetComponent<Button>().interactable = true;
+                if (!enemy) enemy = _enemies[i];
+            }
         }
 
         DisableButtons();
 
-        EventSystem.current.SetSelectedGameObject(_enemies[^1].gameObject);
-        _enemySelectionController.SwitchEnemy(_enemies[^1]);
+        EventSystem.current.SetSelectedGameObject(enemy!.gameObject);
+        _enemySelectionController.SwitchEnemy(enemy);
     }
 }
 

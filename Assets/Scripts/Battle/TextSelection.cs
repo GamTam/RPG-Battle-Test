@@ -16,8 +16,8 @@ public class TextSelection : MonoBehaviour
     [HideInInspector] public GameObject _currentSelectedObject;
     private BattleManager _battleManager;
     
-    public List<TMP_Text> _buttons = new List<TMP_Text>();
-    
+    public List<KeyValuePair<TMP_Text, bool>> _buttons = new List<KeyValuePair<TMP_Text, bool>>();
+
     private int _currentColum;
     private int _currentRow;
 
@@ -38,24 +38,25 @@ public class TextSelection : MonoBehaviour
 
     public void ResetButtons()
     { 
-        foreach (TMP_Text text in _buttons)
+        foreach (KeyValuePair<TMP_Text, bool> text in _buttons)
         {
-            Destroy(text.gameObject);
+            Destroy(text.Key.gameObject);
         }
         
         _currentSelectedObject = null;
-        _buttons = new List<TMP_Text>();
+        _buttons = new List<KeyValuePair<TMP_Text, bool>>();
     }
 
-    public void AddButton(string text)
+    public void AddButton(string text, bool enabled)
     {
         TMP_Text button = Instantiate(_buttonPrefab, _grid.transform);
+        
         button.gameObject.SetActive(true);
         button.gameObject.name = text;
         
-        _buttons.Add(button);
+        _buttons.Add(new KeyValuePair<TMP_Text, bool>(button, enabled));
 
-        button.text = text;
+        button.text = enabled ? text : "<color=grey>" + text;
     }
 
     public void Update()
@@ -71,14 +72,27 @@ public class TextSelection : MonoBehaviour
 
         if (_confirm.triggered)
         {
-            _battleManager._soundManager.Play("confirm");
+            foreach (KeyValuePair<TMP_Text, bool> pair in _buttons)
+            {
+                if (!(_currentSelectedObject.GetComponent<TMP_Text>() == pair.Key)) continue;
+                
+                if (!pair.Value)
+                {
+                    Globals.SoundManager.Play("objectionEdgeworth");
+                    return;
+                }
+                
+                break;
+            }
+            
+            Globals.SoundManager.Play("confirm");
             _battleManager.Click();
             return;
         }
         
         if (_currentSelectedObject == EventSystem.current.currentSelectedGameObject) return;
 
-        if (_buttons.All(btn => EventSystem.current.currentSelectedGameObject != btn.gameObject)) return;
+        if (_buttons.All(btn => EventSystem.current.currentSelectedGameObject != btn.Key.gameObject)) return;
         
         _currentSelectedObject = EventSystem.current.currentSelectedGameObject;
 
@@ -89,18 +103,18 @@ public class TextSelection : MonoBehaviour
     public void Freeze()
     {
         _frozen = true;
-        foreach (TMP_Text button in _buttons)
+        foreach (KeyValuePair<TMP_Text, bool> button in _buttons)
         {
-            button.GetComponent<Button>().interactable = false;
+            button.Key.GetComponent<Button>().interactable = false;
         }
     }
 
     public void UnFreeze()
     {
         _frozen = false;
-        foreach (TMP_Text button in _buttons)
+        foreach (KeyValuePair<TMP_Text, bool> button in _buttons)
         {
-            button.GetComponent<Button>().interactable = true;
+            button.Key.GetComponent<Button>().interactable = true;
         }
         
         EventSystem.current.SetSelectedGameObject(_currentSelectedObject);
@@ -108,7 +122,7 @@ public class TextSelection : MonoBehaviour
     
     public string GetSelectedButtonText()
     {
-        if (_buttons.All(btn => _currentSelectedObject != btn.gameObject)) return "";
+        if (_buttons.All(btn => _currentSelectedObject != btn.Key.gameObject)) return "";
         
          return _currentSelectedObject.GetComponent<TMP_Text>().text;
     }

@@ -16,6 +16,12 @@ public class SoundManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        if (Globals.SoundManager != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Globals.SoundManager = this;
 
         Dictionary<string, ArrayList> musicDict = new Dictionary<string, ArrayList>();
         musicDict = Globals.LoadTSV("Sound Data");

@@ -7021,7 +7021,6 @@ MonoBehaviour:
   _selectionHead: {fileID: 668869375}
   _grid: {fileID: 258966217}
   _currentSelectedObject: {fileID: 0}
-  _buttons: []
 --- !u!1 &1864855650
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,12 +19,12 @@ public class MusicManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        if (instance != null)
+        if (Globals.MusicManager != null)
         {
             Destroy(gameObject);
             return;
         }
-        instance = this;
+        Globals.MusicManager = this;
 
         Dictionary<string, ArrayList> musicDict = new Dictionary<string, ArrayList>();
         musicDict = Globals.LoadTSV("Music Data");

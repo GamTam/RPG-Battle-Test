@@ -7,6 +7,9 @@ using Random = System.Random;
 
 public static class Globals
 {
+    public static MusicManager MusicManager;
+    public static SoundManager SoundManager;
+    
     public static Dictionary<string, ArrayList> LoadTSV(string file) {
         
         Dictionary<string, ArrayList> dictionary = new Dictionary<string, ArrayList>();
