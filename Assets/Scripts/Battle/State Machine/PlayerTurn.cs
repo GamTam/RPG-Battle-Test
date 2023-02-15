@@ -267,7 +267,6 @@ namespace Battle.State_Machine
             
             Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
             string attackName = _battleManager._selectionBoxes[0].GetSelectedButtonText().Split("\n")[0];
-            Debug.Log(attackName);
 
             int damage;
             Shake shake;
