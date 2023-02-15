@@ -1108,8 +1108,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105.1, y: -76.2}
-  m_SizeDelta: {x: 4267, y: 776.4}
+  m_AnchoredPosition: {x: 105.1, y: -51}
+  m_SizeDelta: {x: 4267, y: 826.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &258966219
 MonoBehaviour:
@@ -1126,13 +1126,13 @@ MonoBehaviour:
   m_Padding:
     m_Left: 472
     m_Right: 0
-    m_Top: -23
+    m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 244, y: 90.7}
-  m_Spacing: {x: 1310, y: 190}
+  m_Spacing: {x: 1310, y: 195.4}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &264117426
@@ -1436,7 +1436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 594, y: -22.349998}
+  m_AnchoredPosition: {x: 594, y: -45.35}
   m_SizeDelta: {x: 244, y: 90.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505411335
@@ -1459,7 +1459,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Big Man
+  m_text: 'Big Man
+
+    <size=50%>Big Man'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 21d123a36923a6f40b5e1ad23d917e5b, type: 2}
   m_sharedMaterial: {fileID: -7690834590175792545, guid: 21d123a36923a6f40b5e1ad23d917e5b, type: 2}
@@ -1494,7 +1496,7 @@ MonoBehaviour:
   m_fontSizeMax: 36
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1522,7 +1524,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 26.668118, z: 0, w: -19.765759}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

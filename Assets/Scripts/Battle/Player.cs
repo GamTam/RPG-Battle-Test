@@ -23,16 +23,15 @@ public class Player : Battleable
     [Header("Temp")]
     public int _MP;
     public int _maxMP;
-    [SerializeField] private List<AttackSO> _attacks;
+    [SerializeField] public List<AttackSO> _attacks;
 
     [HideInInspector] public Vector2 StartingLocation;
     
     void Awake()
     {
         Random rand = new Random();
-        //_HP = (int) (_maxHP * rand.NextDouble());
         _HP = _maxHP;
-        _MP = (int) (_maxMP * rand.NextDouble());
+        _MP = _maxMP;
         _speed = rand.Next(5000);
 
         _PFPSlot.sprite = _PFP;

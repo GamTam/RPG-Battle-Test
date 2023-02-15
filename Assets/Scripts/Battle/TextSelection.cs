@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,7 +13,7 @@ public class TextSelection : MonoBehaviour
     public TMP_Text _buttonPrefab;
     [SerializeField] private GameObject _selectionHead;
     [SerializeField] private GameObject _grid;
-    private GameObject _currentSelectedObject;
+    [HideInInspector] public GameObject _currentSelectedObject;
     private BattleManager _battleManager;
     
     public List<TMP_Text> _buttons = new List<TMP_Text>();
@@ -24,6 +25,8 @@ public class TextSelection : MonoBehaviour
     private InputAction _cancel;
     private InputAction _confirm;
     private Vector2 _prevMoveVector;
+
+    private bool _frozen;
 
     private void Start()
     {
@@ -57,11 +60,11 @@ public class TextSelection : MonoBehaviour
 
     public void Update()
     {
+        if (_frozen) return;
+        
         if (_cancel.triggered)
         {
-            ResetButtons();
-            gameObject.SetActive(false);
-            _battleManager.EnableButtons();
+            _battleManager.Back();
             _battleManager._soundManager.Play("back");
             return;
         }
@@ -70,12 +73,43 @@ public class TextSelection : MonoBehaviour
         {
             _battleManager._soundManager.Play("confirm");
             _battleManager.Click();
+            return;
         }
         
         if (_currentSelectedObject == EventSystem.current.currentSelectedGameObject) return;
+
+        if (_buttons.All(btn => EventSystem.current.currentSelectedGameObject != btn.gameObject)) return;
+        
         _currentSelectedObject = EventSystem.current.currentSelectedGameObject;
 
         _selectionHead.transform.position =
             EventSystem.current.currentSelectedGameObject.transform.position;
+    }
+
+    public void Freeze()
+    {
+        _frozen = true;
+        foreach (TMP_Text button in _buttons)
+        {
+            button.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void UnFreeze()
+    {
+        _frozen = false;
+        foreach (TMP_Text button in _buttons)
+        {
+            button.GetComponent<Button>().interactable = true;
+        }
+        
+        EventSystem.current.SetSelectedGameObject(_currentSelectedObject);
+    }
+    
+    public string GetSelectedButtonText()
+    {
+        if (_buttons.All(btn => _currentSelectedObject != btn.gameObject)) return null;
+        
+         return _currentSelectedObject.GetComponent<TMP_Text>().text;
     }
 }

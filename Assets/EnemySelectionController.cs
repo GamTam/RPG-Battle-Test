@@ -35,11 +35,11 @@ public class EnemySelectionController : MonoBehaviour
 
     public void Update()
     {
+        if (!gameObject.activeSelf) return;
+        
         if (_cancel.triggered)
         {
-            Disable();
-            gameObject.SetActive(false);
-            _battleManager.EnableButtons();
+            _battleManager.Back();
             _battleManager._soundManager.Play("back");
             return;
         }
@@ -51,6 +51,7 @@ public class EnemySelectionController : MonoBehaviour
         }
         
         if (_currentSelectedObject == EventSystem.current.currentSelectedGameObject) return;
+        
         _currentSelectedObject = EventSystem.current.currentSelectedGameObject;
 
         try
@@ -65,6 +66,7 @@ public class EnemySelectionController : MonoBehaviour
     public void SwitchEnemy(Enemy enemy)
     {
         if (_enemy) _enemy._selected = false;
+        _currentSelectedObject = enemy.gameObject;
         gameObject.SetActive(true);
         _enemy = enemy;
         Vector2 pos = _enemy._rectTransform.anchoredPosition;
@@ -81,7 +83,9 @@ public class EnemySelectionController : MonoBehaviour
 
     public void Disable()
     {
-        _enemy._selected = false;
+        if (!gameObject.activeSelf) return;
+        
+        if (_enemy) _enemy._selected = false;
         foreach (Enemy enemy in _battleManager._enemies)
         {
             enemy.GetComponent<Button>().interactable = false;

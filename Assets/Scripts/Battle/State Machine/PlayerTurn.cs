@@ -151,31 +151,23 @@ namespace Battle.State_Machine
                 case "Check":
                     _battleManager._soundManager.Play("confirm");
                     
-                    Dictionary<String, int> names = new Dictionary<string, int>();
-                    
-                    for (int i = _battleManager._enemies.Count - 1; i >= 0; i--)
-                    {
-                        string text = _battleManager._enemies[i]._name;
-                        
-                        if (!names.ContainsKey(text)) names.Add(text, 0);
-                        names[text] += 1;
-                        if (names[text] > 1)
-                        {
-                            text += $" {Globals.NumberToChar(names[text], true)}";
-                        }
-
-                        _battleManager._enemies[i].gameObject.name = text;
-                        
-                        if (_battleManager._enemies[i]._HP > 0) _battleManager._enemies[i].GetComponent<Button>().interactable = true;
-                    }
-                    
-                    _battleManager.DisableButtons();
-                    _battleManager._soundManager.Play("confirm");
-
-                    EventSystem.current.SetSelectedGameObject(_battleManager._enemies[^1].gameObject);
-                    _battleManager._enemySelectionController.SwitchEnemy(_battleManager._enemies[^1]);
+                    _battleManager.EnableEnemySelection();
                     yield break;
                 case "Special":
+                    _battleManager._soundManager.Play("confirm");
+                    _battleManager.DisableButtons();
+                    _battleManager._selectionBoxes[0].gameObject.SetActive(true);
+                    _battleManager._selectionBoxes[0].ResetButtons();
+                    
+                    foreach (AttackSO attack in _player._attacks)
+                    {
+                        string text = $"{attack.Name}\n<size=75%><color=blue>{attack.Cost} {attack.CostType}";
+                        
+                        _battleManager._selectionBoxes[0].AddButton(text);
+                    }
+                    
+                    EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0].gameObject);
+                    yield break;
                 case "Item":
                     _battleManager._soundManager.Play("confirm");
                     _battleManager.DisableButtons();
@@ -262,16 +254,19 @@ namespace Battle.State_Machine
             }
             
             Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
-            _battleManager._selectionBoxes[0].ResetButtons();
-            _battleManager._selectionBoxes[0].gameObject.SetActive(false);
-            
-            _battleManager._enemySelectionController.Disable();            
-            
-            _battleManager.ClearBattleText();
+            string attackName = _battleManager._selectionBoxes[0].GetSelectedButtonText().Split("\n")[0];
 
+            int damage;
+            Shake shake;
+            bool crit;
+            
             switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
             {
                 case "Fight":
+                    _battleManager._enemySelectionController.Disable();            
+            
+                    _battleManager.ClearBattleText();
+                    
                     _battleManager.SetBattleText($"* {_player._name.ToUpper()} attacked {enemy.gameObject.name.ToUpper()}!", true);
                     
                     while (_battleManager.dialogueVertexAnimator.textAnimating)
@@ -279,13 +274,13 @@ namespace Battle.State_Machine
                         yield return null;
                     }
 
-                    int damage = Globals.DamageFormula(_player._pow, enemy._def, out bool crit, _player._luck);
+                    damage = Globals.DamageFormula(_player._pow, enemy._def, out crit, _player._luck);
                     if (crit) damage *= 2;
                     
                     enemy._slider.gameObject.SetActive(true);
                     yield return new WaitForSeconds(0.2f);
                     
-                    Shake shake = enemy.gameObject.GetComponent<Shake>();
+                    shake = enemy.gameObject.GetComponent<Shake>();
                     enemy._HP -= damage;
                     
                     _battleManager._soundManager.Play("hit");
@@ -334,6 +329,9 @@ namespace Battle.State_Machine
                     yield return new WaitForSeconds(0.5f);
                     break;
                 case "Check":
+                    _battleManager._enemySelectionController.Disable();            
+            
+                    _battleManager.ClearBattleText();
                     
                     for(int i=0; i < enemy._description.Length; i++)
                     {
@@ -362,9 +360,136 @@ namespace Battle.State_Machine
                     }
                     
                     break;
+                case "Special":
+                    if (!_battleManager._enemySelectionController.gameObject.activeSelf)
+                    {
+                        _battleManager.EnableEnemySelection();
+                        _battleManager._selectionBoxes[0].Freeze();
+                        yield break;
+                    }
+
+                    _battleManager._enemySelectionController.Disable();
+                    _battleManager._selectionBoxes[0].ResetButtons();
+                    _battleManager._selectionBoxes[0].gameObject.SetActive(false);
+                    
+                    _battleManager._selectionBoxes[0].UnFreeze();
+
+                    AttackSO attack = ScriptableObject.CreateInstance<AttackSO>();
+                    
+                    foreach (AttackSO atk in _player._attacks)
+                    {
+                        if (atk.name == attackName)
+                        {
+                            attack = atk;
+                            break;
+                        }
+                    }
+
+                    switch (attack.CostType)
+                    {
+                        case DamageTypes.HP:
+                            _player._HP -= attack.Cost;
+                            break;
+                        case DamageTypes.MP:
+                            _player._MP -= attack.Cost;
+                            break;
+                        case DamageTypes.Money:
+                            break;
+                    }
+                    
+                    _battleManager.ClearBattleText();
+                    
+                    _battleManager.SetBattleText($"* {_player._name.ToUpper()} used {attack.name.ToUpper()} on {enemy.gameObject.name.ToUpper()}!", true);
+                    
+                    while (_battleManager.dialogueVertexAnimator.textAnimating)
+                    {
+                        yield return null;
+                    }
+
+                    damage = Globals.DamageFormula(_player._pow + attack.Strength, enemy._def, out crit, _player._luck);
+                    if (crit) damage *= 2;
+                    
+                    enemy._slider.gameObject.SetActive(true);
+                    yield return new WaitForSeconds(0.2f);
+                    
+                    shake = enemy.gameObject.GetComponent<Shake>();
+                    enemy._HP -= damage;
+                    
+                    _battleManager._soundManager.Play("hit");
+                    shake.maxShakeDuration = 0.25f;
+                    shake.enabled = true;
+                    
+                    yield return new WaitForSeconds(0.5f);
+                    enemy.InitSetRedSlider(enemy._HP);
+                    yield return new WaitForSeconds(0.5f);
+
+                    if (crit)
+                    {
+                        _battleManager.SetBattleText("<anim:shake>* A critical hit!</anim>");
+
+                        while (_battleManager.dialogueVertexAnimator.textAnimating)
+                        {
+                            yield return null;
+                        }
+                        yield return new WaitForSeconds(0.5f);
+                    }
+
+                    _battleManager.SetBattleText($"* {enemy.gameObject.name.ToUpper()} took <color=red>{damage}</color> damage!");
+                    
+                    while (_battleManager.dialogueVertexAnimator.textAnimating)
+                    {
+                        yield return null;
+                    }
+                        
+                    yield return new WaitForSeconds(0.5f);
+                    enemy._slider.gameObject.SetActive(false);
+
+                    if (enemy._HP <= 0)
+                    {
+                        _battleManager.SetBattleText($"* {_player._name.ToUpper()} <color=red>defeated {enemy.gameObject.name.ToUpper()}</color>!");
+                        _battleManager._deadEnemies.Add(enemy);
+                        enemy._killable = true;
+                        _battleManager._soundManager.Play("enemyDie");
+                        while (_battleManager.dialogueVertexAnimator.textAnimating)
+                        {
+                            yield return null;
+                        }
+                        
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    
+                    yield return new WaitForSeconds(0.5f);
+
+                    break;
             }
             
             _battleManager.PickTurn();
+        }
+
+        public override IEnumerator OnBack()
+        {
+            switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
+            {
+                case "Special":
+                    if (_battleManager._enemySelectionController.gameObject.activeSelf)
+                    {
+                        _battleManager._enemySelectionController.Disable();
+                        _battleManager._selectionBoxes[0].UnFreeze();
+                        
+                        yield break;
+                    }
+                    goto default;
+                default:
+                    _battleManager._selectionBoxes[0].ResetButtons();
+                    _battleManager._selectionBoxes[0].gameObject.SetActive(false);
+                    
+                    _battleManager._selectionBoxes[0].UnFreeze();
+                    
+                    _battleManager._enemySelectionController.Disable();
+                    
+                    _battleManager.EnableButtons();
+                    break;
+            }
         }
     }
 }

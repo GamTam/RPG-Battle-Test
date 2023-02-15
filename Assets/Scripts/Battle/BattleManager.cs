@@ -116,7 +116,7 @@ public class BattleManager : MonoBehaviour
         SwitchStates(new Opening(this));
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (!Equals(_selectedObj, EventSystem.current.currentSelectedGameObject) && EventSystem.current.currentSelectedGameObject != null)
         {
@@ -196,6 +196,11 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(_state.OnClick());
     }
 
+    public void Back()
+    {
+        StartCoroutine(_state.OnBack());
+    }
+    
     public void SwitchStates(State state)
     {
         if (_state != null) StartCoroutine(_state.ExitState());
@@ -331,6 +336,32 @@ public class BattleManager : MonoBehaviour
         _textBoxText = new List<string>();
         
         _textBox.SetText("");
+    }
+    
+    public void EnableEnemySelection()
+    {
+        Dictionary<String, int> names = new Dictionary<string, int>();
+            
+        for (int i = _enemies.Count - 1; i >= 0; i--)
+        {
+            string text = _enemies[i]._name;
+                        
+            if (!names.ContainsKey(text)) names.Add(text, 0);
+            names[text] += 1;
+            if (names[text] > 1)
+            {
+                text += $" {Globals.NumberToChar(names[text], true)}";
+            }
+
+            _enemies[i].gameObject.name = text;
+                        
+            if (_enemies[i]._HP > 0) _enemies[i].GetComponent<Button>().interactable = true;
+        }
+
+        DisableButtons();
+
+        EventSystem.current.SetSelectedGameObject(_enemies[^1].gameObject);
+        _enemySelectionController.SwitchEnemy(_enemies[^1]);
     }
 }
 

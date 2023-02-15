@@ -32,6 +32,11 @@ namespace Battle.State_Machine
             yield break;
         }
         
+        public virtual IEnumerator OnBack()
+        {
+            yield break;
+        }
+        
         public virtual void CheckStates() {}
     }
 }
