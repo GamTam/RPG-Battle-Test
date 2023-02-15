@@ -14,6 +14,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private string _song;
     [SerializeField] private GameObject _playerList;
     [SerializeField] private GameObject _enemyList;
+    public EnemySelectionController _enemySelectionController;
     
     public TMP_Text _textBox;
     private List<string> _textBoxText = new List<string>();
@@ -281,10 +282,10 @@ public class BattleManager : MonoBehaviour
         
         Queue<string> textQueue = new Queue<string>();
         
-        // if (_textBoxText.Count > 3)
-        // {
-        //     _textBoxText.RemoveAt(0);
-        // }
+        if (_textBoxText.Count > 3)
+        {
+            _textBoxText.RemoveAt(0);
+        }
         
         string str = "";
         for (int i = 0; i < _textBoxText.Count; i++)

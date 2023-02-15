@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,9 +23,9 @@ public class Player : Battleable
     [Header("Temp")]
     public int _MP;
     public int _maxMP;
+    [SerializeField] private List<AttackSO> _attacks;
 
     [HideInInspector] public Vector2 StartingLocation;
-    private AttackSO[] _attacks;
     
     void Awake()
     {

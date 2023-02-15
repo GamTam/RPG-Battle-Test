@@ -150,8 +150,6 @@ namespace Battle.State_Machine
                 case "Fight":
                 case "Check":
                     _battleManager._soundManager.Play("confirm");
-                    _battleManager._selectionBoxes[0].gameObject.SetActive(true);
-                    _battleManager._selectionBoxes[0].ResetButtons();
                     
                     Dictionary<String, int> names = new Dictionary<string, int>();
                     
@@ -168,14 +166,14 @@ namespace Battle.State_Machine
 
                         _battleManager._enemies[i].gameObject.name = text;
                         
-                        if (_battleManager._enemies[i]._HP > 0) _battleManager._selectionBoxes[0].AddButton(text);
+                        if (_battleManager._enemies[i]._HP > 0) _battleManager._enemies[i].GetComponent<Button>().interactable = true;
                     }
                     
                     _battleManager.DisableButtons();
                     _battleManager._soundManager.Play("confirm");
 
-                    EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0]
-                        .gameObject);
+                    EventSystem.current.SetSelectedGameObject(_battleManager._enemies[^1].gameObject);
+                    _battleManager._enemySelectionController.SwitchEnemy(_battleManager._enemies[^1]);
                     yield break;
                 case "Special":
                 case "Item":
@@ -266,6 +264,9 @@ namespace Battle.State_Machine
             Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
             _battleManager._selectionBoxes[0].ResetButtons();
             _battleManager._selectionBoxes[0].gameObject.SetActive(false);
+            
+            _battleManager._enemySelectionController.Disable();            
+            
             _battleManager.ClearBattleText();
 
             switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
@@ -279,12 +280,13 @@ namespace Battle.State_Machine
                     }
 
                     int damage = Globals.DamageFormula(_player._pow, enemy._def, out bool crit, _player._luck);
+                    if (crit) damage *= 2;
                     
                     enemy._slider.gameObject.SetActive(true);
                     yield return new WaitForSeconds(0.2f);
                     
                     Shake shake = enemy.gameObject.GetComponent<Shake>();
-                    enemy._HP = crit ? enemy._HP - damage * 2 : enemy._HP - damage;
+                    enemy._HP -= damage;
                     
                     _battleManager._soundManager.Play("hit");
                     shake.maxShakeDuration = 0.25f;

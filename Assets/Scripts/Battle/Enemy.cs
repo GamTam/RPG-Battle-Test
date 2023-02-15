@@ -9,6 +9,10 @@ public class Enemy : Battleable
     [SerializeField] private EnemySO _baseEnemy;
     [SerializeField] private Image _image;
     private Material _mat;
+    private float _timer = 0;
+
+    public bool _selected;
+    public RectTransform _rectTransform;
     
     private AttackSO[] _attacks;
     [HideInInspector] public string[] _description;
@@ -40,6 +44,13 @@ public class Enemy : Battleable
     {
         _slider.value = _HP;
         
+        if (_selected) FlashWhite();
+        else
+        {
+            _timer = 0;
+            _mat.SetColor("_Color_2", Color.white);
+        }
+        
         if (_killable) {
             fade -= Time.deltaTime;
             if (fade <= 0f) {
@@ -49,5 +60,17 @@ public class Enemy : Battleable
 
             _mat.SetFloat("_Fade", fade);
         }
+    }
+
+    private void FlashWhite()
+    {
+        _timer += Time.deltaTime * 5;
+
+        float intensity = Mathf.Sin(_timer) + 1f;
+        
+        float factor = Mathf.Pow(2, intensity);
+        Color color = new Color(factor, factor, factor);
+        
+        _mat.SetColor("_Color_2", color);
     }
 }

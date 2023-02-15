@@ -32,7 +32,7 @@ public static class Globals
     public static int DamageFormula(int atk, int def, out bool crit, int luck = 500)
     {
         int threshold = (int) ((luck / 400f) * 100f);
-        double chance = GetRandomNumber(0, 401);
+        int chance = GetRandomNumber(0, 101);
 
         crit = chance < threshold;
         
@@ -59,92 +59,94 @@ public static class Globals
         return c.ToString();
     }
     
+    public static int GetRandomNumber(int minimum, int maximum)
+    { 
+        Random random = new Random();
+        return random.Next(minimum, maximum);
+    }
+    
     public static double GetRandomNumber(double minimum, double maximum)
     { 
         Random random = new Random();
         return random.NextDouble() * (maximum - minimum) + minimum;
     }
     
-    public static string RemoveRichText(string input)
+    public static string RemoveRichText(string str)
     {
      
-        input = RemoveRichTextDynamicTag(input, "color");
+        str = RemoveRichTextDynamicTag(str, "color");
      
-        input = RemoveRichTextTag(input, "b");
-        input = RemoveRichTextTag(input, "i");
+        str = RemoveRichTextTag(str, "b");
+        str = RemoveRichTextTag(str, "i");
+        
+        str = RemoveRichTextDynamicTag(str, "align");
+        str = RemoveRichTextDynamicTag(str, "size");
+        str = RemoveRichTextDynamicTag(str, "cspace");
+        str = RemoveRichTextDynamicTag(str, "font");
+        str = RemoveRichTextDynamicTag(str, "indent");
+        str = RemoveRichTextDynamicTag(str, "line-height");
+        str = RemoveRichTextDynamicTag(str, "line-indent");
+        str = RemoveRichTextDynamicTag(str, "link");
+        str = RemoveRichTextDynamicTag(str, "margin");
+        str = RemoveRichTextDynamicTag(str, "margin-left");
+        str = RemoveRichTextDynamicTag(str, "margin-right");
+        str = RemoveRichTextDynamicTag(str, "mark");
+        str = RemoveRichTextDynamicTag(str, "mspace");
+        str = RemoveRichTextDynamicTag(str, "noparse");
+        str = RemoveRichTextDynamicTag(str, "nobr");
+        str = RemoveRichTextDynamicTag(str, "page");
+        str = RemoveRichTextDynamicTag(str, "pos");
+        str = RemoveRichTextDynamicTag(str, "space");
+        str = RemoveRichTextDynamicTag(str, "sprite index");
+        str = RemoveRichTextDynamicTag(str, "sprite name");
+        str = RemoveRichTextDynamicTag(str, "sprite");
+        str = RemoveRichTextDynamicTag(str, "style");
+        str = RemoveRichTextDynamicTag(str, "voffset");
+        str = RemoveRichTextDynamicTag(str, "width");
      
-     
-        // TMP
-        input = RemoveRichTextDynamicTag(input, "align");
-        input = RemoveRichTextDynamicTag(input, "size");
-        input = RemoveRichTextDynamicTag(input, "cspace");
-        input = RemoveRichTextDynamicTag(input, "font");
-        input = RemoveRichTextDynamicTag(input, "indent");
-        input = RemoveRichTextDynamicTag(input, "line-height");
-        input = RemoveRichTextDynamicTag(input, "line-indent");
-        input = RemoveRichTextDynamicTag(input, "link");
-        input = RemoveRichTextDynamicTag(input, "margin");
-        input = RemoveRichTextDynamicTag(input, "margin-left");
-        input = RemoveRichTextDynamicTag(input, "margin-right");
-        input = RemoveRichTextDynamicTag(input, "mark");
-        input = RemoveRichTextDynamicTag(input, "mspace");
-        input = RemoveRichTextDynamicTag(input, "noparse");
-        input = RemoveRichTextDynamicTag(input, "nobr");
-        input = RemoveRichTextDynamicTag(input, "page");
-        input = RemoveRichTextDynamicTag(input, "pos");
-        input = RemoveRichTextDynamicTag(input, "space");
-        input = RemoveRichTextDynamicTag(input, "sprite index");
-        input = RemoveRichTextDynamicTag(input, "sprite name");
-        input = RemoveRichTextDynamicTag(input, "sprite");
-        input = RemoveRichTextDynamicTag(input, "style");
-        input = RemoveRichTextDynamicTag(input, "voffset");
-        input = RemoveRichTextDynamicTag(input, "width");
-     
-        input = RemoveRichTextTag(input, "u");
-        input = RemoveRichTextTag(input, "s");
-        input = RemoveRichTextTag(input, "sup");
-        input = RemoveRichTextTag(input, "sub");
-        input = RemoveRichTextTag(input, "allcaps");
-        input = RemoveRichTextTag(input, "smallcaps");
-        input = RemoveRichTextTag(input, "uppercase");
-        // TMP end
-     
-     
-        return input;
+        str = RemoveRichTextTag(str, "u");
+        str = RemoveRichTextTag(str, "s");
+        str = RemoveRichTextTag(str, "sup");
+        str = RemoveRichTextTag(str, "sub");
+        str = RemoveRichTextTag(str, "allcaps");
+        str = RemoveRichTextTag(str, "smallcaps");
+        str = RemoveRichTextTag(str, "uppercase");
+        
+        return str;
      
     }
     
-    private static string RemoveRichTextDynamicTag (string input, string tag)
+    private static string RemoveRichTextDynamicTag (string str, string tag)
     {
         int index = -1;
         while (true)
         {
-            index = input.IndexOf($"<{tag}=");
+            index = str.IndexOf($"<{tag}=");
             //Debug.Log($"{{{index}}} - <noparse>{input}");
             if (index != -1)
             {
-                int endIndex = input.Substring(index, input.Length - index).IndexOf('>');
+                int endIndex = str.Substring(index, str.Length - index).IndexOf('>');
                 if (endIndex > 0)
-                    input = input.Remove(index, endIndex + 1);
+                    str = str.Remove(index, endIndex + 1);
                 continue;
             }
-            input = RemoveRichTextTag(input, tag, false);
-            return input;
+            str = RemoveRichTextTag(str, tag, false);
+            return str;
         }
     }
-    private static string RemoveRichTextTag (string input, string tag, bool isStart = true)
+    private static string RemoveRichTextTag (string str, string tag, bool isStart = true)
     {
         while (true)
         {
-            int index = input.IndexOf(isStart ? $"<{tag}>" : $"</{tag}>");
+            int index = str.IndexOf(isStart ? $"<{tag}>" : $"</{tag}>");
             if (index != -1)
             {
-                input = input.Remove(index, 2 + tag.Length + (!isStart).GetHashCode());
+                str = str.Remove(index, 2 + tag.Length + (!isStart).GetHashCode());
                 continue;
             }
             if (isStart)
-                input = RemoveRichTextTag(input, tag, false);
-            return input;
+                str = RemoveRichTextTag(str, tag, false);
+            return str;
         }
     }
  
