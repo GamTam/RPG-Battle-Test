@@ -266,6 +266,7 @@ namespace Battle.State_Machine
             Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
             _battleManager._selectionBoxes[0].ResetButtons();
             _battleManager._selectionBoxes[0].gameObject.SetActive(false);
+            _battleManager.ClearBattleText();
 
             switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
             {
@@ -277,13 +278,14 @@ namespace Battle.State_Machine
                         yield return null;
                     }
 
-                    int damage = Globals.DamageFormula(_player._pow, enemy._def);
-                        
+                    int damage = Globals.DamageFormula(_player._pow, enemy._def, out bool crit, _player._luck);
+                    
                     enemy._slider.gameObject.SetActive(true);
                     yield return new WaitForSeconds(0.2f);
                     
                     Shake shake = enemy.gameObject.GetComponent<Shake>();
-                    enemy._HP -= damage;
+                    enemy._HP = crit ? enemy._HP - damage * 2 : enemy._HP - damage;
+                    
                     _battleManager._soundManager.Play("hit");
                     shake.maxShakeDuration = 0.25f;
                     shake.enabled = true;
@@ -291,7 +293,18 @@ namespace Battle.State_Machine
                     yield return new WaitForSeconds(0.5f);
                     enemy.InitSetRedSlider(enemy._HP);
                     yield return new WaitForSeconds(0.5f);
-                    
+
+                    if (crit)
+                    {
+                        _battleManager.SetBattleText("<anim:shake>* A critical hit!</anim>");
+
+                        while (_battleManager.dialogueVertexAnimator.textAnimating)
+                        {
+                            yield return null;
+                        }
+                        yield return new WaitForSeconds(0.5f);
+                    }
+
                     _battleManager.SetBattleText($"* {enemy.gameObject.name.ToUpper()} took <color=red>{damage}</color> damage!");
                     
                     while (_battleManager.dialogueVertexAnimator.textAnimating)
@@ -319,12 +332,12 @@ namespace Battle.State_Machine
                     yield return new WaitForSeconds(0.5f);
                     break;
                 case "Check":
-
-                    foreach (string desc in enemy._description)
+                    
+                    for(int i=0; i < enemy._description.Length; i++)
                     {
                         yield return null;
-                        _battleManager.SetBattleText(desc, true);
-
+                        _battleManager.SetBattleText(enemy._description[i], true);
+                        
                         while (_battleManager.dialogueVertexAnimator.textAnimating)
                         {
                             if (_battleManager._confirm.triggered)

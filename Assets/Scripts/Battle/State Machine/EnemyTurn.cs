@@ -33,7 +33,7 @@ namespace Battle.State_Machine
             
             yield return new WaitForSeconds(1);
 
-            int damage = Globals.DamageFormula(_enemy._pow, player._def);
+            int damage = Globals.DamageFormula(_enemy._pow, player._def, out bool crit);
 
             _battleManager._soundManager.Play("playerHit");
             Shake shake = player.gameObject.GetComponent<Shake>();

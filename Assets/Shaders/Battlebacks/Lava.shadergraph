@@ -203,7 +203,35 @@
                 "m_Node": {
                     "m_Id": "11c84f9807e14133bf237b51a667f83e"
                 },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "98760f0731594b9c836b511cc44693fd"
+                },
+                "m_SlotId": 3
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "11c84f9807e14133bf237b51a667f83e"
+                },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "98760f0731594b9c836b511cc44693fd"
+                },
+                "m_SlotId": 3
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "11c84f9807e14133bf237b51a667f83e"
+                },
+                "m_SlotId": 2
             }
         },
         {
@@ -843,8 +871,8 @@
     "m_ShaderOutputName": "Strength",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": -0.6499999761581421,
-        "y": 2.4600000381469728
+        "x": -0.8700000047683716,
+        "y": 1.649999976158142
     },
     "m_DefaultValue": {
         "x": 0.0,
@@ -1447,7 +1475,7 @@
     "m_StageCapability": 3,
     "m_Value": {
         "x": 0.5,
-        "y": 0.5
+        "y": 0.5099999904632568
     },
     "m_DefaultValue": {
         "x": 0.0,
@@ -1965,7 +1993,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "CellDensity",
     "m_StageCapability": 3,
-    "m_Value": 3.819999933242798,
+    "m_Value": -2.690000057220459,
     "m_DefaultValue": 5.0,
     "m_Labels": []
 }
@@ -2453,7 +2481,7 @@
         "a": 0.0
     },
     "isMainColor": false,
-    "m_ColorMode": 0
+    "m_ColorMode": 1
 }
 
 {

@@ -131,7 +131,7 @@ public class DialogueVertexAnimator {
                 Debug.LogError("Oh no!");
             }
             
-            if (!textAnimating) yield break;
+            // if (!textAnimating) yield break;
             yield return null;
         }
     }

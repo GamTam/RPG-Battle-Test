@@ -29,8 +29,13 @@ public static class Globals
         return dictionary;
     }
 
-    public static int DamageFormula(int atk, int def)
+    public static int DamageFormula(int atk, int def, out bool crit, int luck = 500)
     {
+        int threshold = (int) ((luck / 400f) * 100f);
+        double chance = GetRandomNumber(0, 401);
+
+        crit = chance < threshold;
+        
         return Mathf.Max(Mathf.RoundToInt((float) ((atk * 4 - def * 2) * GetRandomNumber(0.7f, 1.2f))), 1);
     }
     

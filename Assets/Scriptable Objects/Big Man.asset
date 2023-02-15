@@ -23,10 +23,12 @@ MonoBehaviour:
   Description:
   - "* The third and final member of <color=red>Deep Cut</color>,\n  Big Man is the
     one who mixes\n  all of their music together."
-  - '* Attack is 12
+  - '* Attack is 12<p:short>
 
-    * Defense is 3
+    * Defense is 3<p:short>
 
-    * Speed is 1492.'
-  - "* He just wants to have a\n  good time."
-  - "* Unfortunately, you're trying to kill\n  him."
+    * Speed is 1492'
+  - '* He just wants to have a good time.<p:short>
+
+    * Unfortunately,<p:tiny>
+    you''re trying to kill him.'

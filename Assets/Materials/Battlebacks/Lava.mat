@@ -38,8 +38,8 @@ Material:
     - _QueueOffset: 0
     - _alpha: 1
     m_Colors:
-    - _BaseColor: {r: 42.810474, g: 5.3003445, b: 0, a: 0}
-    - _DarkColor: {r: 0.4056604, g: 0.0665535, b: 0, a: 0}
+    - _BaseColor: {r: 27.53272, g: 6.630917, b: 0, a: 0}
+    - _DarkColor: {r: 0.078, g: 0.0014672481, b: 0, a: 0}
     - _HighlightColor: {r: 0, g: 3.873324, b: 4.085884, a: 0}
     - _RippleColor: {r: 0, g: 1.87451, b: 2, a: 0}
   m_BuildTextureStacks: []

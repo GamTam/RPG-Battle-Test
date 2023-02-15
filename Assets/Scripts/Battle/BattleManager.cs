@@ -52,6 +52,7 @@ public class BattleManager : MonoBehaviour
     public DialogueVertexAnimator dialogueVertexAnimator;
 
     private GameObject _selectedObj;
+    private List<Coroutine> _textCoroutines = new List<Coroutine>();
 
     private void Start()
     {
@@ -268,6 +269,13 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattleText(string text, bool reset = false)
     {
+        foreach (Coroutine coroutine in _textCoroutines)
+        {
+            StopCoroutine(coroutine);
+        }
+        
+        _textCoroutines = new List<Coroutine>();
+        
         if (reset) _textBoxText = new List<string>();
         _textBoxText.Add(text);
         
@@ -303,10 +311,25 @@ public class BattleManager : MonoBehaviour
             str += tempStr + "\n";
         }
         
+        List<DialogueCommand> commands = DialogueUtility.ProcessInputString(str, out string processedStr);
+        DialogueUtility.ProcessInputString(text, out string processedText);
         
-        int startIndex = Globals.RemoveRichText(str).Length - Globals.RemoveRichText(text).Length;
+        int startIndex = Globals.RemoveRichText(processedStr).Length - Globals.RemoveRichText(processedText).Length;
         
-        StartCoroutine(dialogueVertexAnimator.AnimateTextIn(new List<DialogueCommand>(), str, "typewriter", null, startIndex));
+        _textCoroutines.Add(StartCoroutine(dialogueVertexAnimator.AnimateTextIn(commands, processedStr, "typewriter", null, startIndex)));
+    }
+
+    public void ClearBattleText()
+    {
+        foreach (Coroutine coroutine in _textCoroutines)
+        {
+            StopCoroutine(coroutine);
+        }
+        
+        _textCoroutines = new List<Coroutine>();
+        _textBoxText = new List<string>();
+        
+        _textBox.SetText("");
     }
 }
 

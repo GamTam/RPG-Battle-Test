@@ -11,6 +11,7 @@ public class Battleable : MonoBehaviour
     public int _maxHP;
     public int _pow;
     public int _def;
+    public int _luck;
     public int _speed;
     public Slider _slider;
     public Slider[] _redSliders;
