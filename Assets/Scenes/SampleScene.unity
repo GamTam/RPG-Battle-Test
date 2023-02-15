@@ -413,7 +413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _speed
-      value: 88
+      value: 8800000
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _deadPFP
@@ -2114,7 +2114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18cb6929277364c8805e5e46642dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _song: Smithy
+  _song: Armstrong
   _playerList: {fileID: 264117426}
   _enemyList: {fileID: 1516180279}
   _enemySelectionController: {fileID: 1696178253}
@@ -7020,6 +7020,7 @@ MonoBehaviour:
   _buttonPrefab: {fileID: 505411335}
   _selectionHead: {fileID: 668869375}
   _grid: {fileID: 258966217}
+  _currentSelectedObject: {fileID: 0}
   _buttons: []
 --- !u!1 &1864855650
 GameObject:

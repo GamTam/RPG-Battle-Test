@@ -108,7 +108,7 @@ public class TextSelection : MonoBehaviour
     
     public string GetSelectedButtonText()
     {
-        if (_buttons.All(btn => _currentSelectedObject != btn.gameObject)) return null;
+        if (_buttons.All(btn => _currentSelectedObject != btn.gameObject)) return "";
         
          return _currentSelectedObject.GetComponent<TMP_Text>().text;
     }

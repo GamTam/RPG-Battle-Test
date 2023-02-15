@@ -255,6 +255,7 @@ namespace Battle.State_Machine
             
             Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
             string attackName = _battleManager._selectionBoxes[0].GetSelectedButtonText().Split("\n")[0];
+            Debug.Log(attackName);
 
             int damage;
             Shake shake;
@@ -378,7 +379,7 @@ namespace Battle.State_Machine
                     
                     foreach (AttackSO atk in _player._attacks)
                     {
-                        if (atk.name == attackName)
+                        if (atk.Name == attackName)
                         {
                             attack = atk;
                             break;
@@ -399,7 +400,7 @@ namespace Battle.State_Machine
                     
                     _battleManager.ClearBattleText();
                     
-                    _battleManager.SetBattleText($"* {_player._name.ToUpper()} used {attack.name.ToUpper()} on {enemy.gameObject.name.ToUpper()}!", true);
+                    _battleManager.SetBattleText($"* {_player._name.ToUpper()} used {attack.Name.ToUpper()} on {enemy.gameObject.name.ToUpper()}!", true);
                     
                     while (_battleManager.dialogueVertexAnimator.textAnimating)
                     {
