@@ -1874,6 +1874,7 @@ GameObject:
   - component: {fileID: 6838250753181335916}
   - component: {fileID: 8600689832091424419}
   - component: {fileID: 6493300707624306521}
+  - component: {fileID: 3158887651082394221}
   m_Layer: 5
   m_Name: Character Battle Profile
   m_TagString: Untagged
@@ -1929,6 +1930,7 @@ MonoBehaviour:
   _maxHP: 4
   _pow: 0
   _def: 0
+  _luck: 0
   _speed: 0
   _slider: {fileID: 0}
   _redSliders:
@@ -1946,6 +1948,7 @@ MonoBehaviour:
   _mpText: {fileID: 6838250752394212857}
   _MP: 0
   _maxMP: 147
+  _attacks: []
   StartingLocation: {x: 0, y: 0}
 --- !u!95 &8600689832091424419
 Animator:
@@ -1983,6 +1986,50 @@ MonoBehaviour:
   maxShakeDuration: 0
   multiplier: 300
   _interval: 0.033333335
+--- !u!114 &3158887651082394221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838250753181335953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 2
+    m_WrapAround: 1
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
+    m_PressedColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
+    m_SelectedColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6838250752740354897}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6838250753211901510
 GameObject:
   m_ObjectHideFlags: 0

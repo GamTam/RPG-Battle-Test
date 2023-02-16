@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -26,6 +27,9 @@ public class Player : Battleable
     [SerializeField] public List<AttackSO> _attacks;
 
     [HideInInspector] public Vector2 StartingLocation;
+
+    private bool _hpSliding;
+    private bool _mpSliding;
     
     void Awake()
     {
@@ -50,15 +54,22 @@ public class Player : Battleable
         transform.localPosition = new Vector2(transform.localPosition.x - 500, transform.localPosition.y);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         _hpText.SetText($"({_HP}/{_maxHP})");
         _mpText.SetText($"({_MP}/{_maxMP})");
-        
-        _bigHealthSlider.value = _HP;
-        _smallHealthSlider.value = _HP;
-        _bigMagicSlider.value = _MP;
-        _smallMagicSlider.value = _MP;
+
+        if (!_hpSliding)
+        {
+            _bigHealthSlider.value = _HP;
+            _smallHealthSlider.value = _HP;
+        }
+
+        if (!_mpSliding)
+        {
+            _bigMagicSlider.value = _MP;
+            _smallMagicSlider.value = _MP;
+        }
 
         if (_HP <= 0 && _PFPSlot.sprite != _deadPFP) _PFPSlot.sprite = _deadPFP;
     }
@@ -66,5 +77,55 @@ public class Player : Battleable
     public void SetNameText()
     {
         _nameText.SetText(_name);
+    }
+    
+    public IEnumerator UpdateHpSlider(int targetValue)
+    {
+        _hpSliding = true;
+
+        _HP = targetValue;
+        float movementDuration = 3;
+        float timeElapsed = 0;
+            
+        while (timeElapsed < movementDuration)
+        {
+            timeElapsed += Time.deltaTime;
+            _bigHealthSlider.value = Mathf.Lerp(_bigHealthSlider.value, targetValue, Time.deltaTime * 5);
+            _smallHealthSlider.value = Mathf.Lerp(_smallHealthSlider.value, targetValue, Time.deltaTime * 5);
+                    
+            yield return null;
+        }
+
+        _bigHealthSlider.value = targetValue;
+        _smallHealthSlider.value = targetValue;
+
+        foreach (Slider slider in _redSliders)
+        {
+            slider.value = targetValue;
+        }
+        _hpSliding = false;
+    }
+
+    public IEnumerator UpdateMpSlider(int targetValue)
+    {
+        _mpSliding = true;
+
+        _MP = targetValue;
+        float movementDuration = 3;
+        float timeElapsed = 0;
+            
+        while (timeElapsed < movementDuration)
+        {
+            timeElapsed += Time.deltaTime;
+            _bigMagicSlider.value = Mathf.Lerp(_bigMagicSlider.value, targetValue, Time.deltaTime * 5);
+            _smallMagicSlider.value = Mathf.Lerp(_smallMagicSlider.value, targetValue, Time.deltaTime * 5);
+                    
+            yield return null;
+        }
+
+        _bigMagicSlider.value = targetValue;
+        _smallMagicSlider.value = targetValue;
+        
+        _mpSliding = false;
     }
 }

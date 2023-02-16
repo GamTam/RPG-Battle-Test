@@ -9,7 +9,9 @@ public static class Globals
 {
     public static MusicManager MusicManager;
     public static SoundManager SoundManager;
-    
+
+    public static List<sItem> Items;
+
     public static Dictionary<string, ArrayList> LoadTSV(string file) {
         
         Dictionary<string, ArrayList> dictionary = new Dictionary<string, ArrayList>();
@@ -152,5 +154,11 @@ public static class Globals
             return str;
         }
     }
- 
+}
+
+[Serializable]
+public struct sItem
+{
+    public AttackSO Item;
+    public int Count;
 }

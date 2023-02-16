@@ -154,6 +154,12 @@ namespace Battle.State_Machine
                     _battleManager.EnableEnemySelection();
                     yield break;
                 case "Special":
+                    if (_player._attacks.Count == 0)
+                    {
+                        Globals.SoundManager.Play("error");
+                        yield break;
+                    }
+                    
                     _battleManager._soundManager.Play("confirm");
                     _battleManager.DisableButtons();
                     _battleManager._selectionBoxes[0].gameObject.SetActive(true);
@@ -181,9 +187,28 @@ namespace Battle.State_Machine
                     EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0].Key.gameObject);
                     yield break;
                 case "Item":
+                    if (Globals.Items.Count == 0)
+                    {
+                        Globals.SoundManager.Play("error");
+                        yield break;
+                    }
+                    
                     _battleManager._soundManager.Play("confirm");
                     _battleManager.DisableButtons();
-                    _battleManager.PickTurn();
+                    _battleManager._selectionBoxes[0].gameObject.SetActive(true);
+                    _battleManager._selectionBoxes[0].ResetButtons();
+                    
+                    foreach (sItem item in Globals.Items)
+                    {
+                        string text = $"{item.Item.Name}\n<size=75%>x{item.Count}";
+
+                        bool enableButton = item.Count > 0;
+                        
+                        _battleManager._selectionBoxes[0].AddButton(text, enableButton);
+                    }
+                    
+                    EventSystem.current.SetSelectedGameObject(_battleManager._selectionBoxes[0]._buttons[0].Key.gameObject);
+                    
                     yield break;
                 case "Flee":
                     _battleManager._soundManager.Play("confirm");
@@ -266,7 +291,7 @@ namespace Battle.State_Machine
             }
             
             Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
-            string attackName = _battleManager._selectionBoxes[0].GetSelectedButtonText().Split("\n")[0];
+            string textBoxSelection = _battleManager._selectionBoxes[0].GetSelectedButtonText().Split("\n")[0];
 
             int damage;
             Shake shake;
@@ -390,7 +415,7 @@ namespace Battle.State_Machine
                     
                     foreach (AttackSO atk in _player._attacks)
                     {
-                        if (atk.Name == attackName)
+                        if (atk.Name == textBoxSelection)
                         {
                             attack = atk;
                             break;
@@ -400,10 +425,10 @@ namespace Battle.State_Machine
                     switch (attack.CostType)
                     {
                         case DamageTypes.HP:
-                            _player._HP -= attack.Cost;
+                            _battleManager.StartCoroutine(_player.UpdateHpSlider(Math.Max(_player._HP - attack.Cost, 0)));
                             break;
                         case DamageTypes.MP:
-                            _player._MP -= attack.Cost;
+                            _battleManager.StartCoroutine(_player.UpdateMpSlider(Math.Max(_player._MP - attack.Cost, 0)));
                             break;
                         case DamageTypes.Money:
                             break;
@@ -473,6 +498,88 @@ namespace Battle.State_Machine
                     yield return new WaitForSeconds(0.5f);
 
                     break;
+                
+                case "Item":
+                    if (!_battleManager._selectingPlayers)
+                    {
+                        _battleManager._selectionBoxes[0].Freeze();
+                        
+                        foreach (Animator player in _battleManager._players)
+                        {
+                            player.gameObject.GetComponent<Button>().interactable = true;
+                            if (player.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("Wide"))
+                            {
+                                EventSystem.current.SetSelectedGameObject(player.gameObject);
+                            }
+                        }
+
+                        yield return null;
+                        
+                        _battleManager._selectingPlayers = true;
+
+                        yield break;
+                    }
+                    
+                    Player target = EventSystem.current.currentSelectedGameObject.GetComponent<Player>();
+
+                    foreach (Animator player in _battleManager._players)
+                    {
+                        player.gameObject.GetComponent<Button>().interactable = false;
+                    }
+                    
+                    _battleManager._selectingPlayers = false;
+                    _battleManager._selectionBoxes[0].ResetButtons();
+                    _battleManager._selectionBoxes[0].gameObject.SetActive(false);
+                    
+                    _battleManager._selectionBoxes[0].UnFreeze();
+
+                    AttackSO item = ScriptableObject.CreateInstance<AttackSO>();
+                    
+                    for (int i = 0; i < Globals.Items.Count; i++)
+                    {
+                        sItem itm = Globals.Items[i];
+                        if (Globals.Items[i].Item.Name == textBoxSelection)
+                        {
+                            item = Globals.Items[i].Item;
+                            itm.Count -= 1;
+                            Globals.Items[i] = itm;
+                            break;
+                        }
+                    }
+
+                    _battleManager.ClearBattleText();
+                    
+                    _battleManager.SetBattleText($"* {_player._name.ToUpper()} gave a {item.Name.ToUpper()} to {target._name.ToUpper()}!", true);
+                    
+                    while (_battleManager.dialogueVertexAnimator.textAnimating)
+                    {
+                        yield return null;
+                    }
+                    
+                    switch (item.CostType)
+                    {
+                        case DamageTypes.HP:
+                            _battleManager.StartCoroutine(target.UpdateHpSlider(Math.Min(target._HP + item.Strength, target._maxHP)));
+                            break;
+                        case DamageTypes.MP:
+                            _battleManager.StartCoroutine(target.UpdateMpSlider(Math.Min(target._MP + item.Strength, target._maxMP)));
+                            break;
+                        case DamageTypes.Money:
+                            break;
+                    }
+                    
+                    yield return new WaitForSeconds(0.5f);
+                    
+                    
+                    _battleManager.SetBattleText($"* Healed {item.Strength} {item.CostType}!");
+                    
+                    while (_battleManager.dialogueVertexAnimator.textAnimating)
+                    {
+                        yield return null;
+                    }
+                    yield return new WaitForSeconds(0.5f);
+
+                    break;
             }
             
             _battleManager.PickTurn();
@@ -488,6 +595,21 @@ namespace Battle.State_Machine
                         _battleManager._enemySelectionController.Disable();
                         _battleManager._selectionBoxes[0].UnFreeze();
                         
+                        yield break;
+                    }
+                    goto default;
+                case "Item":
+                    if (_battleManager._selectingPlayers)
+                    {
+                        _battleManager._selectingPlayers = false;
+                        
+                        _battleManager._selectionBoxes[0].UnFreeze();
+                        
+                        foreach (Animator player in _battleManager._players)
+                        {
+                            player.gameObject.GetComponent<Button>().interactable = false;
+                        }
+
                         yield break;
                     }
                     goto default;

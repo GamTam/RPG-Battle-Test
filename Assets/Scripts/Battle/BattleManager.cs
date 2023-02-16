@@ -45,12 +45,16 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public bool _cancelMovement;
     
     [HideInInspector] public PlayerInput _playerInput;
+    [HideInInspector] public InputAction _moveVector;
     [HideInInspector] public InputAction _confirm;
     [HideInInspector] public InputAction _back;
     
     [SerializeField][TextArea(4, 4)] private string _startingText;
+
+    public List<sItem> _items = new List<sItem>();
     
     public DialogueVertexAnimator dialogueVertexAnimator;
+    public bool _selectingPlayers;
 
     private GameObject _selectedObj;
     private List<Coroutine> _textCoroutines = new List<Coroutine>();
@@ -58,8 +62,10 @@ public class BattleManager : MonoBehaviour
     private void Start()
     {
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
+        _moveVector = _playerInput.actions["Move"];
         _confirm = _playerInput.actions["Confirm"];
         _back = _playerInput.actions["Cancel"];
+        Globals.Items = _items;
 
         dialogueVertexAnimator = new DialogueVertexAnimator(_textBox);
         
@@ -114,6 +120,25 @@ public class BattleManager : MonoBehaviour
         }
         
         SwitchStates(new Opening(this));
+    }
+
+    private void Update()
+    {
+        if (!_selectingPlayers) return;
+
+        if (_confirm.triggered)
+        {
+            Globals.SoundManager.Play("confirm");
+            Click();
+            return;
+        }
+
+        if (_back.triggered)
+        {
+            Globals.SoundManager.Play("back");
+            Back();
+            return;
+        }
     }
 
     private void LateUpdate()

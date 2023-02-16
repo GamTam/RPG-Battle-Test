@@ -20,11 +20,12 @@ public class Battleable : MonoBehaviour
     {
         StartCoroutine(SetRedSlider(targetValue));
     }
+
     public IEnumerator SetRedSlider(float targetValue)
     {
         float movementDuration = 2;
         float timeElapsed = 0;
-            
+
         while (timeElapsed < movementDuration)
         {
             timeElapsed += Time.deltaTime;
@@ -32,13 +33,13 @@ public class Battleable : MonoBehaviour
             {
                 slider.value = Mathf.Lerp(slider.value, targetValue, Time.deltaTime * 5);
             }
-                    
+
             yield return null;
         }
 
         foreach (Slider slider in _redSliders)
         {
-             slider.value = targetValue;
+            slider.value = targetValue;
         }
     }
 }

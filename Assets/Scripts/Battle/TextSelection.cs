@@ -78,7 +78,7 @@ public class TextSelection : MonoBehaviour
                 
                 if (!pair.Value)
                 {
-                    Globals.SoundManager.Play("objectionEdgeworth");
+                    Globals.SoundManager.Play("error");
                     return;
                 }
                 
