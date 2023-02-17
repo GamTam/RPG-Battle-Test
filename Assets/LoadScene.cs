@@ -15,6 +15,7 @@ public class LoadScene : MonoBehaviour
         float timeElapsed = 0;
      
         Globals.MusicManager.Stop();
+        Globals.SoundManager.Play("battleStart");
         
         while (timeElapsed < movementDuration)
         {

@@ -32,3 +32,4 @@ gallery	false
 playerHit	false
 enemyDie	false
 error	false
+battleStart	false
