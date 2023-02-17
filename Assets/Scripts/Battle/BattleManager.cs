@@ -7,13 +7,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
+using Image = UnityEngine.UI.Image;
 
 public class BattleManager : MonoBehaviour
 {
     [SerializeField] private string _song;
     [SerializeField] private GameObject _playerList;
     [SerializeField] private GameObject _enemyList;
+    [SerializeField] private MeshRenderer _background;
+    [HideInInspector] public Material _mat;
+    
     public EnemySelectionController _enemySelectionController;
     
     public TMP_Text _textBox;
@@ -49,7 +54,7 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public InputAction _confirm;
     [HideInInspector] public InputAction _back;
     
-    [SerializeField][TextArea(4, 4)] private string _startingText;
+    [TextArea(4, 4)] public string _startingText;
 
     public List<sItem> _items = new List<sItem>();
     
@@ -66,6 +71,10 @@ public class BattleManager : MonoBehaviour
         _confirm = _playerInput.actions["Confirm"];
         _back = _playerInput.actions["Cancel"];
         Globals.Items = _items;
+        
+        _background.material = new Material(_background.material);
+        _mat = _background.material;
+        _mat.SetFloat("_alpha", 0);
 
         dialogueVertexAnimator = new DialogueVertexAnimator(_textBox);
         
@@ -101,9 +110,7 @@ public class BattleManager : MonoBehaviour
         _musicManager = GameObject.FindWithTag("Audio").GetComponent<MusicManager>();
         _musicManager.Play(_song);
         _soundManager = GameObject.FindWithTag("Audio").GetComponent<SoundManager>();
-        
-        SetBattleText(_startingText);
-        
+
         Dictionary<String, int> names = new Dictionary<string, int>();
         for (int i = _enemies.Count - 1; i >= 0; i--)
         {
@@ -119,6 +126,7 @@ public class BattleManager : MonoBehaviour
             _enemies[i].gameObject.name = text;
         }
         
+        ClearBattleText();
         SwitchStates(new Opening(this));
     }
 
@@ -250,26 +258,35 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void InitFinalSlide(Player obj)
+    public void InitFinalSlide(GameObject obj, Vector3 position, float duration=2)
     {
-        StartCoroutine(FinalSlide(obj));
+        StartCoroutine(FinalSlide(obj, position, new Vector3(1, 1, 1), duration));
     }
     
-    private IEnumerator FinalSlide(Player obj)
+    public void InitFinalSlide(GameObject obj, Vector3 position, Vector3 scale, float duration=2)
+    {
+        StartCoroutine(FinalSlide(obj, position, scale, duration));
+    }
+    
+    private IEnumerator FinalSlide(GameObject obj, Vector3 position, Vector3 scale, float movementDuration)
     {
         _cancelMovement = false;
-        float movementDuration = 2;
         float timeElapsed = 0;
             
         while (timeElapsed < movementDuration && !_cancelMovement)
         {
             timeElapsed += Time.deltaTime;
-            obj.gameObject.transform.localPosition = Vector3.Lerp(obj.gameObject.transform.localPosition, obj.StartingLocation, Time.deltaTime * 5);
+            obj.gameObject.transform.localPosition = Vector3.Lerp(obj.gameObject.transform.localPosition, position, Time.deltaTime * 5);
+            obj.gameObject.transform.localScale = Vector3.Lerp(obj.transform.localScale, scale, Time.deltaTime * 5);
                     
             yield return null;
         }
-        
-        if (!_cancelMovement) obj.gameObject.transform.localPosition = obj.StartingLocation;
+
+        if (!_cancelMovement)
+        {
+            obj.gameObject.transform.localPosition = position;
+            obj.gameObject.transform.localScale = scale;
+        }
     }
     
     public void DisableButtons()

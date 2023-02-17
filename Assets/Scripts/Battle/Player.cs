@@ -26,9 +26,7 @@ public class Player : Battleable
     public int _MP;
     public int _maxMP;
     [SerializeField] public List<AttackSO> _attacks;
-
-    [HideInInspector] public Vector2 StartingLocation;
-
+    
     private bool _hpSliding;
     private bool _mpSliding;
     

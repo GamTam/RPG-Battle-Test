@@ -99,7 +99,7 @@ namespace Battle.State_Machine
             foreach (Battleable obj in _battleManager._fighters)
             {
                 if(obj.GetType() != typeof(Player)) continue;
-                _battleManager.InitFinalSlide((Player) obj);
+                _battleManager.InitFinalSlide(obj.gameObject, ((Player) obj).StartingLocation);
             }
             
             foreach (Animator anim in _battleManager._players)

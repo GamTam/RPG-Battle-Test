@@ -18,6 +18,7 @@ public class Battleable : MonoBehaviour
     
     protected float _timer = 0;
     protected Material _mat;
+    [HideInInspector] public Vector3 StartingLocation;
 
     public void InitSetRedSlider(float targetValue)
     {

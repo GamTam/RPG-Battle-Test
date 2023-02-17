@@ -36,6 +36,9 @@ public class Enemy : Battleable
         _redSliders[0].maxValue = _maxHP;
         _redSliders[0].value = _maxHP;
         _slider.gameObject.transform.SetParent(gameObject.transform.parent.parent);
+        
+        StartingLocation = transform.localPosition;
+        transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y + 900f);
     }
 
     private void LateUpdate()

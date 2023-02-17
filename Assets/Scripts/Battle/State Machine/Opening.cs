@@ -14,6 +14,7 @@ namespace Battle.State_Machine
         public override IEnumerator EnterState()
         {
             _battleManager._playerInput.SwitchCurrentActionMap("Null");
+
             Color nameColor = _battleManager._nameTagText.color;
             Color[] buttonColor = new Color[_battleManager._buttonImages.Count];
             Player firstPlayer = null;
@@ -25,11 +26,66 @@ namespace Battle.State_Machine
                 img.color = Color.clear;
                 img.GetComponentInChildren<TMP_Text>().color = Color.clear;
             }
-            
-            yield return new WaitForSeconds(2);
 
-            float movementDuration = 1;
+            GameObject textBox = _battleManager._textBox.gameObject.transform.parent.gameObject;
+
+            Vector3 textBoxPos = textBox.transform.localPosition;
+
+            textBox.transform.localPosition = new Vector3(textBoxPos.x, textBoxPos.y - 300f, textBoxPos.z);
+
+            _battleManager.gameObject.transform.localScale = new Vector3(1, 2, 1);
+            
+            float movementDuration = 4;
             float timeElapsed = 0;
+            
+            while (timeElapsed < movementDuration)
+            {
+                timeElapsed += Time.deltaTime;
+                _battleManager._mat.SetFloat("_alpha", Mathf.Lerp(0, 1, timeElapsed / movementDuration));
+                yield return null;
+            }
+            _battleManager._mat.SetFloat("_alpha", 1);
+            yield return new WaitForSeconds(0.1f);
+
+            foreach (Enemy enemy in _battleManager._enemies)
+            {
+                _battleManager.InitFinalSlide(enemy.gameObject, enemy.StartingLocation, enemy.transform.localScale, 3);
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            yield return new WaitForSeconds(0.5f);
+            
+            _battleManager.InitFinalSlide(textBox.gameObject, textBoxPos, textBox.transform.localScale, 3);
+            _battleManager.InitFinalSlide(_battleManager.gameObject, _battleManager.transform.localPosition, 3);
+
+            yield return new WaitForSeconds(1.5f);
+            
+            _battleManager.SetBattleText(_battleManager._startingText);
+            _battleManager._playerInput.SwitchCurrentActionMap("Menu");
+            
+            while (_battleManager.dialogueVertexAnimator.textAnimating)
+            {
+                if (_battleManager._confirm.triggered)
+                {
+                    _battleManager.dialogueVertexAnimator.QuickEnd();
+                }
+                yield return null;
+            }
+
+            while (true)
+            {
+                if (_battleManager._confirm.triggered)
+                {
+                    break;
+                }
+                            
+                yield return null;
+            }
+            _battleManager._playerInput.SwitchCurrentActionMap("Null");
+            _battleManager._soundManager.Play("confirm");
+
+            movementDuration = 1;
+            timeElapsed = 0;
 
             while (timeElapsed < movementDuration)
             {
@@ -48,7 +104,7 @@ namespace Battle.State_Machine
             foreach (Battleable obj in _battleManager._fighters)
             {
                 if(obj.GetType() != typeof(Player)) continue;
-                _battleManager.InitFinalSlide((Player) obj);
+                _battleManager.InitFinalSlide(obj.gameObject, ((Player) obj).StartingLocation);
             }
 
             foreach (Animator anim in _battleManager._players)
