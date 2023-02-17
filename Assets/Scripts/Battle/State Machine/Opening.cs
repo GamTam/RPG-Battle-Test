@@ -35,6 +35,10 @@ namespace Battle.State_Machine
 
             _battleManager.gameObject.transform.localScale = new Vector3(1, 2, 1);
             
+            yield return new WaitForSeconds(0.5f);
+            
+            Globals.MusicManager.Play(_battleManager._song);
+            
             float movementDuration = 4;
             float timeElapsed = 0;
             

@@ -13,7 +13,7 @@ using Image = UnityEngine.UI.Image;
 
 public class BattleManager : MonoBehaviour
 {
-    [SerializeField] private string _song;
+    public string _song;
     [SerializeField] private GameObject _playerList;
     [SerializeField] private GameObject _enemyList;
     [SerializeField] private MeshRenderer _background;
@@ -67,9 +67,9 @@ public class BattleManager : MonoBehaviour
     private void Start()
     {
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
-        _moveVector = _playerInput.actions["Move"];
-        _confirm = _playerInput.actions["Confirm"];
-        _back = _playerInput.actions["Cancel"];
+        _moveVector = _playerInput.actions["Menu/Move"];
+        _confirm = _playerInput.actions["Menu/Confirm"];
+        _back = _playerInput.actions["Menu/Cancel"];
         Globals.Items = _items;
         
         _background.material = new Material(_background.material);
@@ -108,7 +108,6 @@ public class BattleManager : MonoBehaviour
         _selectedObj = EventSystem.current.currentSelectedGameObject;
         
         _musicManager = GameObject.FindWithTag("Audio").GetComponent<MusicManager>();
-        _musicManager.Play(_song);
         _soundManager = GameObject.FindWithTag("Audio").GetComponent<SoundManager>();
 
         Dictionary<String, int> names = new Dictionary<string, int>();

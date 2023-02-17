@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = System.Random;
 
 public static class Globals
@@ -10,7 +11,11 @@ public static class Globals
     public static MusicManager MusicManager;
     public static SoundManager SoundManager;
 
+    public static PlayerController Player;
+
     public static List<sItem> Items;
+
+    public static bool BeginSceneLoad;
 
     public static Dictionary<string, ArrayList> LoadTSV(string file) {
         
@@ -153,6 +158,39 @@ public static class Globals
                 str = RemoveRichTextTag(str, tag, false);
             return str;
         }
+    }
+
+    public static IEnumerator LoadScene(string scene, bool additive) {
+        yield return null;
+
+        //Begin to load the Scene you specify
+        AsyncOperation asyncOperation;
+        if (additive) asyncOperation = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+        else asyncOperation = SceneManager.LoadSceneAsync(scene);
+
+        asyncOperation.completed += (AsyncOperation o) =>
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
+        };
+        //Don't let the Scene activate until you allow it to
+        asyncOperation.allowSceneActivation = false;
+        //When the load is still in progress, output the Text and progress bar
+        while (!asyncOperation.isDone)
+        {
+            // Check if the load has finished
+            if (asyncOperation.progress >= 0.9f)
+            {
+                //Wait to you press the space key to activate the Scene
+                if (BeginSceneLoad)
+                {
+                    asyncOperation.allowSceneActivation = true;
+                }
+            }
+
+            yield return null;
+        }
+
+        BeginSceneLoad = false;
     }
 }
 
