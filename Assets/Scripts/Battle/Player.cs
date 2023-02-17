@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -39,6 +40,8 @@ public class Player : Battleable
         _speed = rand.Next(5000);
 
         _PFPSlot.sprite = _PFP;
+        _PFPSlot.material = new Material(_PFPSlot.material);
+        _mat = _PFPSlot.material;
         
         _bigHealthSlider.maxValue = _maxHP;
         _smallHealthSlider.maxValue = _maxHP;
@@ -58,6 +61,13 @@ public class Player : Battleable
     {
         _hpText.SetText($"({_HP}/{_maxHP})");
         _mpText.SetText($"({_MP}/{_maxMP})");
+        
+        if (EventSystem.current.currentSelectedGameObject == gameObject) FlashWhite();
+        else
+        {
+            _timer = 0;
+            _mat.SetColor("_Color_2", Color.white);
+        }
 
         if (!_hpSliding)
         {

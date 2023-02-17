@@ -15,6 +15,9 @@ public class Battleable : MonoBehaviour
     public int _speed;
     public Slider _slider;
     public Slider[] _redSliders;
+    
+    protected float _timer = 0;
+    protected Material _mat;
 
     public void InitSetRedSlider(float targetValue)
     {
@@ -41,5 +44,17 @@ public class Battleable : MonoBehaviour
         {
             slider.value = targetValue;
         }
+    }
+    
+    protected void FlashWhite()
+    {
+        _timer += Time.deltaTime * 5;
+
+        float intensity = Mathf.Sin(_timer) + 1f;
+        
+        float factor = Mathf.Pow(2, intensity);
+        Color color = new Color(factor, factor, factor);
+        
+        _mat.SetColor("_Color_2", color);
     }
 }

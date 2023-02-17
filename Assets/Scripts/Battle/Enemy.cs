@@ -8,8 +8,6 @@ public class Enemy : Battleable
 {
     [SerializeField] private EnemySO _baseEnemy;
     [SerializeField] private Image _image;
-    private Material _mat;
-    private float _timer = 0;
 
     public bool _selected;
     public RectTransform _rectTransform;
@@ -40,7 +38,7 @@ public class Enemy : Battleable
         _slider.gameObject.transform.SetParent(gameObject.transform.parent.parent);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         _slider.value = _HP;
         
@@ -60,17 +58,5 @@ public class Enemy : Battleable
 
             _mat.SetFloat("_Fade", fade);
         }
-    }
-
-    private void FlashWhite()
-    {
-        _timer += Time.deltaTime * 5;
-
-        float intensity = Mathf.Sin(_timer) + 1f;
-        
-        float factor = Mathf.Pow(2, intensity);
-        Color color = new Color(factor, factor, factor);
-        
-        _mat.SetColor("_Color_2", color);
     }
 }
