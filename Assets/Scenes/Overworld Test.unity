@@ -6770,9 +6770,9 @@ GameObject:
   - component: {fileID: 1609672714}
   - component: {fileID: 1609672713}
   - component: {fileID: 1609672717}
+  - component: {fileID: 1609672719}
   - component: {fileID: 1609672718}
   - component: {fileID: 1609672720}
-  - component: {fileID: 1609672719}
   m_Layer: 6
   m_Name: Cube
   m_TagString: NPC
@@ -6899,8 +6899,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 651875802}
+  _sceneLoader: {fileID: 1609672717}
   _dialogue:
-  - <size=200%><anim:shake>FOOOOOOOOOOOOOOOL!!!</anim>
+  - '<music:fadeout><anim:wave>Well,<p:short> well,<p:short> well...<p:normal></anim>
+
+    Look
+    who decided to finally show up.'
+  - <music:Suspense>What, you don't recognize me?
+  - <color=red>Tetrus Hexamus III?
+  - 'Well,<p:short> even if <anim:shake>you</anim>
+
+    don''t know who I am,<p:short>
+
+    I
+    sure know who <anim:shake>you are.</anim>'
+  - 'And I DEFINITELY<p:short> didn''t forget
+
+    what you did to me.'
+  - 'Don''t think that just because
+
+    you''re one dimension beneath
+
+    me, you''re
+    gonna get
+
+    a lighter punishment.'
+  - 'That''s not exactly how things
+
+    work around here...'
+  - "But that doesn't matter \nat the moment."
+  - '<size=50%>*ahem*<p:short><size=100%><anim:shake>You''ve crossed me for the <color=red>last
+    time</color>, kid.<p:normal>
+
+    <size=250%>TIME TO DIE!</anim>'
+  _playerInput: {fileID: 0}
 --- !u!61 &1609672720
 BoxCollider2D:
   m_ObjectHideFlags: 0

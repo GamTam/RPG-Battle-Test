@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
         _moveVector = _playerInput.actions["Overworld/Move"];
         _interact = _playerInput.actions["Interact"];
+
+        Globals.MusicManager.Play("Kirbo");
     }
     
     void Update()

@@ -13,7 +13,9 @@ public class LoadScene : MonoBehaviour
     {
         float movementDuration = 0.1f;
         float timeElapsed = 0;
-            
+     
+        Globals.MusicManager.Stop();
+        
         while (timeElapsed < movementDuration)
         {
             timeElapsed += Time.deltaTime;
