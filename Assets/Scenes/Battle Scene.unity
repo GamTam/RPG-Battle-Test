@@ -397,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _name
-      value: Agent 8
+      value: Placeholder D
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _level
@@ -1366,7 +1366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab76cc0347437f4aae2dcb547bbcfbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 55
+  amplitude: 60
   frequency: 0.7
   _RectTransform: {fileID: 302508129}
   sinOffset: 0
@@ -2081,7 +2081,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  _startingText: '* BIG MEN block the way!'
+  _startingText: '* THE BOYS have rolled up to defend TETRUS HEXAMUS III!'
   _items:
   - Item: {fileID: 11400000, guid: 244ee2a2de44b66499b56025780d0385, type: 2}
     Count: 10
@@ -3716,7 +3716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e426db448f4ba1a40bb2a2ea69cc7fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 50
+  amplitude: 35
   frequency: 1
   sinOffset: 0
 --- !u!114 &890054852
@@ -3731,8 +3731,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab76cc0347437f4aae2dcb547bbcfbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 50
-  frequency: 1
+  amplitude: 40
+  frequency: 1.1
   _RectTransform: {fileID: 890054848}
   sinOffset: 0
 --- !u!1 &992730487
@@ -4266,7 +4266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _name
-      value: Marie
+      value: Placeholder C
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _level
@@ -5819,7 +5819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _name
-      value: Callie
+      value: Placeholder B
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _level
@@ -6995,7 +6995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab76cc0347437f4aae2dcb547bbcfbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: -25
+  amplitude: -15
   frequency: 1
   _RectTransform: {fileID: 1821278020}
   sinOffset: 0
@@ -7973,7 +7973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _name
-      value: Agent 3
+      value: Placeholder A
       objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _level
