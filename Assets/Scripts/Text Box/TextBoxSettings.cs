@@ -76,7 +76,6 @@ public class TextBoxSettings : MonoBehaviour
         
         float xpos = _rectTransform.anchoredPosition.x;
         xpos = Mathf.Clamp(xpos, _backgroundRectTransform.sizeDelta.x + 15, _screenSize.x - _backgroundRectTransform.sizeDelta.x - 15);
-        Debug.Log((pos.x - xpos) / 2);
         _tailRect.anchoredPosition = new Vector2((pos.x - xpos) / 2, 0);
         _rectTransform.anchoredPosition = new Vector2(xpos, _rectTransform.anchoredPosition.y);
     }

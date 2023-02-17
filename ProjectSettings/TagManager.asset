@@ -8,6 +8,7 @@ TagManager:
   - Controller Manager
   - Battle Manager
   - NPC
+  - UI
   layers:
   - Default
   - TransparentFX

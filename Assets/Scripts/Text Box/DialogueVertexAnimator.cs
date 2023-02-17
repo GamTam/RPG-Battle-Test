@@ -10,9 +10,6 @@ public class DialogueVertexAnimator {
 
     private readonly TMP_Text textBox;
     private readonly float textAnimationScale;
-    
-    private SoundManager _soundManager;
-    private MusicManager _musicManager;
 
     //public DialogueManager _parent;
     
@@ -21,9 +18,6 @@ public class DialogueVertexAnimator {
     public DialogueVertexAnimator(TMP_Text _textBox) {
         textBox = _textBox;
         textAnimationScale = textBox.fontSize;
-        
-        _soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
-        _musicManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<MusicManager>();
     }
 
     private static readonly Color32 clear = new Color32(0, 0, 0, 0);
@@ -127,9 +121,7 @@ public class DialogueVertexAnimator {
                 }
             }
             catch
-            {
-                Debug.LogError("Oh no!");
-            }
+            {}
             
             yield return null;
         }
@@ -147,27 +139,27 @@ public class DialogueVertexAnimator {
                         secondsPerCharacter = command.floatValue / 60f;
                         break;
                     case DialogueCommandType.Sound:
-                        _soundManager.Play(command.stringValue);
+                        Globals.SoundManager.Play(command.stringValue);
                         break;
                     case DialogueCommandType.Music:
                         switch (command.stringValue)
                         {
                             case "fadeout":
-                                _musicManager.fadeOut(1.5f);
+                                Globals.MusicManager.fadeOut(1.5f);
                                 break;
                             case "stop":
-                                _musicManager.fadeOut();
+                                Globals.MusicManager.fadeOut();
                                 break;
                             case "continue":
-                                _musicManager.fadeIn();
+                                Globals.MusicManager.fadeIn();
                                 break;
                             default:
-                                _musicManager.Play(command.stringValue);
+                                Globals.MusicManager.Play(command.stringValue);
                                 break;
                         }
                         break;
                     case DialogueCommandType.Lowpass:
-                        _musicManager.SetLowpass(0.1f, command.floatValue);
+                        Globals.MusicManager.SetLowpass(0.1f, command.floatValue);
                         break;
                     case DialogueCommandType.Shake:
                         Shake[] objects = (Shake[]) GameObject.FindObjectsOfType(typeof(Shake));
@@ -239,7 +231,7 @@ public class DialogueVertexAnimator {
         if (Time.unscaledTime - lastDialogueSound > timeUntilNextDialogueSound) {
             timeUntilNextDialogueSound = 4/60f;
             lastDialogueSound = Time.unscaledTime;
-            _soundManager.Play(voice_sound);
+            Globals.SoundManager.Play(voice_sound);
         }
     }
 
