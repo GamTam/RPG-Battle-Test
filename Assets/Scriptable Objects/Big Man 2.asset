@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc6b6d453e451c4da2e0283192f5449, type: 3}
   m_Name: Big Man 2
   m_EditorClassIdentifier: 
-  Name: Bigger Man
+  Name: Toximound
   Level: 15
-  HP: 515
+  HP: 124
   Pow: 12
-  Def: 3
-  Speed: 1000
+  Def: 4
+  Speed: 1704
   Attacks:
   - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
-  Description: '* Beeg'
+  Description:
+  - "* Toximounds are living piles of sand that occupy the\n  desert regions."
+  - "* After years of toxic waste being thrown on it,<p:short>\n  they finally gained
+    sentience."
+  - '* Max HP is 124<p:short>
+
+    * Attack is 12<p:short>
+
+    * Defense is 4'
+  - "* They feel that existence is a curse,<p:short> and are \n  looking to exact
+    revenge on the ones who\n  gave them sentience to begin with."

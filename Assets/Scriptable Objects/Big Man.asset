@@ -12,23 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc6b6d453e451c4da2e0283192f5449, type: 3}
   m_Name: Big Man
   m_EditorClassIdentifier: 
-  Name: Big Man
+  Name: Vehemous Molerat
   Level: 15
-  HP: 515
-  Pow: 12
-  Def: 3
+  HP: 404
+  Pow: 7
+  Def: 2
   Speed: 1492
   Attacks:
   - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
   Description:
-  - "* The third and final member of <color=red>Deep Cut</color>,\n  Big Man is the
-    one who mixes\n  all of their music together."
-  - '* Attack is 12<p:short>
+  - "* The Vehemous Molerat is a hybrid of several animals that\n  managed to escape
+    its confines."
+  - '* Max HP is 404<p:short>
 
-    * Defense is 3<p:short>
+    * Attack is 7<p:short>
 
-    * Speed is 1492'
-  - '* He just wants to have a good time.<p:short>
+    * Defense is 2'
+  - '* Its tail is incredibly poisonous.<p:short>
 
-    * Unfortunately,<p:tiny>
-    you''re trying to kill him.'
+    * Try to not get hit by it.'

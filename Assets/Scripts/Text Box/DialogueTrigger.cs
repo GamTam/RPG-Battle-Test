@@ -34,6 +34,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             _playerInput.SwitchCurrentActionMap("Null");
             StartCoroutine(_sceneLoader.BattleTransition());
+            enabled = false;
         }
     }
     
