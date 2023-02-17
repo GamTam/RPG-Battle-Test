@@ -56,10 +56,10 @@ public class TextBoxSettings : MonoBehaviour
 
         _backgroundRectTransform.sizeDelta = new Vector2(_textMeshPro.textBounds.size.x + _minWidth, _textMeshPro.textBounds.size.y + _minHeight);
 
-        Vector3 pos = _cam.WorldToScreenPoint(_spriteRenderer.bounds.center) * _screenFactor;
+        Vector3 pos = _cam.WorldToScreenPoint(_spriteRenderer.bounds.center);
         
         // Bubble Above Head
-        _rectTransform.anchoredPosition = new Vector3(pos.x, pos.y + (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight / 1.5f * _screenFactor) , pos.z);
+        _rectTransform.anchoredPosition = new Vector3(pos.x, pos.y + (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight / 1.5f) , pos.z);
             
         _tailRect.anchorMax = new Vector2(0.5f, 0);
         _tailRect.anchorMin = new Vector2(0.5f, 0);
@@ -67,7 +67,7 @@ public class TextBoxSettings : MonoBehaviour
 
         if (_rectTransform.anchoredPosition.y + _backgroundRectTransform.sizeDelta.y >= _screenSize.y) {
             // Bubble Below Head
-            _rectTransform.anchoredPosition = new Vector3(pos.x, pos.y - (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight / 1.5f * _screenFactor), pos.z);
+            _rectTransform.anchoredPosition = new Vector3(pos.x, pos.y - (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight / 1.5f), pos.z);
             
             _tailRect.anchorMax = new Vector2(0.5f, 1);
             _tailRect.anchorMin = new Vector2(0.5f, 1);
