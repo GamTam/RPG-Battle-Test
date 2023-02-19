@@ -24,7 +24,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (_talkable && Globals.Player._interacting)
+        if (_talkable && Globals.Player._interacting && !Globals.InBattle)
         {
             _triggeredDialogue = true;
             TriggerDialogue();

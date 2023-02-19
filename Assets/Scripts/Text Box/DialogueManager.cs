@@ -16,6 +16,8 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> lines;
     private PlayerInput _playerInput;
 
+    private bool _done;
+
     private DialogueVertexAnimator dialogueVertexAnimator;
     private bool movingText;
     private InputAction _advanceText;
@@ -28,6 +30,7 @@ public class DialogueManager : MonoBehaviour
     public void StartText(String[] linesIn, Transform parentPos, SpriteRenderer spriteRenderer)
     {
         _tempBox = Instantiate(_textBoxPrefab);
+        _done = false;
         _tempBox.transform.SetParent(GameObject.FindWithTag("UI").transform, false);
         TextBoxSettings tempBoxSettings = _tempBox.GetComponent<TextBoxSettings>();
         tempBoxSettings.ParentPos = parentPos;
@@ -54,6 +57,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
+        if (_done) return;
         if (_advanceText.triggered)
         {
             NextLine();
@@ -61,7 +65,7 @@ public class DialogueManager : MonoBehaviour
 
         if (!(dialogueVertexAnimator == null))
         {
-            if (!dialogueVertexAnimator.textAnimating)
+            if (!dialogueVertexAnimator.textAnimating && _advanceButton)
             {
                 _advanceButton.enabled = true;
             }
@@ -143,6 +147,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        _done = true;
         StartCoroutine(dialogueVertexAnimator.AnimateTextIn(new List<DialogueCommand>(), "", "typewriter", null));
         Destroy(_tempBox);
         _playerInput.SwitchCurrentActionMap("Overworld");

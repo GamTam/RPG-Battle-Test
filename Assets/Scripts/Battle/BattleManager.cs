@@ -70,6 +70,7 @@ public class BattleManager : MonoBehaviour
         _moveVector = _playerInput.actions["Menu/Move"];
         _confirm = _playerInput.actions["Menu/Confirm"];
         _back = _playerInput.actions["Menu/Cancel"];
+        
         Globals.Items = _items;
         
         _background.material = new Material(_background.material);

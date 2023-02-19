@@ -3,6 +3,8 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
 
@@ -12,6 +14,10 @@ public static class Globals
     public static SoundManager SoundManager;
 
     public static PlayerController Player;
+    public static PlayerInput Input;
+    public static EventSystem EventSystem;
+
+    public static bool InBattle;
 
     public static List<sItem> Items;
 

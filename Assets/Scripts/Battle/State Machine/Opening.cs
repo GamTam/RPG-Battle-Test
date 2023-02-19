@@ -13,6 +13,7 @@ namespace Battle.State_Machine
 
         public override IEnumerator EnterState()
         {
+            Globals.InBattle = true;
             _battleManager._playerInput.SwitchCurrentActionMap("Null");
 
             Color nameColor = _battleManager._nameTagText.color;
@@ -78,6 +79,7 @@ namespace Battle.State_Machine
 
             while (true)
             {
+                _battleManager._playerInput.SwitchCurrentActionMap("Menu");
                 if (_battleManager._confirm.triggered)
                 {
                     break;
@@ -134,6 +136,7 @@ namespace Battle.State_Machine
                 yield return null;
             }
 
+            _battleManager._playerInput.SwitchCurrentActionMap("Menu");
             _battleManager.PickTurn();
         }
     }

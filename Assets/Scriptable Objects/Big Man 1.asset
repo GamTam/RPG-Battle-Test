@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc6b6d453e451c4da2e0283192f5449, type: 3}
   m_Name: Big Man 1
   m_EditorClassIdentifier: 
-  Name: Slimed Skrullnax
+  Name: Dune-Dwelling Slimeamander
   Level: 15
   HP: 515
   Pow: 12
@@ -23,7 +23,7 @@ MonoBehaviour:
   Description:
   - '* No way.<p:short>
 
-    * Slimed Skrullnax.'
+    * Dune-Dwelling Slimeamander.'
   - '* Max HP is 515<p:short>
 
     * Attack is 12<p:short>
