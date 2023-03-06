@@ -29,7 +29,8 @@ public class DialogueTrigger : MonoBehaviour
             _triggeredDialogue = true;
             TriggerDialogue();
         }
-
+        
+        if (_sceneLoader == null) return;
         if (_triggeredDialogue && _playerInput.currentActionMap.name == "Overworld")
         {
             _playerInput.SwitchCurrentActionMap("Null");

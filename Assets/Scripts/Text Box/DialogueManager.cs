@@ -29,9 +29,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartText(String[] linesIn, Transform parentPos, SpriteRenderer spriteRenderer)
     {
-        _tempBox = Instantiate(_textBoxPrefab);
+        _tempBox = Instantiate(_textBoxPrefab, GameObject.FindWithTag("UI").transform);
         _done = false;
-        _tempBox.transform.SetParent(GameObject.FindWithTag("UI").transform, false);
         TextBoxSettings tempBoxSettings = _tempBox.GetComponent<TextBoxSettings>();
         tempBoxSettings.ParentPos = parentPos;
         tempBoxSettings.SpriteRenderer = spriteRenderer;

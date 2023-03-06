@@ -29,7 +29,7 @@ public class TextBoxSettings : MonoBehaviour
 
     public void Open()
     {
-        transform.position = Vector3.zero;
+        // transform.position = Vector3.zero;
         _backgroundRectTransform.sizeDelta = new Vector2(_minWidth, _minHeight);
         _tailRect = _talkTail.GetComponent<RectTransform>();
         _rectTransform = GetComponent<RectTransform>();
@@ -77,6 +77,6 @@ public class TextBoxSettings : MonoBehaviour
         float xpos = _rectTransform.anchoredPosition.x;
         xpos = Mathf.Clamp(xpos, _backgroundRectTransform.sizeDelta.x + 15, _screenSize.x - _backgroundRectTransform.sizeDelta.x - 15);
         _tailRect.anchoredPosition = new Vector2((pos.x - xpos) / 2, 0);
-        _rectTransform.anchoredPosition = new Vector2(xpos, _rectTransform.anchoredPosition.y);
+        _rectTransform.anchoredPosition = new Vector2(xpos, _rectTransform.anchoredPosition.y + 40f);
     }
 }

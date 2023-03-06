@@ -2017,7 +2017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe18cb6929277364c8805e5e46642dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _song: Final Boss
+  _song: SnatcherBossBattle
   _playerList: {fileID: 264117426}
   _enemyList: {fileID: 1516180279}
   _background: {fileID: 676816602}
@@ -2611,7 +2611,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 515d65e94181e294b9587d7eec0f8a32, type: 2}
+  - {fileID: 2100000, guid: e9817c7948320654d8ecbf515e7e2e0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

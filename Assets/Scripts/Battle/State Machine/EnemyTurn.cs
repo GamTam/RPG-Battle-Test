@@ -17,6 +17,12 @@ namespace Battle.State_Machine
         public override IEnumerator EnterState()
         {
             _battleManager.SetBattleText($"* {_enemy.gameObject.name.ToUpper()}'s turn!", true);
+            
+            while (_battleManager.dialogueVertexAnimator.textAnimating)
+            {
+                yield return null;
+            }
+            
             Player player;
 
             do

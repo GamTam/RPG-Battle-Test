@@ -1038,12 +1038,33 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.5799999833106995,
+    "m_Value": 0.4699999988079071,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
         "y": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
+    "m_ObjectId": "3498242e1d8e46cdbdefe1390c1a1ac9",
+    "m_Id": -1860084724,
+    "m_DisplayName": "Offset",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Offset",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": -6.389999866485596,
+        "y": 2.440000057220459
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -2667,6 +2688,9 @@
             "m_Id": "6b73cf9b385a476db5688059fac8790b"
         },
         {
+            "m_Id": "3498242e1d8e46cdbdefe1390c1a1ac9"
+        },
+        {
             "m_Id": "eb962bc6dad24d8fbd8810f2b65690f4"
         },
         {
@@ -2687,7 +2711,8 @@
         "8487f15d-72cd-4690-9e59-9316070d88f7",
         "73264544-6e07-42df-aaf4-ac5724858fbd",
         "a88545e3-94e1-438c-83c2-51fbee6b6cc2",
-        "f10eae71-e2f0-4d6b-afd6-b99e2609a9a4"
+        "f10eae71-e2f0-4d6b-afd6-b99e2609a9a4",
+        "02b5418e-8efd-457f-89fd-c19ef66e2a48"
     ],
     "m_PropertyIds": [
         453429206,
@@ -2695,7 +2720,8 @@
         588044041,
         -606446899,
         -768313233,
-        -2039115000
+        -2039115000,
+        -1860084724
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
@@ -3040,9 +3066,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 780.0,
-            "y": 572.0,
-            "width": 142.0,
+            "x": 778.0,
+            "y": 582.0,
+            "width": 142.00006103515626,
             "height": 34.0
         }
     },

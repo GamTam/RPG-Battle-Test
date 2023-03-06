@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         _moveVector = _playerInput.actions["Overworld/Move"];
         _interact = _playerInput.actions["Interact"];
 
-        Globals.MusicManager.Play("Kirbo");
+        Globals.MusicManager.Play("SubconForest");
     }
     
     void Update()

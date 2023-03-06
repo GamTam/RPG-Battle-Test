@@ -8,6 +8,7 @@ public class LoadScene : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _whiteFlash;
     [SerializeField] private Volume _monochromeVolume;
+    [SerializeField] private GameObject _fieldEffects;
     
     public IEnumerator BattleTransition(string scene = "Battle Scene")
     {
@@ -25,6 +26,7 @@ public class LoadScene : MonoBehaviour
         }
 
         _whiteFlash.color = new Color(1, 1, 1, 1);
+        _fieldEffects.SetActive(false);
 
         _monochromeVolume.weight = 1;
         
