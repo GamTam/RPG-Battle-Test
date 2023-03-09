@@ -8,6 +8,7 @@ public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private LoadScene _sceneLoader;
+    [SerializeField] private bool _skipTextboxCloseAnimation;
     [TextArea(15, 20)] [SerializeField] private string[] _dialogue;
 
     [HideInInspector] public PlayerInput _playerInput;
@@ -43,6 +44,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         string[] dialogue = (string[]) _dialogue.Clone();
         
-        FindObjectOfType<DialogueManager>().StartText(dialogue, gameObject.transform, _spriteRenderer);
+        FindObjectOfType<DialogueManager>().StartText(dialogue, gameObject.transform, _spriteRenderer, _skipTextboxCloseAnimation);
     }
 }

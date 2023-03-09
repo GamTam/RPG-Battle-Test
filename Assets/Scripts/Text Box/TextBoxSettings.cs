@@ -1,16 +1,13 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TextBoxSettings : MonoBehaviour
 {
     [SerializeField] private RectTransform _backgroundRectTransform;
     [SerializeField] private TMP_Text _textMeshPro;
-    [SerializeField] private int _minWidth = 50;
-    [SerializeField] private int _minHeight = 50;
+    [SerializeField] private int _minWidth = 500;
+    [SerializeField] private int _minHeight = 500;
 
     [Header("Tails")] 
     [SerializeField] private GameObject _talkTail;
@@ -19,6 +16,12 @@ public class TextBoxSettings : MonoBehaviour
     private RectTransform _rectTransform;
     private Vector2 _screenSize;
     private float _screenFactor;
+    
+    private string _text;
+    private float _time;
+    private float _scale = 0.1f;
+
+    private bool _killing;
     
     private Transform _parentPos;
     private SpriteRenderer _spriteRenderer;
@@ -41,11 +44,17 @@ public class TextBoxSettings : MonoBehaviour
         _cam = Camera.main;
         _parentPos = transform;
         
+        _tailRect.localScale = Vector3.zero;
+
+        _rectTransform.anchoredPosition = _cam.WorldToScreenPoint(_spriteRenderer.bounds.center);
+
         LateUpdate();
     }
     
     void LateUpdate()
     {
+        if (_killing) return;
+
         Vector3 min = _spriteRenderer.bounds.min;
         Vector3 max = _spriteRenderer.bounds.max;
  
@@ -54,29 +63,73 @@ public class TextBoxSettings : MonoBehaviour
         
         float parentHeight = screenMax.y - screenMin.y;
 
-        _backgroundRectTransform.sizeDelta = new Vector2(_textMeshPro.textBounds.size.x + _minWidth, _textMeshPro.textBounds.size.y + _minHeight);
+        if (_scale < 1)
+        {
+            _scale += Time.deltaTime;
+            
+
+            _tailRect.localScale = Vector3.Lerp(_tailRect.localScale, Vector3.one, _scale);
+        }
+        
+        if (_text != _textMeshPro.text)
+        {
+            _text = _textMeshPro.text;
+            _textMeshPro.ForceMeshUpdate();
+            _time = 0;
+        }
+
+        _time += Time.deltaTime;
+        
+        _backgroundRectTransform.sizeDelta = Vector2.Lerp(_backgroundRectTransform.sizeDelta, new Vector2(_textMeshPro.textBounds.size.x + _minWidth, _textMeshPro.textBounds.size.y + _minHeight), _time);
 
         Vector3 pos = _cam.WorldToScreenPoint(_spriteRenderer.bounds.center);
+        Vector3 targetPos;
         
         // Bubble Above Head
-        _rectTransform.anchoredPosition = new Vector3(pos.x, pos.y + (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight / 1.5f) , pos.z);
+        targetPos = new Vector3(pos.x, pos.y + (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight / 1.5f) , pos.z);
             
         _tailRect.anchorMax = new Vector2(0.5f, 0);
         _tailRect.anchorMin = new Vector2(0.5f, 0);
         _tailRect.rotation = Quaternion.Euler(0f, 0f, 180);
 
-        if (_rectTransform.anchoredPosition.y + _backgroundRectTransform.sizeDelta.y >= _screenSize.y) {
+        if (targetPos.y + _backgroundRectTransform.sizeDelta.y >= _screenSize.y) {
             // Bubble Below Head
-            _rectTransform.anchoredPosition = new Vector3(pos.x, pos.y - (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight / 1.5f), pos.z);
+            targetPos = new Vector3(pos.x, pos.y - (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight / 1.5f), pos.z);
             
             _tailRect.anchorMax = new Vector2(0.5f, 1);
             _tailRect.anchorMin = new Vector2(0.5f, 1);
             _tailRect.rotation = Quaternion.Euler(0f, 0f, 0);
         }
+
+        _rectTransform.anchoredPosition = Vector2.Lerp(pos, targetPos, _scale * 5);
         
         float xpos = _rectTransform.anchoredPosition.x;
         xpos = Mathf.Clamp(xpos, _backgroundRectTransform.sizeDelta.x + 15, _screenSize.x - _backgroundRectTransform.sizeDelta.x - 15);
         _tailRect.anchoredPosition = new Vector2((pos.x - xpos) / 2, 0);
         _rectTransform.anchoredPosition = new Vector2(xpos, _rectTransform.anchoredPosition.y + 40f);
+    }
+
+    public IEnumerator Kill()
+    {
+        _killing = true;
+        _time = 0;
+
+        _textMeshPro.text = "";
+
+        Vector3 startPos = _rectTransform.anchoredPosition;
+        Vector3 endPos = _cam.WorldToScreenPoint(_spriteRenderer.bounds.center);
+
+        while (_time < 0.1)
+        {
+            _rectTransform.anchoredPosition = Vector2.Lerp(startPos, endPos, _time * 5);
+            _tailRect.localScale = Vector3.Lerp(_tailRect.localScale, Vector3.zero, _time);
+            _backgroundRectTransform.sizeDelta = Vector2.Lerp(_backgroundRectTransform.sizeDelta, new Vector2(_minWidth, _minHeight), _time);
+
+
+            _time += Time.deltaTime;
+            yield return null;
+        }
+        
+        Destroy(gameObject);
     }
 }

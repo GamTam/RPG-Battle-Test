@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     private PlayerInput _playerInput;
 
     private bool _done;
+    private bool _skipTextBoxCloseAnimation;
 
     private DialogueVertexAnimator dialogueVertexAnimator;
     private bool movingText;
@@ -27,8 +28,10 @@ public class DialogueManager : MonoBehaviour
         _advanceText = _playerInput.actions["confirm"];
     }
 
-    public void StartText(String[] linesIn, Transform parentPos, SpriteRenderer spriteRenderer)
+    public void StartText(String[] linesIn, Transform parentPos, SpriteRenderer spriteRenderer, bool skipTextBoxCloseAnimation=false)
     {
+        this._skipTextBoxCloseAnimation = skipTextBoxCloseAnimation;
+        
         _tempBox = Instantiate(_textBoxPrefab, GameObject.FindWithTag("UI").transform);
         _done = false;
         TextBoxSettings tempBoxSettings = _tempBox.GetComponent<TextBoxSettings>();
@@ -148,7 +151,8 @@ public class DialogueManager : MonoBehaviour
     {
         _done = true;
         StartCoroutine(dialogueVertexAnimator.AnimateTextIn(new List<DialogueCommand>(), "", "typewriter", null));
-        Destroy(_tempBox);
+        if (!_skipTextBoxCloseAnimation) StartCoroutine(_tempBox.GetComponent<TextBoxSettings>().Kill());
+        else Destroy(_tempBox);
         _playerInput.SwitchCurrentActionMap("Overworld");
     }
 }
