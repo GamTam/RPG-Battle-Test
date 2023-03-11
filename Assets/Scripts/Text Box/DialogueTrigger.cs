@@ -44,6 +44,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         string[] dialogue = (string[]) _dialogue.Clone();
         
-        FindObjectOfType<DialogueManager>().StartText(dialogue, gameObject.transform, _spriteRenderer, _skipTextboxCloseAnimation);
+        StartCoroutine(FindObjectOfType<DialogueManager>().StartText(dialogue, gameObject.transform, _spriteRenderer, _skipTextboxCloseAnimation));
     }
 }

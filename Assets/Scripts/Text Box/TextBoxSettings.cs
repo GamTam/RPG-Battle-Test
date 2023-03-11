@@ -5,7 +5,7 @@ using UnityEngine;
 public class TextBoxSettings : MonoBehaviour
 {
     [SerializeField] private RectTransform _backgroundRectTransform;
-    [SerializeField] private TMP_Text _textMeshPro;
+    [SerializeField] public TMP_Text _textMeshPro;
     [SerializeField] private int _minWidth = 500;
     [SerializeField] private int _minHeight = 500;
 
@@ -19,7 +19,7 @@ public class TextBoxSettings : MonoBehaviour
     
     private string _text;
     private float _time;
-    private float _scale = 0.1f;
+    [HideInInspector] public float _scale = 0.1f;
 
     private bool _killing;
     

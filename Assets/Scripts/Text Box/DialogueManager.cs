@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour
         _advanceText = _playerInput.actions["confirm"];
     }
 
-    public void StartText(String[] linesIn, Transform parentPos, SpriteRenderer spriteRenderer, bool skipTextBoxCloseAnimation=false)
+    public IEnumerator StartText(String[] linesIn, Transform parentPos, SpriteRenderer spriteRenderer, bool skipTextBoxCloseAnimation=false)
     {
         this._skipTextBoxCloseAnimation = skipTextBoxCloseAnimation;
         
@@ -53,8 +53,16 @@ public class DialogueManager : MonoBehaviour
         {
             lines.Enqueue(line);
         }
+
+        tempBoxSettings._textMeshPro.text = " ";
         
+        while (tempBoxSettings._scale < 0.8)
+        {
+            yield return null;
+        }
+
         NextLine();
+        yield return null;
     }
 
     private void Update()
