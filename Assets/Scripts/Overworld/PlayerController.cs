@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         
         Vector2 moveVector = _moveVector.ReadValue<Vector2>();
 
-        #region SetAnimation
+        #region Set Animation
 
         if (moveVector == Vector2.zero)
         {

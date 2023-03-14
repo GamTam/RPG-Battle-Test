@@ -17,6 +17,8 @@ public class TextBoxSettings : MonoBehaviour
     private Vector2 _screenSize;
     private float _screenFactor;
     
+    private Bounds _textBounds = new Bounds();
+    
     private string _text;
     private float _time;
     [HideInInspector] public float _scale = 0.1f;
@@ -55,8 +57,6 @@ public class TextBoxSettings : MonoBehaviour
     {
         if (_killing) return;
 
-        string prevText = null;
-
         Vector3 min = _spriteRenderer.bounds.min;
         Vector3 max = _spriteRenderer.bounds.max;
  
@@ -75,9 +75,8 @@ public class TextBoxSettings : MonoBehaviour
         
         if (_text != _textMeshPro.text)
         {
+            if (string.IsNullOrEmpty(_text)) _textMeshPro.ForceMeshUpdate();
             _text = _textMeshPro.text;
-            prevText = _textMeshPro.text;
-            _textMeshPro.ForceMeshUpdate();
             _time = 0;
         }
 
@@ -110,12 +109,6 @@ public class TextBoxSettings : MonoBehaviour
         xpos = Mathf.Clamp(xpos, _backgroundRectTransform.sizeDelta.x + 15, _screenSize.x - _backgroundRectTransform.sizeDelta.x - 15);
         _tailRect.anchoredPosition = new Vector2((pos.x - xpos) / 2, 0);
         _rectTransform.anchoredPosition = new Vector2(xpos, _rectTransform.anchoredPosition.y + 40f);
-
-        // if (prevText != null)
-        // {
-        //     _textMeshPro.text = prevText;
-        //     _textMeshPro.ForceMeshUpdate();
-        // }
     }
 
     public IEnumerator Kill()
