@@ -33,7 +33,6 @@ public class DialogueManager : MonoBehaviour
         this._skipTextBoxCloseAnimation = skipTextBoxCloseAnimation;
         
         _tempBox = Instantiate(_textBoxPrefab, GameObject.FindWithTag("UI").transform);
-        _done = false;
         TextBoxSettings tempBoxSettings = _tempBox.GetComponent<TextBoxSettings>();
         tempBoxSettings.ParentPos = parentPos;
         tempBoxSettings.SpriteRenderer = spriteRenderer;
@@ -54,31 +53,29 @@ public class DialogueManager : MonoBehaviour
             lines.Enqueue(line);
         }
 
-        tempBoxSettings._textMeshPro.text = " ";
-        
-        while (tempBoxSettings._scale < 0.8)
-        {
-            yield return null;
-        }
+        // tempBoxSettings._textMeshPro.text = " ";
+        //
+        // while (tempBoxSettings._scale < 0.8)
+        // {
+        //     yield return null;
+        // }
 
         NextLine();
+        _done = false;
         yield return null;
     }
 
     private void Update()
     {
-        if (_done) return;
+        if (_done || dialogueVertexAnimator == null) return;
         if (_advanceText.triggered)
         {
             NextLine();
         }
 
-        if (!(dialogueVertexAnimator == null))
+        if (!dialogueVertexAnimator.textAnimating && _advanceButton)
         {
-            if (!dialogueVertexAnimator.textAnimating && _advanceButton)
-            {
-                _advanceButton.enabled = true;
-            }
+            _advanceButton.enabled = true;
         }
     }
 
