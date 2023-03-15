@@ -17,8 +17,6 @@ public class TextBoxSettings : MonoBehaviour
     private Vector2 _screenSize;
     private float _screenFactor;
     
-    private Bounds _textBounds = new Bounds();
-    
     private string _text;
     private float _time;
     [HideInInspector] public float _scale = 0.1f;
@@ -86,9 +84,10 @@ public class TextBoxSettings : MonoBehaviour
 
         Vector3 pos = _cam.WorldToScreenPoint(_spriteRenderer.bounds.center);
         Vector3 targetPos;
+        int offsetAmount = 40;
         
         // Bubble Above Head
-        targetPos = new Vector3(pos.x, pos.y + (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight / 1.5f) , pos.z);
+        targetPos = new Vector3(pos.x, pos.y + (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight) , pos.z);
             
         _tailRect.anchorMax = new Vector2(0.5f, 0);
         _tailRect.anchorMin = new Vector2(0.5f, 0);
@@ -96,11 +95,13 @@ public class TextBoxSettings : MonoBehaviour
 
         if (targetPos.y + _backgroundRectTransform.sizeDelta.y >= _screenSize.y) {
             // Bubble Below Head
-            targetPos = new Vector3(pos.x, pos.y - (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight / 1.5f), pos.z);
+            targetPos = new Vector3(pos.x, pos.y - (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight), pos.z);
             
             _tailRect.anchorMax = new Vector2(0.5f, 1);
             _tailRect.anchorMin = new Vector2(0.5f, 1);
             _tailRect.rotation = Quaternion.Euler(0f, 0f, 0);
+
+            offsetAmount *= -1;
         }
 
         _rectTransform.anchoredPosition = Vector2.Lerp(pos, targetPos, _scale * 5);
@@ -108,7 +109,7 @@ public class TextBoxSettings : MonoBehaviour
         float xpos = _rectTransform.anchoredPosition.x;
         xpos = Mathf.Clamp(xpos, _backgroundRectTransform.sizeDelta.x + 15, _screenSize.x - _backgroundRectTransform.sizeDelta.x - 15);
         _tailRect.anchoredPosition = new Vector2((pos.x - xpos) / 2, 0);
-        _rectTransform.anchoredPosition = new Vector2(xpos, _rectTransform.anchoredPosition.y + 40f);
+        _rectTransform.anchoredPosition = new Vector2(xpos, _rectTransform.anchoredPosition.y + offsetAmount);
     }
 
     public IEnumerator Kill()

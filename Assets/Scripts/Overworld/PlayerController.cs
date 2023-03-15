@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
         if (Globals.Player != null) Destroy(Globals.Player);
 
         Globals.Player = this;
+        Globals.GameState = GameState.Play;
         
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
         _moveVector = _playerInput.actions["Overworld/Move"];
@@ -32,6 +33,12 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        if (Globals.GameState != GameState.Play)
+        {
+            _char.velocity = Vector2.zero;
+            return;
+        }
+        
         _interacting = _interact.triggered;
         
         Vector2 moveVector = _moveVector.ReadValue<Vector2>();
@@ -67,21 +74,5 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         _char.velocity = moveVector * _moveSpeed;
-    }
-    
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag.Equals("NPC"))
-        {
-            other.gameObject.GetComponent<DialogueTrigger>().Talkable = true;
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag.Equals("NPC"))
-        {
-            other.gameObject.GetComponent<DialogueTrigger>().Talkable = false;
-        }
     }
 }

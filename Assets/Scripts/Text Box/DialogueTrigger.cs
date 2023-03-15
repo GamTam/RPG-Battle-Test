@@ -7,16 +7,14 @@ using UnityEngine.InputSystem;
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private LoadScene _sceneLoader;
+    [SerializeField] private BattleLoadScene _sceneLoader;
     [SerializeField] private bool _skipTextboxCloseAnimation;
-    [TextArea(15, 20)] [SerializeField] private string[] _dialogue;
+    [TextArea(3, 4)] [SerializeField] private string[] _dialogue;
 
     [HideInInspector] public PlayerInput _playerInput;
     private bool _triggeredDialogue;
     
-    private bool _talkable = false;
-    
-    public bool Talkable {get {return _talkable;} set {_talkable = value;}}
+    [SerializeField] private bool _talkable = false;
 
     private void Start()
     {
@@ -44,6 +42,22 @@ public class DialogueTrigger : MonoBehaviour
     {
         string[] dialogue = (string[]) _dialogue.Clone();
         
-        StartCoroutine(FindObjectOfType<DialogueManager>().StartText(dialogue, gameObject.transform, _spriteRenderer, _skipTextboxCloseAnimation));
+        FindObjectOfType<DialogueManager>().StartText(dialogue, gameObject.transform, _spriteRenderer, _skipTextboxCloseAnimation);
+    }
+    
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            _talkable = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            _talkable = false;
+        }
     }
 }

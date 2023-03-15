@@ -45,6 +45,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 1e2150546726d354eb57ca1fa6d192f4, type: 3}
+    - {fileID: 2800000, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -98,6 +99,28 @@ SpriteAtlas:
   - {fileID: -740152304, guid: 1e2150546726d354eb57ca1fa6d192f4, type: 3}
   - {fileID: -521629036, guid: 1e2150546726d354eb57ca1fa6d192f4, type: 3}
   - {fileID: 627070803, guid: 1e2150546726d354eb57ca1fa6d192f4, type: 3}
+  - {fileID: -478576779, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 867351143, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 1533371307, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: -1558231678, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: -1816469100, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 150816739, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 2079462556, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 286704331, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 1428912542, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: -921018673, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 2066946429, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: -2247175, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 1590101821, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: -1238900474, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: -890473380, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 1213491304, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: -747737802, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: -1853232137, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 159102572, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: 984558711, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: -1391454796, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
+  - {fileID: -1149926787, guid: b37d66cae513edf4db0c6eb1f7a65797, type: 3}
   m_PackedSpriteNamesToIndex:
   - ForestCity_Tileset_18
   - ForestCity_Tileset_19
@@ -147,6 +170,28 @@ SpriteAtlas:
   - ForestCity_Tileset_42
   - ForestCity_Tileset_41
   - ForestCity_Tileset_40
+  - Main _18
+  - Main _19
+  - Main _14
+  - Main _15
+  - Main _16
+  - Main _17
+  - Main _10
+  - Main _11
+  - Main _12
+  - Main _13
+  - Main _5
+  - Main _4
+  - Main _7
+  - Main _6
+  - Main _1
+  - Main _0
+  - Main _3
+  - Main _2
+  - Main _9
+  - Main _8
+  - Main _21
+  - Main _20
   m_RenderDataMap: {}
   m_Tag: Tilesets
   m_IsVariant: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-public class LoadScene : MonoBehaviour
+public class BattleLoadScene : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _whiteFlash;
     [SerializeField] private Volume _monochromeVolume;

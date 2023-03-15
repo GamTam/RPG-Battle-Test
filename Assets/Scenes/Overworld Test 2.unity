@@ -317,7 +317,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 26.205, y: 9.443, z: -0.819}
 --- !u!1 &112252631
 GameObject:
@@ -542,6 +542,7 @@ MonoBehaviour:
     On the other side of the plaza!</anim>'
   - <anim:shake>You gotta do something about it!</anim>
   _playerInput: {fileID: 0}
+  _talkable: 0
 --- !u!4 &155160223
 Transform:
   m_ObjectHideFlags: 0
@@ -857,7 +858,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.65625, y: 0.65625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -939,7 +940,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8125, y: 0.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1051,7 +1052,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.46875, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1069,6 +1070,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce099e17b2c73146aa1523cc3c5b12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &351813326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4726418287289272633, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
+  m_PrefabInstance: {fileID: 4726418287747263971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &375959064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1136,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &375959067
 MonoBehaviour:
@@ -1335,6 +1341,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4726418287289272639, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
   m_PrefabInstance: {fileID: 4726418287747263971}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &484205789 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6473866453595728576, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
+  m_PrefabInstance: {fileID: 4726418287747263971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &499350387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,7 +1425,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.65625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -94281,6 +94292,7 @@ MonoBehaviour:
 
     Nothing at all!'
   _playerInput: {fileID: 0}
+  _talkable: 0
 --- !u!4 &609017252
 Transform:
   m_ObjectHideFlags: 0
@@ -94629,7 +94641,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.71875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -94784,7 +94796,7 @@ Transform:
   - {fileID: 112252632}
   - {fileID: 1404053726}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &895504524
 GameObject:
@@ -94962,7 +94974,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.4
+  orthographic size: 3.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -94986,7 +94998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968560754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.0291, y: -25.566702, z: 10}
+  m_LocalPosition: {x: -17.43, y: 1.8800001, z: 10}
   m_LocalScale: {x: 1.03, y: 1.03, z: 1.03}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -95207,6 +95219,7 @@ MonoBehaviour:
   - I neeth a docthor.
   - Pleathe help...
   _playerInput: {fileID: 0}
+  _talkable: 0
 --- !u!4 &993919535
 Transform:
   m_ObjectHideFlags: 0
@@ -95287,7 +95300,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.71875, y: 1.15625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -95536,6 +95549,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1260169954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1260169955}
+  m_Layer: 0
+  m_Name: ------- NPCs ------------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1260169955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260169954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1314949623
 GameObject:
   m_ObjectHideFlags: 0
@@ -95553,7 +95597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1314949624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95600,7 +95644,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314949623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08777227, y: -0.00718826, z: 10}
+  m_LocalPosition: {x: -0.15068534, y: -0.14161415, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -95857,7 +95901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1337404661
 Transform:
   m_ObjectHideFlags: 0
@@ -95961,7 +96005,7 @@ Transform:
   - {fileID: 1877939767}
   - {fileID: 1333386974}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404053725
 GameObject:
@@ -96122,7 +96166,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1451707037
 MonoBehaviour:
@@ -96137,6 +96181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textBoxPrefab: {fileID: 1939202264199205822, guid: bcd66b312332c3e4aa615bbc9d336cd8, type: 3}
+  _done: 0
 --- !u!1 &1576148923
 GameObject:
   m_ObjectHideFlags: 0
@@ -96332,7 +96377,7 @@ Transform:
   m_Children:
   - {fileID: 651875801}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: -38.03, y: 40.06, z: -27.386}
 --- !u!114 &1609672717
 MonoBehaviour:
@@ -96423,6 +96468,7 @@ MonoBehaviour:
 
     <size=250%>TIME TO DIE!</anim>'
   _playerInput: {fileID: 0}
+  _talkable: 0
 --- !u!61 &1609672720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -96496,7 +96542,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1724185845
 MonoBehaviour:
@@ -96540,6 +96586,237 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291803f556800d249af207dd0bb8fadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &1757220711 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4726418287793158646, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
+  m_PrefabInstance: {fileID: 4726418287747263971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1760273748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1760273749}
+  - component: {fileID: 1760273750}
+  - component: {fileID: 1760273751}
+  m_Layer: 0
+  m_Name: Test Cutscene
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1760273749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760273748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.74, y: -21.43, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1760273750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760273748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b361e9847d460182db659d66a29548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CutsceneActions:
+  - rid: 2009988958243520526
+  - rid: 2009988958243520537
+  - rid: 2009988958243520519
+  - rid: 2009988958243520520
+  - rid: 2009988958243520527
+  - rid: 2009988958243520524
+  - rid: 2009988958243520529
+  - rid: 2009988958243520528
+  - rid: 2009988958243520530
+  - rid: 2009988958243520525
+  - rid: 2009988958243520531
+  - rid: 2009988958243520533
+  - rid: 2009988958243520532
+  - rid: 2009988958243520535
+  - rid: 2009988958243520536
+  _triggerMoreThanOnce: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 2009988958243520519
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Speech Bubble
+        Parent: {fileID: 1760273750}
+        Speaker: {fileID: 1757220711}
+        SkipCloseAnimation: 0
+        Dialogue:
+        - 'Oh boy,<p:short> I sure do like
+
+          grilled cheese!'
+        - I could eat it for days!
+    - rid: 2009988958243520520
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Speech Bubble
+        Parent: {fileID: 1760273750}
+        Speaker: {fileID: 310435969}
+        SkipCloseAnimation: 0
+        Dialogue:
+        - 'Grilled cheethe
+
+          <size=150%>sucth!'
+        - 'I''d much rather eath
+
+          <color=red>boileth gravy.'
+    - rid: 2009988958243520524
+      type: {class: MoveObjAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Move Object
+        Parent: {fileID: 1760273750}
+        _gameObject: {fileID: 351813326}
+        _relative: 0
+        _speed: 10
+        MoveList:
+        - {x: 6.6, y: -30}
+    - rid: 2009988958243520525
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Speech Bubble
+        Parent: {fileID: 1760273750}
+        Speaker: {fileID: 1757220711}
+        SkipCloseAnimation: 0
+        Dialogue:
+        - I'm sorry, you said <anim:shake>WHAT!?</anim>
+    - rid: 2009988958243520526
+      type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: PlayAnimation
+        Parent: {fileID: 1760273750}
+        _animator: {fileID: 484205789}
+        _animation: idle_d
+    - rid: 2009988958243520527
+      type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: PlayAnimation
+        Parent: {fileID: 1760273750}
+        _animator: {fileID: 484205789}
+        _animation: walk_d
+    - rid: 2009988958243520528
+      type: {class: MoveObjAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Move Object
+        Parent: {fileID: 1760273750}
+        _gameObject: {fileID: 351813326}
+        _relative: 0
+        _speed: 10
+        MoveList:
+        - {x: 4.1, y: -30}
+    - rid: 2009988958243520529
+      type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: PlayAnimation
+        Parent: {fileID: 1760273750}
+        _animator: {fileID: 484205789}
+        _animation: walk_l
+    - rid: 2009988958243520530
+      type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: PlayAnimation
+        Parent: {fileID: 1760273750}
+        _animator: {fileID: 484205789}
+        _animation: idle_l
+    - rid: 2009988958243520531
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Speech Bubble
+        Parent: {fileID: 1760273750}
+        Speaker: {fileID: 310435969}
+        SkipCloseAnimation: 0
+        Dialogue:
+        - Did I thtutter?
+        - Grilled cheethe ith <color=red>God Awful!
+    - rid: 2009988958243520532
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Speech Bubble
+        Parent: {fileID: 1760273750}
+        Speaker: {fileID: 679097480}
+        SkipCloseAnimation: 0
+        Dialogue:
+        - 'Y''know, I''m not to fond of
+
+          grilled cheese, myself, really.'
+        - 'Too much of a process
+
+          involved,<p:short> y''know?'
+    - rid: 2009988958243520533
+      type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: PlayAnimation
+        Parent: {fileID: 1760273750}
+        _animator: {fileID: 484205789}
+        _animation: idle_u
+    - rid: 2009988958243520535
+      type: {class: WaitAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Wait
+        Parent: {fileID: 1760273750}
+        _waitTime: 1
+    - rid: 2009988958243520536
+      type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Speech Bubble
+        Parent: {fileID: 1760273750}
+        Speaker: {fileID: 1757220711}
+        SkipCloseAnimation: 0
+        Dialogue:
+        - I hate you all.
+    - rid: 2009988958243520537
+      type: {class: WaitAction, ns: , asm: Assembly-CSharp}
+      data:
+        Name: Wait
+        Parent: {fileID: 1760273750}
+        _waitTime: 0.5
+--- !u!61 &1760273751
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760273748}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.11224723, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.042148, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1822153072
 GameObject:
   m_ObjectHideFlags: 0
@@ -96580,7 +96857,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1822153074
 BoxCollider2D:
@@ -96934,7 +97211,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1877939766
 GameObject:
@@ -97162,15 +97439,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272639, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272639, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: -17.43
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272639, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22
+      value: 1.88
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272639, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: m_LocalPosition.z

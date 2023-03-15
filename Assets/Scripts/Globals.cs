@@ -22,6 +22,7 @@ public static class Globals
     public static List<sItem> Items;
 
     public static bool BeginSceneLoad;
+    public static GameState GameState = GameState.Play;
 
     public static Dictionary<string, ArrayList> LoadTSV(string file) {
         
@@ -205,4 +206,11 @@ public struct sItem
 {
     public AttackSO Item;
     public int Count;
+}
+
+public enum GameState
+{
+    Play,
+    Cutscene,
+    Battle
 }
