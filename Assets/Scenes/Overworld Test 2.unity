@@ -96660,6 +96660,7 @@ MonoBehaviour:
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
         Name: Speech Bubble
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         Speaker: {fileID: 1757220711}
         SkipCloseAnimation: 0
@@ -96672,6 +96673,7 @@ MonoBehaviour:
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
         Name: Speech Bubble
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         Speaker: {fileID: 310435969}
         SkipCloseAnimation: 0
@@ -96686,6 +96688,7 @@ MonoBehaviour:
       type: {class: MoveObjAction, ns: , asm: Assembly-CSharp}
       data:
         Name: Move Object
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         _gameObject: {fileID: 351813326}
         _relative: 0
@@ -96696,6 +96699,7 @@ MonoBehaviour:
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
         Name: Speech Bubble
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         Speaker: {fileID: 1757220711}
         SkipCloseAnimation: 0
@@ -96705,6 +96709,7 @@ MonoBehaviour:
       type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
       data:
         Name: PlayAnimation
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         _animator: {fileID: 484205789}
         _animation: idle_d
@@ -96712,6 +96717,7 @@ MonoBehaviour:
       type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
       data:
         Name: PlayAnimation
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         _animator: {fileID: 484205789}
         _animation: walk_d
@@ -96719,6 +96725,7 @@ MonoBehaviour:
       type: {class: MoveObjAction, ns: , asm: Assembly-CSharp}
       data:
         Name: Move Object
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         _gameObject: {fileID: 351813326}
         _relative: 0
@@ -96729,6 +96736,7 @@ MonoBehaviour:
       type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
       data:
         Name: PlayAnimation
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         _animator: {fileID: 484205789}
         _animation: walk_l
@@ -96736,6 +96744,7 @@ MonoBehaviour:
       type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
       data:
         Name: PlayAnimation
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         _animator: {fileID: 484205789}
         _animation: idle_l
@@ -96743,6 +96752,7 @@ MonoBehaviour:
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
         Name: Speech Bubble
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         Speaker: {fileID: 310435969}
         SkipCloseAnimation: 0
@@ -96753,6 +96763,7 @@ MonoBehaviour:
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
         Name: Speech Bubble
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         Speaker: {fileID: 679097480}
         SkipCloseAnimation: 0
@@ -96767,6 +96778,7 @@ MonoBehaviour:
       type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
       data:
         Name: PlayAnimation
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         _animator: {fileID: 484205789}
         _animation: idle_u
@@ -96774,12 +96786,14 @@ MonoBehaviour:
       type: {class: WaitAction, ns: , asm: Assembly-CSharp}
       data:
         Name: Wait
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         _waitTime: 1
     - rid: 2009988958243520536
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
       data:
         Name: Speech Bubble
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         Speaker: {fileID: 1757220711}
         SkipCloseAnimation: 0
@@ -96789,6 +96803,7 @@ MonoBehaviour:
       type: {class: WaitAction, ns: , asm: Assembly-CSharp}
       data:
         Name: Wait
+        PlayWithNext: 0
         Parent: {fileID: 1760273750}
         _waitTime: 0.5
 --- !u!61 &1760273751

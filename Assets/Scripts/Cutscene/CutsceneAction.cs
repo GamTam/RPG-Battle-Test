@@ -9,6 +9,7 @@ using Object = UnityEngine.Object;
 public class CutsceneAction
 {
     [ReadOnly] [AllowNesting] public string Name;
+    public bool PlayWithNext;
     [HideInInspector] public Cutscene Parent;
 
     public virtual IEnumerator Play()

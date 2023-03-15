@@ -14,7 +14,8 @@ public class Cutscene : MonoBehaviour
         Globals.GameState = GameState.Cutscene;
         foreach (CutsceneAction action in CutsceneActions)
         {
-            yield return action.Play();
+            if (action.PlayWithNext) StartCoroutine(action.Play());
+            else yield return action.Play();
         }
 
         Globals.GameState = GameState.Play;
