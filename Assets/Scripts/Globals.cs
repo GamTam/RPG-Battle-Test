@@ -20,9 +20,12 @@ public static class Globals
 
     public static bool InBattle;
 
-    public static int SaveFile = 1;
+    public static int SaveFile = 0;
     public static List<sItem> Items = new List<sItem>();
     public static List<PlayerStats> PlayerStatsList = new List<PlayerStats>();
+
+    public static double PlayTime;
+    public static PlayerDir PlayerDir = PlayerDir._d;
 
     public static List<string> PlayedCutscenes = new List<string>();
 
