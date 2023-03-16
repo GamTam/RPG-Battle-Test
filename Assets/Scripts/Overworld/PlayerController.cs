@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
         if (Globals.Player != null) Destroy(Globals.Player);
 
         Globals.Player = this;
-        if (Globals.PlayerStatsList[0] != null) _stats = Globals.PlayerStatsList[0]; 
+        
+        if (Globals.PlayerStatsList.Count > 0) _stats = Globals.PlayerStatsList[0];
         else Globals.PlayerStatsList.Add(_stats);
 
         if (Globals.PlayerPos != Vector3.zero) transform.position = Globals.PlayerPos;

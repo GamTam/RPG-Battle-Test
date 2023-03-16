@@ -14,7 +14,7 @@ public static class Globals
     public static SoundManager SoundManager;
 
     public static PlayerController Player;
-    public static Vector3 PlayerPos = Vector3.zero;
+    public static Vector3 PlayerPos = new Vector3();
     public static PlayerInput Input;
     public static EventSystem EventSystem;
 
@@ -23,6 +23,8 @@ public static class Globals
     public static int SaveFile = 1;
     public static List<sItem> Items = new List<sItem>();
     public static List<PlayerStats> PlayerStatsList = new List<PlayerStats>();
+
+    public static List<string> PlayedCutscenes = new List<string>();
 
     public static bool BeginSceneLoad;
     public static GameState GameState = GameState.Play;

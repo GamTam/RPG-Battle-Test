@@ -95594,6 +95594,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce099e17b2c73146aa1523cc3c5b12c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &1027986466 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4726418287793158646, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
+  m_PrefabInstance: {fileID: 4726418287747263971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1176996305
 GameObject:
   m_ObjectHideFlags: 0
@@ -96113,6 +96118,7 @@ MonoBehaviour:
     PlayerPos: {x: 0, y: 0, z: 0}
     Items: []
     PlayerStats: []
+    PlayedCutscenes: []
 --- !u!4 &1250679448
 Transform:
   m_ObjectHideFlags: 0
@@ -97227,6 +97233,7 @@ MonoBehaviour:
   - rid: 2009988958243520535
   - rid: 2009988958243520536
   _triggerMoreThanOnce: 0
+  _cutsceneName: Test Cutscene
   references:
     version: 2
     RefIds:
@@ -97236,7 +97243,7 @@ MonoBehaviour:
         Name: Speech Bubble
         PlayWithNext: 0
         Parent: {fileID: 1760273750}
-        Speaker: {fileID: 0}
+        Speaker: {fileID: 1027986466}
         SkipCloseAnimation: 0
         Dialogue:
         - 'Oh boy,<p:short> I sure do like
@@ -97275,7 +97282,7 @@ MonoBehaviour:
         Name: Speech Bubble
         PlayWithNext: 0
         Parent: {fileID: 1760273750}
-        Speaker: {fileID: 0}
+        Speaker: {fileID: 1027986466}
         SkipCloseAnimation: 0
         Dialogue:
         - I'm sorry, <anim:shake>WHAT DID YOU SAY!?</anim>
@@ -97286,7 +97293,7 @@ MonoBehaviour:
         Name: PlayAnimation
         PlayWithNext: 0
         Parent: {fileID: 1760273750}
-        _animator: {fileID: 0}
+        _animator: {fileID: 4726418287747263973}
         _animation: idle_d
     - rid: 2009988958243520527
       type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
@@ -97294,7 +97301,7 @@ MonoBehaviour:
         Name: PlayAnimation
         PlayWithNext: 0
         Parent: {fileID: 1760273750}
-        _animator: {fileID: 0}
+        _animator: {fileID: 4726418287747263973}
         _animation: walk_d
     - rid: 2009988958243520528
       type: {class: MoveObjAction, ns: , asm: Assembly-CSharp}
@@ -97313,7 +97320,7 @@ MonoBehaviour:
         Name: PlayAnimation
         PlayWithNext: 0
         Parent: {fileID: 1760273750}
-        _animator: {fileID: 0}
+        _animator: {fileID: 4726418287747263973}
         _animation: walk_l
     - rid: 2009988958243520530
       type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
@@ -97321,7 +97328,7 @@ MonoBehaviour:
         Name: PlayAnimation
         PlayWithNext: 0
         Parent: {fileID: 1760273750}
-        _animator: {fileID: 0}
+        _animator: {fileID: 4726418287747263973}
         _animation: idle_l
     - rid: 2009988958243520531
       type: {class: DialogueAction, ns: , asm: Assembly-CSharp}
@@ -97355,7 +97362,7 @@ MonoBehaviour:
         Name: PlayAnimation
         PlayWithNext: 0
         Parent: {fileID: 1760273750}
-        _animator: {fileID: 0}
+        _animator: {fileID: 4726418287747263973}
         _animation: idle_u
     - rid: 2009988958243520535
       type: {class: WaitAction, ns: , asm: Assembly-CSharp}
@@ -97370,7 +97377,7 @@ MonoBehaviour:
         Name: Speech Bubble
         PlayWithNext: 0
         Parent: {fileID: 1760273750}
-        Speaker: {fileID: 0}
+        Speaker: {fileID: 1027986466}
         SkipCloseAnimation: 0
         Dialogue:
         - I hate you all.
@@ -98120,5 +98127,10 @@ PrefabInstance:
 --- !u!1 &4726418287747263972 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4726418287289272633, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
+  m_PrefabInstance: {fileID: 4726418287747263971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4726418287747263973 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6473866453595728576, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
   m_PrefabInstance: {fileID: 4726418287747263971}
   m_PrefabAsset: {fileID: 0}
