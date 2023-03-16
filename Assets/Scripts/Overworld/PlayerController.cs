@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 2.5f;
     [SerializeField] private Rigidbody2D _char;
     [SerializeField] private Animator _animator;
+    [SerializeField] private PlayerStats _stats;
     
     [HideInInspector] public PlayerInput _playerInput;
     [HideInInspector] public InputAction _moveVector;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         if (Globals.Player != null) Destroy(Globals.Player);
 
         Globals.Player = this;
+        Globals.PlayerStatsList.Add(_stats);
         Globals.GameState = GameState.Play;
         
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();

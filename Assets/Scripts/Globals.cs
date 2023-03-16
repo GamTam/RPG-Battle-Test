@@ -19,7 +19,9 @@ public static class Globals
 
     public static bool InBattle;
 
-    public static List<sItem> Items;
+    public static int SaveFile = 1;
+    public static List<sItem> Items = new List<sItem>();
+    public static List<PlayerStats> PlayerStatsList = new List<PlayerStats>();
 
     public static bool BeginSceneLoad;
     public static GameState GameState = GameState.Play;
@@ -206,6 +208,23 @@ public struct sItem
 {
     public AttackSO Item;
     public int Count;
+}
+
+[Serializable]
+public class PlayerStats
+{
+    public string Name;
+    public int HP;
+    public int MaxHP;
+    public int MP;
+    public int MaxMP;
+    public int Pow;
+    public int Def;
+    public int Luck;
+    public int Speed;
+    
+    public Sprite PFP;
+    public Sprite DeadPFP;
 }
 
 public enum GameState
