@@ -23,7 +23,11 @@ public class PlayerController : MonoBehaviour
         if (Globals.Player != null) Destroy(Globals.Player);
 
         Globals.Player = this;
-        Globals.PlayerStatsList.Add(_stats);
+        if (Globals.PlayerStatsList[0] != null) _stats = Globals.PlayerStatsList[0]; 
+        else Globals.PlayerStatsList.Add(_stats);
+
+        if (Globals.PlayerPos != Vector3.zero) transform.position = Globals.PlayerPos;
+        
         Globals.GameState = GameState.Play;
         
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();

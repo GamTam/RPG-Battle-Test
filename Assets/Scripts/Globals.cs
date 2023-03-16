@@ -14,6 +14,7 @@ public static class Globals
     public static SoundManager SoundManager;
 
     public static PlayerController Player;
+    public static Vector3 PlayerPos = Vector3.zero;
     public static PlayerInput Input;
     public static EventSystem EventSystem;
 
