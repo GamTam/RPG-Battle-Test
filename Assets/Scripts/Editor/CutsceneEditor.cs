@@ -33,57 +33,96 @@ public class CutsceneEditor : Editor
                 break;
         }*/
         
-        if (GUILayout.Button("Speech Bubble")) cutscene.AddAction(new DialogueAction());
-        if (GUILayout.Button("Move Object")) cutscene.AddAction(new MoveObjAction());
-        if (GUILayout.Button("Set Animation")) cutscene.AddAction(new PlayAnimAction());
-        if (GUILayout.Button("Wait")) cutscene.AddAction(new WaitAction());
+        // if (GUILayout.Button("Speech Bubble")) cutscene.AddAction(new DialogueAction());
+        // if (GUILayout.Button("Move Object")) cutscene.AddAction(new MoveObjAction());
+        // if (GUILayout.Button("Set Animation")) cutscene.AddAction(new PlayAnimAction());
+        // if (GUILayout.Button("Wait")) cutscene.AddAction(new WaitAction());
 
-        base.OnInspectorGUI();
+        // base.OnInspectorGUI();
     }
 }
 
 public class CutsceneEditorWindow : ExtendedEditorWindow
 {
     int toolbarInt = 0;
-    string[] toolbarStrings = {"Speech Bubble", "Move Object", "Set Animation", "Wait"};
+    string[] toolbarStrings = {"Speech Bubble", "Move Object", "Set Animation", "Wait", "Charles"};
+    private static Cutscene _cutscene;
+    private static CutsceneEditorWindow _window;
     
     public static void Open(Cutscene cutscene)
     {
-        CutsceneEditorWindow window = GetWindow<CutsceneEditorWindow>("Cutscene Editor");
-        window._serializedObject = new SerializedObject(cutscene);
+        _window = GetWindow<CutsceneEditorWindow>("Cutscene Editor");
+        _window._serializedObject = new SerializedObject(cutscene);
+        _cutscene = cutscene;
     }
     
     public void OnGUI()
     {
-        toolbarInt = GUILayout.Toolbar(toolbarInt, toolbarStrings);
+        GUILayout.Space(15);
+        
+        toolbarInt = GUILayout.SelectionGrid(toolbarInt, toolbarStrings, 4);
 
-        switch (toolbarInt)
+        GUILayout.Space(5);
+        if (GUILayout.Button("Insert Above"))
         {
-            case 0:
-                string textArea = "";
-                textArea = GUILayout.TextField(textArea);
+            switch (toolbarInt)
+            {
+                case 0:
+                    _cutscene.AddAction(new DialogueAction(), selectedPropertyIndex);
+                    break;
+                case 1:
+                    _cutscene.AddAction(new MoveObjAction(), selectedPropertyIndex);
+                    break;
+                case 2:
+                    _cutscene.AddAction(new PlayAnimAction(), selectedPropertyIndex);
+                    break;
+                case 3:
+                    _cutscene.AddAction(new WaitAction(), selectedPropertyIndex);
+                    break;
+            }
+            _window._serializedObject = new SerializedObject(_cutscene);
+        }
+        if (GUILayout.Button("Insert Below"))
+        {
+            switch (toolbarInt)
+            {
+                case 0:
+                    _cutscene.AddAction(new DialogueAction(), selectedPropertyIndex + 1);
+                    break;
+                case 1:
+                    _cutscene.AddAction(new MoveObjAction(), selectedPropertyIndex + 1);
+                    break;
+                case 2:
+                    _cutscene.AddAction(new PlayAnimAction(), selectedPropertyIndex + 1);
+                    break;
+                case 3:
+                    _cutscene.AddAction(new WaitAction(), selectedPropertyIndex + 1);
+                    break;
+            }
 
-                /* DrawField("Name", false, serialDialogue);
-                DrawField("PlayWithNext", false, serialDialogue);
-                DrawField("Speaker", false, serialDialogue);
-                DrawField("SkipCloseAnimation", false, serialDialogue);
-                DrawField("Dialogue", false, serialDialogue); */
-                
-                GUILayout.Button("Insert Above");
-                GUILayout.Button("Insert Below");
-                GUILayout.Button("Append to Bottom");
-                break;
+            selectedPropertyIndex += 1;
+            _window._serializedObject = new SerializedObject(_cutscene);
+        }
+        if (GUILayout.Button("Append to Bottom"))
+        {
+            switch (toolbarInt)
+            {
+                case 0:
+                    _cutscene.AddAction(new DialogueAction());
+                    break;
+                case 1:
+                    _cutscene.AddAction(new MoveObjAction());
+                    break;
+                case 2:
+                    _cutscene.AddAction(new PlayAnimAction());
+                    break;
+                case 3:
+                    _cutscene.AddAction(new WaitAction());
+                    break;
+            }
 
-            case 1:
-                GUILayout.Button("Add Movement Action");
-                break;
-
-            case 2:
-                GUILayout.Button("Add Animation Action");
-                break;
-            case 3:
-                GUILayout.Button("Add Wait Action");
-                break;
+            selectedPropertyIndex = _cutscene.GetCutsceneLength - 1;
+            _window._serializedObject = new SerializedObject(_cutscene);
         }
 
         GUILayout.Space(15);
@@ -94,7 +133,9 @@ public class CutsceneEditorWindow : ExtendedEditorWindow
         EditorGUILayout.BeginHorizontal();
         
         EditorGUILayout.BeginVertical("box", GUILayout.MaxWidth(150), GUILayout.ExpandHeight(true));
-        DrawField("_triggerMoreThanOnce", false);
+        DrawField("_triggerOnlyOnce", false);
+        if (_cutscene._triggerOnlyOnce) DrawField("_cutsceneName", false);
+        GUILayout.Space(15);
         DrawSidebar(_currentProperty);
         EditorGUILayout.EndVertical();
         
@@ -105,21 +146,29 @@ public class CutsceneEditorWindow : ExtendedEditorWindow
             GUILayout.Space(15);
             GUILayout.FlexibleSpace();
             GUILayout.BeginHorizontal();
+
+            GUI.enabled = selectedPropertyIndex > 0;
             if (GUILayout.Button("Move Up"))
             {
+                _currentProperty.MoveArrayElement(selectedPropertyIndex, selectedPropertyIndex - 1);
+                selectedPropertyIndex -= 1;
             }
 
+            GUI.enabled = selectedPropertyIndex < _cutscene.GetCutsceneLength - 1;
             if (GUILayout.Button("Move Down"))
             {
+                _currentProperty.MoveArrayElement(selectedPropertyIndex, selectedPropertyIndex + 1);
+                selectedPropertyIndex += 1;
             }
-            
+
+            GUI.enabled = true;
             if (GUILayout.Button("Remove Action"))
             {
                 var oldLength = _currentProperty.arraySize;
-                Debug.Log(selectedPropertyIndex);
                 _currentProperty.DeleteArrayElementAtIndex(selectedPropertyIndex);
                 if (_currentProperty.arraySize == oldLength)
                     _currentProperty.DeleteArrayElementAtIndex(selectedPropertyIndex);
+                selectedPropertyIndex = -70;
                 selectedProperty = null;
             }
             GUILayout.EndHorizontal();
@@ -137,7 +186,8 @@ public class CutsceneEditorWindow : ExtendedEditorWindow
         if (GUILayout.Button("Set Animation")) cutscene.AddAction(new PlayAnimAction());
         if (GUILayout.Button("Wait")) cutscene.AddAction(new WaitAction()); */
 
-        // base.OnInspectorGUI();
+        // base.OnInspectorGUI();d
+        _serializedObject.ApplyModifiedProperties();
     }
 
     void DrawSelectedPropertiesPanel()

@@ -7,14 +7,14 @@ using UnityEngine;
 public class Cutscene : MonoBehaviour
 {
     [SerializeReference] [SerializeField] private List<CutsceneAction> CutsceneActions;
-    [SerializeField] private bool _triggerMoreThanOnce;
-    [SerializeField] [HideIf("_triggerMoreThanOnce")] [AllowNesting] private string _cutsceneName;
+    [SerializeField] public bool _triggerOnlyOnce;
+    [SerializeField] [ShowIf("_triggerOnlyOnce")] [AllowNesting] [TextArea(1, 1)] private string _cutsceneName;
 
     private bool _triggered;
 
     private void Start()
     {
-        if (Globals.PlayedCutscenes.Contains(_cutsceneName) && !_triggerMoreThanOnce) _triggered = true;
+        if (Globals.PlayedCutscenes.Contains(_cutsceneName) && _triggerOnlyOnce) _triggered = true;
     }
 
     public IEnumerator PlayCutscene()
@@ -35,12 +35,20 @@ public class Cutscene : MonoBehaviour
         action.Parent = this;
         CutsceneActions.Add(action);
     }
+
+    public void AddAction(CutsceneAction action, int index)
+    {
+        action.Parent = this;
+        CutsceneActions.Insert(index, action);
+    }
+
+    public int GetCutsceneLength => CutsceneActions.Count;
     
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            if (!_triggered || _triggerMoreThanOnce)
+            if (!_triggered || !_triggerOnlyOnce)
             {
                 _triggered = true;
                 StartCoroutine(PlayCutscene());

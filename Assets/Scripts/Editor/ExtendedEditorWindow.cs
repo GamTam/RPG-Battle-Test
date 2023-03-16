@@ -12,7 +12,7 @@ public class ExtendedEditorWindow : EditorWindow
 
     private string selectedPropertyPath;
     protected SerializedProperty selectedProperty;
-    protected int selectedPropertyIndex;
+    protected int selectedPropertyIndex = -70;
 
     protected void DrawProperties(SerializedProperty property, bool drawChildren)
     {
@@ -50,22 +50,26 @@ public class ExtendedEditorWindow : EditorWindow
 
     protected void DrawSidebar(SerializedProperty property)
     {
-        int i = 0;
+        List<string> toolbarStrings = new List<string>();
+        List<string> internalStrings = new List<string>();
+        
         foreach (SerializedProperty p in property)
         {
-            if (GUILayout.Button(p.displayName))
-            {
-                selectedPropertyPath = p.propertyPath;
-                selectedPropertyIndex = i;
-            }
-
-            i++;
+            toolbarStrings.Add(p.displayName);
+            internalStrings.Add(p.propertyPath);
+            // if (GUILayout.Button(p.displayName))
+            // {
+            //     selectedPropertyPath = p.propertyPath;
+            //     selectedPropertyIndex = i;
+            // }
+            //
+            // i++;
         }
+        
+        selectedPropertyIndex = GUILayout.SelectionGrid(selectedPropertyIndex, toolbarStrings.ToArray(), 1);
 
-        if (!string.IsNullOrEmpty(selectedPropertyPath))
-        {
-            selectedProperty = _serializedObject.FindProperty(selectedPropertyPath);
-        }
+        if (selectedPropertyIndex < 0 || selectedPropertyIndex >= internalStrings.Count) selectedProperty = null;
+        else selectedProperty = _serializedObject.FindProperty(internalStrings[selectedPropertyIndex]);
     }
 
     protected void DrawField(string propertyName, bool relative, SerializedObject obj = null)

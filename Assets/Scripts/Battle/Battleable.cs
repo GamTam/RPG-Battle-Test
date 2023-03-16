@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class Battleable : MonoBehaviour
 {
-    public string _name;
-    public int _level;
-    public int _HP;
-    public int _maxHP;
-    public int _pow;
-    public int _def;
-    public int _luck;
-    public int _speed;
+    [HideInInspector] public string _name;
+    [HideInInspector] public int _level;
+    [HideInInspector] public int _HP;
+    [HideInInspector] public int _maxHP;
+    [HideInInspector] public int _pow;
+    [HideInInspector] public int _def;
+    [HideInInspector] public int _luck;
+    [HideInInspector] public int _speed;
+    [HideInInspector] public int _exp;
     public Slider _slider;
     public Slider[] _redSliders;
     

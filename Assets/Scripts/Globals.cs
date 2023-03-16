@@ -53,6 +53,11 @@ public static class Globals
 
         return dictionary;
     }
+    
+    public static void ListSwap<T>(IList<T> list, int indexA, int indexB)
+    {
+        (list[indexA], list[indexB]) = (list[indexB], list[indexA]);
+    }
 
     public static int DamageFormula(int atk, int def, out bool crit, int luck = 500)
     {
@@ -220,6 +225,7 @@ public struct sItem
 public class PlayerStats
 {
     public string Name;
+    public int Level;
     public int HP;
     public int MaxHP;
     public int MP;
@@ -228,6 +234,8 @@ public class PlayerStats
     public int Def;
     public int Luck;
     public int Speed;
+    public int EXP;
+    public List<AttackSO> Attacks;
     
     public Sprite PFP;
     public Sprite DeadPFP;

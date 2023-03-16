@@ -12,7 +12,7 @@ public class SaveData : MonoBehaviour
 
     private void Awake()
     {
-        // LoadFromJson(false);
+        LoadFromJson(false);
         // if (SceneManager.GetActiveScene().name != _save.CurrentScene) SceneManager.LoadScene(_save.CurrentScene);
     }
 

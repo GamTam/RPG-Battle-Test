@@ -873,6 +873,7 @@ MonoBehaviour:
   _def: 0
   _luck: 0
   _speed: 0
+  _exp: 0
   _slider: {fileID: 1370978374}
   _redSliders:
   - {fileID: 1100409473}
@@ -1005,6 +1006,7 @@ MonoBehaviour:
   _def: 0
   _luck: 0
   _speed: 0
+  _exp: 0
   _slider: {fileID: 1756969515}
   _redSliders:
   - {fileID: 756798680}
@@ -3984,6 +3986,7 @@ MonoBehaviour:
   _def: 0
   _luck: 0
   _speed: 0
+  _exp: 0
   _slider: {fileID: 1636497469}
   _redSliders:
   - {fileID: 665061926}
@@ -4322,6 +4325,10 @@ PrefabInstance:
       propertyPath: _nameText
       value: 
       objectReference: {fileID: 1136997477}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _playerIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _attacks.Array.size
       value: 3
@@ -5892,6 +5899,10 @@ PrefabInstance:
       propertyPath: _nameText
       value: 
       objectReference: {fileID: 1136997477}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _playerIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _attacks.Array.size
       value: 3
@@ -8046,6 +8057,10 @@ PrefabInstance:
       propertyPath: _nameText
       value: 
       objectReference: {fileID: 1136997477}
+    - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
+      propertyPath: _playerIndex
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6838250753181335916, guid: e5de9d5def43f3e44989c46843c36c0a, type: 3}
       propertyPath: _attacks.Array.size
       value: 3
