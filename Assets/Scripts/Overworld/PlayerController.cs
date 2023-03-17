@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 2.5f;
+    [SerializeField] public float _moveSpeed = 2.5f;
     [SerializeField] private Rigidbody2D _char;
     [SerializeField] private Animator _animator;
     [SerializeField] private PlayerStats _stats;
@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _prevMoveVector;
     private PlayerDir _facing = PlayerDir._d;
+    
+    public bool IsMoving => _moveVector.ReadValue<Vector2>() != Vector2.zero;
     
     void Start()
     {
@@ -89,6 +91,11 @@ public class PlayerController : MonoBehaviour
     public void SetFacing(PlayerDir facing)
     {
         _facing = facing;
+    }
+
+    public PlayerDir GetFacing()
+    {
+        return _facing;
     }
 }
 
