@@ -1685,6 +1685,75 @@ PolygonCollider2D:
       - {x: -0.16875339, y: -0.49999997}
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: 0.5}
+--- !u!1 &530344132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 530344135}
+  - component: {fileID: 530344134}
+  - component: {fileID: 530344133}
+  m_Layer: 0
+  m_Name: Enemy Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &530344133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530344132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ae8a66cc39d1b4ebd3fa1905a05224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _whiteFlash: {fileID: 1877939768}
+  _monochromeVolume: {fileID: 100052664}
+  _fieldEffects: {fileID: 1333386973}
+--- !u!114 &530344134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530344132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f064bab002b43241b21e3fa31d44f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 4726418287747263974}
+  _load: {fileID: 530344133}
+  _stepInterval: 1
+  _chance:
+  - Scene: Battle Scene
+    Chance: 0
+  - Scene: Battle Scene 2
+    Chance: 0
+  _timer: 0
+--- !u!4 &530344135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530344132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.467994, y: 2.4186256, z: 174.86865}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &582696859
 GameObject:
   m_ObjectHideFlags: 0
@@ -95671,6 +95740,22 @@ MonoBehaviour:
   _char: {fileID: 1015526955}
   _animator: {fileID: 1015526954}
   _queueDelay: 1
+  _charIndex: 2
+  _stats:
+    Name: Bobbie
+    Level: 0
+    HP: 6
+    MaxHP: 6
+    MP: 10
+    MaxMP: 10
+    Pow: 0
+    Def: 0
+    Luck: 0
+    Speed: 0
+    EXP: 0
+    Attacks: []
+    PFP: {fileID: 21300000, guid: 7afa1bf23b94a2742bafed6115f363cc, type: 3}
+    DeadPFP: {fileID: 21300000, guid: 67e5f7f8d5fbf024fab71d6bf0f762be, type: 3}
 --- !u!4 &1015526957
 Transform:
   m_ObjectHideFlags: 0
@@ -96087,6 +96172,22 @@ MonoBehaviour:
   _char: {fileID: 1222010137}
   _animator: {fileID: 1222010136}
   _queueDelay: 1
+  _charIndex: 3
+  _stats:
+    Name: Jo
+    Level: 0
+    HP: 6
+    MaxHP: 6
+    MP: 3
+    MaxMP: 3
+    Pow: 0
+    Def: 0
+    Luck: 0
+    Speed: 0
+    EXP: 0
+    Attacks: []
+    PFP: {fileID: 21300000, guid: 61ed285c9c635cc46837e571e35438ac, type: 3}
+    DeadPFP: {fileID: 21300000, guid: cc0491828bc58b64498938ae3f475a81, type: 3}
 --- !u!4 &1222010139
 Transform:
   m_ObjectHideFlags: 0
@@ -96383,7 +96484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1250679447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96502,6 +96603,22 @@ MonoBehaviour:
   _char: {fileID: 1289365873}
   _animator: {fileID: 1289365874}
   _queueDelay: 1
+  _charIndex: 1
+  _stats:
+    Name: Raine
+    Level: 0
+    HP: 6
+    MaxHP: 6
+    MP: 4
+    MaxMP: 8
+    Pow: 0
+    Def: 0
+    Luck: 0
+    Speed: 0
+    EXP: 0
+    Attacks: []
+    PFP: {fileID: 21300000, guid: 75c8946dae36cdb408087a9b6d493612, type: 3}
+    DeadPFP: {fileID: 21300000, guid: 7380239a681aa0c459ea1177cd6e5872, type: 3}
 --- !u!50 &1289365873
 Rigidbody2D:
   serializedVersion: 4
@@ -98621,7 +98738,7 @@ PrefabInstance:
     - target: {fileID: 4726418287289272638, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: _stats.PFP
       value: 
-      objectReference: {fileID: -2461493353423378586, guid: f8e2be6d55edd5144920097f8847db82, type: 3}
+      objectReference: {fileID: 21300000, guid: 54f23dc7ce884f9479057666760eb12d, type: 3}
     - target: {fileID: 4726418287289272638, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: _stats.Pow
       value: 10
@@ -98632,7 +98749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272638, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: _stats.Name
-      value: Craig
+      value: Cecilia
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272638, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: _stats.MaxHP
@@ -98649,7 +98766,7 @@ PrefabInstance:
     - target: {fileID: 4726418287289272638, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: _stats.DeadPFP
       value: 
-      objectReference: {fileID: 694379866424237384, guid: f8e2be6d55edd5144920097f8847db82, type: 3}
+      objectReference: {fileID: 21300000, guid: 5fc02d848c884f54d88a593aff8e897c, type: 3}
     - target: {fileID: 4726418287289272639, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: m_RootOrder
       value: 4
