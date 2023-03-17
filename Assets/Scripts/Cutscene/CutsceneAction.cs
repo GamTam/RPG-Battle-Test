@@ -45,8 +45,8 @@ public class DialogueAction : CutsceneAction
 [Serializable]
 public class MoveObjAction : CutsceneAction
 {
-    [SerializeField] private GameObject _gameObject;
     [SerializeField] private bool _relative;
+    [SerializeField] private GameObject _gameObject;
     [SerializeField] private int _speed;
     [SerializeField] private Vector2[] MoveList;
     

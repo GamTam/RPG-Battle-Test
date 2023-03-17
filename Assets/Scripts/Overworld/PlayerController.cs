@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 2.5f;
     [SerializeField] private Rigidbody2D _char;
     [SerializeField] private Animator _animator;
+    [SerializeField] private PlayerStats _stats;
     
     [HideInInspector] public PlayerInput _playerInput;
     [HideInInspector] public InputAction _moveVector;
@@ -15,13 +16,21 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool _interacting;
 
     private Vector2 _prevMoveVector;
-    private string _facing = "_d";
+    private PlayerDir _facing = PlayerDir._d;
     
     void Start()
     {
         if (Globals.Player != null) Destroy(Globals.Player);
 
         Globals.Player = this;
+
+        _facing = Globals.PlayerDir;
+        
+        if (Globals.PlayerStatsList.Count > 0) _stats = Globals.PlayerStatsList[0];
+        else Globals.PlayerStatsList.Add(_stats);
+
+        if (Globals.PlayerPos != Vector3.zero) transform.position = Globals.PlayerPos;
+        
         Globals.GameState = GameState.Play;
         
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
@@ -33,6 +42,7 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        Globals.PlayerDir = _facing;
         if (Globals.GameState != GameState.Play)
         {
             _char.velocity = Vector2.zero;
@@ -47,32 +57,45 @@ public class PlayerController : MonoBehaviour
 
         if (moveVector == Vector2.zero)
         {
-            _animator.Play($"idle{_facing}");
+            _animator.Play($"idle{_facing.ToString()}");
         }
         else
         {
             if (moveVector == Vector2.up)
             {
-                _facing = "_u";
+                _facing = PlayerDir._u;
             } 
             else if (moveVector == Vector2.down)
             {
-                _facing = "_d";
+                _facing = PlayerDir._d;
             } 
             else if (moveVector == Vector2.left)
             {
-                _facing = "_l";
+                _facing = PlayerDir._l;
             } 
             else if (moveVector == Vector2.right)
             {
-                _facing = "_r";
+                _facing = PlayerDir._r;
             }
             
-            _animator.Play($"walk{_facing}");
+            _animator.Play($"walk{_facing.ToString()}");
         }
 
         #endregion
 
         _char.velocity = moveVector * _moveSpeed;
     }
+
+    public void SetFacing(PlayerDir facing)
+    {
+        _facing = facing;
+    }
+}
+
+public enum PlayerDir
+{
+    _u,
+    _d,
+    _l,
+    _r
 }

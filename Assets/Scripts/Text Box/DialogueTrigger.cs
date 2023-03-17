@@ -49,6 +49,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+            Debug.Log("a");
             _talkable = true;
         }
     }
@@ -57,6 +58,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+            Debug.Log("b");
             _talkable = false;
         }
     }

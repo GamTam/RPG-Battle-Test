@@ -14,12 +14,20 @@ public static class Globals
     public static SoundManager SoundManager;
 
     public static PlayerController Player;
+    public static Vector3 PlayerPos = new Vector3();
     public static PlayerInput Input;
     public static EventSystem EventSystem;
 
     public static bool InBattle;
 
-    public static List<sItem> Items;
+    public static int SaveFile = 0;
+    public static List<sItem> Items = new List<sItem>();
+    public static List<PlayerStats> PlayerStatsList = new List<PlayerStats>();
+
+    public static double PlayTime;
+    public static PlayerDir PlayerDir = PlayerDir._d;
+
+    public static List<string> PlayedCutscenes = new List<string>();
 
     public static bool BeginSceneLoad;
     public static GameState GameState = GameState.Play;
@@ -44,6 +52,11 @@ public static class Globals
         }
 
         return dictionary;
+    }
+    
+    public static void ListSwap<T>(IList<T> list, int indexA, int indexB)
+    {
+        (list[indexA], list[indexB]) = (list[indexB], list[indexA]);
     }
 
     public static int DamageFormula(int atk, int def, out bool crit, int luck = 500)
@@ -206,6 +219,26 @@ public struct sItem
 {
     public AttackSO Item;
     public int Count;
+}
+
+[Serializable]
+public class PlayerStats
+{
+    public string Name;
+    public int Level;
+    public int HP;
+    public int MaxHP;
+    public int MP;
+    public int MaxMP;
+    public int Pow;
+    public int Def;
+    public int Luck;
+    public int Speed;
+    public int EXP;
+    public List<AttackSO> Attacks;
+    
+    public Sprite PFP;
+    public Sprite DeadPFP;
 }
 
 public enum GameState

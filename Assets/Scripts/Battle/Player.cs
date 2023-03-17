@@ -9,6 +9,7 @@ using Random = System.Random;
 
 public class Player : Battleable
 {
+    [SerializeField] private int _playerIndex;
     [SerializeField] private Sprite _PFP;
     [SerializeField] private Sprite _deadPFP;
     [SerializeField] private Image _PFPSlot;
@@ -23,8 +24,8 @@ public class Player : Battleable
     [SerializeField] private TMP_Text _mpText;
 
     [Header("Temp")]
-    public int _MP;
-    public int _maxMP;
+    [HideInInspector] public int _MP;
+    [HideInInspector] public int _maxMP;
     [SerializeField] public List<AttackSO> _attacks;
     
     private bool _hpSliding;
@@ -32,11 +33,25 @@ public class Player : Battleable
     
     void Awake()
     {
-        Random rand = new Random();
-        _HP = _maxHP;
-        _MP = _maxMP;
-        _speed = rand.Next(5000);
+        PlayerStats stats = Globals.PlayerStatsList[_playerIndex];
 
+        _name = stats.Name;
+
+        _HP = stats.HP;
+        _MP = stats.MP;
+        
+        _maxHP = stats.MaxHP;
+        _maxMP = stats.MaxMP;
+        _speed = stats.Speed;
+        _pow = stats.Pow;
+        _def = stats.Def;
+        _luck = stats.Luck;
+        _exp = stats.EXP;
+        _level = stats.Level;
+
+        _PFP = stats.PFP;
+        _deadPFP = stats.DeadPFP;
+        
         _PFPSlot.sprite = _PFP;
         _PFPSlot.material = new Material(_PFPSlot.material);
         _mat = _PFPSlot.material;
