@@ -3,18 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Cutscene : MonoBehaviour
 {
     [SerializeReference] [SerializeField] private List<CutsceneAction> CutsceneActions;
     [SerializeField] public bool _triggerOnlyOnce;
-    [SerializeField] [ShowIf("_triggerOnlyOnce")] [AllowNesting] [TextArea(1, 1)] private string _cutsceneName;
+    [SerializeField] [ShowIf("_triggerOnlyOnce")] [AllowNesting] [TextArea(1, 1)] private string _ID;
 
     private bool _triggered;
 
     private void Start()
     {
-        if (Globals.PlayedCutscenes.Contains(_cutsceneName) && _triggerOnlyOnce) _triggered = true;
+        if (Globals.PlayedCutscenes.Contains(_ID) && _triggerOnlyOnce) _triggered = true;
     }
 
     public IEnumerator PlayCutscene()
@@ -26,7 +27,7 @@ public class Cutscene : MonoBehaviour
             else yield return action.Play();
         }
 
-        Globals.PlayedCutscenes.Add(_cutsceneName);
+        Globals.PlayedCutscenes.Add(_ID);
         Globals.GameState = GameState.Play;
     }
     

@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 [Serializable]
 public class CutsceneAction
 {
-    [ReadOnly] [AllowNesting] public string Name;
+    [AllowNesting] public string Name;
     public bool PlayWithNext;
     [HideInInspector] public Cutscene Parent;
 
