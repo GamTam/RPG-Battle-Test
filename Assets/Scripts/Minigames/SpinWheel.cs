@@ -11,7 +11,7 @@ public class SpinWheel : MonoBehaviour
     [SerializeField] public DialogueManagerDavid _dialogueManagerScript;
     [SerializeField] public GameObject[] _backgrounds;
 
-    SoundManager _soundManager;
+    SoundManagerDavid _soundManager;
 
     bool _spinning;
 
@@ -38,7 +38,7 @@ public class SpinWheel : MonoBehaviour
             _backgrounds[0].SetActive(true);
         }
         StartCoroutine(StartDelay(3.7f));
-        _soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+        _soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManagerDavid>();
         _timeElapsed = 0f;
         _counter = 0;
         for(int i = 0; i < _options.Length; i++)
@@ -78,13 +78,13 @@ public class SpinWheel : MonoBehaviour
             if(_timeElapsed > _duration && _counter == _finalValue)
             {
                 _timeElapsed = 0f;
-                //_soundManager._source.PlayOneShot(_soundManager._clips[2]);
+                _soundManager._source.PlayOneShot(_soundManager._clips[2]);
                 Result();
                 break;
             }
             else
             {
-                //_soundManager._source.PlayOneShot(_soundManager._clips[1]);
+                _soundManager._source.PlayOneShot(_soundManager._clips[1]);
             }
         }
     }

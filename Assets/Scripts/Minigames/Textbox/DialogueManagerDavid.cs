@@ -14,7 +14,7 @@ public class DialogueManagerDavid : MonoBehaviour
     public bool isTalking = false;
     public bool fastDialogue = false;
 
-    SoundManager _soundManager;
+    SoundManagerDavid _soundManager;
 
     public int counter = 0;
 
@@ -23,7 +23,7 @@ public class DialogueManagerDavid : MonoBehaviour
     void OnEnable()
     {
         // Start the dialogue when the game object is enabled
-        _soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+        _soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManagerDavid>();
         dialogueContainer.SetActive(true);
         StartDialogue(dialogue[counter]);
         isTalking = true;
@@ -80,20 +80,20 @@ public class DialogueManagerDavid : MonoBehaviour
         // If the current line has a music clip specified BEFORE the textbox, play it
         if (dialogueLine.changeMusicBefore)
         {
-            //_soundManager.PlayMusic(dialogueLine.musicIndex);
+            _soundManager.PlayMusic(dialogueLine.musicIndex);
         }
 
         // If the hit variable is true, shake the screen
         if (dialogueLine.hit)
         {
-            //_soundManager._source.PlayOneShot(_soundManager._clips[1]);
+            _soundManager._source.PlayOneShot(_soundManager._clips[1]);
             StartCoroutine(ScreenShake(0.1f));
         }
 
         // If the current line has a sound effect specified, play it
         if (dialogueLine.soundEffect != null)
         {
-            //_soundManager._source.PlayOneShot(dialogueLine.soundEffect);
+            _soundManager._source.PlayOneShot(dialogueLine.soundEffect);
         }
 
         // Display the text one character at a time
@@ -125,7 +125,7 @@ public class DialogueManagerDavid : MonoBehaviour
                 }
                 else
                 {
-                    //_soundManager._source.PlayOneShot(_soundManager._clips[0]);
+                    _soundManager._source.PlayOneShot(_soundManager._clips[0]);
                 }
                 // If the shaking variable is true, shake the screen
                 if (dialogueLine.shaking)
@@ -157,12 +157,12 @@ public class DialogueManagerDavid : MonoBehaviour
             // If the current line has a music clip specified AFTER the textbox, play it
             if (dialogueLine.changeMusicAfter)
             {
-                //_soundManager.PlayMusic(dialogueLine.musicIndex);
+                _soundManager.PlayMusic(dialogueLine.musicIndex);
             }
 
             if(dialogueLine.mute)
             {
-                //_soundManager.ToggleMute();
+                _soundManager.ToggleMute();
             }
 
             // Advance to the next piece of dialogue
