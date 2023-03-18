@@ -22,13 +22,16 @@ public class DialogueManager : MonoBehaviour
     private DialogueVertexAnimator dialogueVertexAnimator;
     private bool movingText;
     private InputAction _advanceText;
+
+    private bool _forceBottom;
+    
     void Awake() {
         lines = new Queue<string>();
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
         _advanceText = _playerInput.actions["confirm"];
     }
 
-    public void StartText(String[] linesIn, Transform parentPos, SpriteRenderer spriteRenderer, bool skipTextBoxCloseAnimation=false)
+    public void StartText(String[] linesIn, Transform parentPos, SpriteRenderer spriteRenderer, bool skipTextBoxCloseAnimation=false, bool forceBottom=false)
     {
         this._skipTextBoxCloseAnimation = skipTextBoxCloseAnimation;
         
@@ -36,6 +39,7 @@ public class DialogueManager : MonoBehaviour
         TextBoxSettings tempBoxSettings = _tempBox.GetComponent<TextBoxSettings>();
         tempBoxSettings.ParentPos = parentPos;
         tempBoxSettings.SpriteRenderer = spriteRenderer;
+        tempBoxSettings._forceBottom = forceBottom;
         tempBoxSettings.Open();
 
         TMP_Text[] texts = _tempBox.GetComponentsInChildren<TMP_Text>();
