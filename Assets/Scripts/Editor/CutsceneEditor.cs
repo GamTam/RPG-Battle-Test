@@ -48,7 +48,7 @@ public class CutsceneEditor : Editor
 public class CutsceneEditorWindow : ExtendedEditorWindow
 {
     int toolbarInt = 0;
-    string[] toolbarStrings = {"Speech Bubble", "Move Object", "Set Animation", "Wait", "Charles"};
+    string[] toolbarStrings = {"Speech Bubble", "Move Object", "Set Animation", "Wait"};
     private static Cutscene _cutscene;
     private static CutsceneEditorWindow _window;
 

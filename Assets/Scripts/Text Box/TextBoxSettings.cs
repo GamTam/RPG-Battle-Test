@@ -26,6 +26,8 @@ public class TextBoxSettings : MonoBehaviour
     private Transform _parentPos;
     private SpriteRenderer _spriteRenderer;
     private Camera _cam;
+
+    public bool _forceBottom;
     
     public Transform ParentPos { get { return _parentPos; } set { _parentPos = value; } }
     public SpriteRenderer SpriteRenderer { get { return _spriteRenderer; } set { _spriteRenderer = value; } }
@@ -84,7 +86,7 @@ public class TextBoxSettings : MonoBehaviour
 
         Vector3 pos = _cam.WorldToScreenPoint(_spriteRenderer.bounds.center);
         Vector3 targetPos;
-        int offsetAmount = 40;
+        int offsetAmount = 10;
         
         // Bubble Above Head
         targetPos = new Vector3(pos.x, pos.y + (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight) , pos.z);
@@ -93,7 +95,7 @@ public class TextBoxSettings : MonoBehaviour
         _tailRect.anchorMin = new Vector2(0.5f, 0);
         _tailRect.rotation = Quaternion.Euler(0f, 0f, 180);
 
-        if (targetPos.y + _backgroundRectTransform.sizeDelta.y >= _screenSize.y) {
+        if (targetPos.y + _backgroundRectTransform.sizeDelta.y >= _screenSize.y || _forceBottom) {
             // Bubble Below Head
             targetPos = new Vector3(pos.x, pos.y - (_backgroundRectTransform.sizeDelta.y / 2 + _tailRect.sizeDelta.y + parentHeight), pos.z);
             
