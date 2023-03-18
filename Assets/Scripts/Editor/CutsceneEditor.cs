@@ -1,7 +1,10 @@
+using System;
+using System.Numerics;
 using Cinemachine.Editor;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 [CustomEditor(typeof(Cutscene))]
 public class CutsceneEditor : Editor
@@ -45,9 +48,12 @@ public class CutsceneEditor : Editor
 public class CutsceneEditorWindow : ExtendedEditorWindow
 {
     int toolbarInt = 0;
-    string[] toolbarStrings = {"Speech Bubble", "Move Object", "Set Animation", "Wait", "Charles"};
+    string[] toolbarStrings = {"Speech Bubble", "Move Object", "Set Animation", "Wait"};
     private static Cutscene _cutscene;
     private static CutsceneEditorWindow _window;
+
+    private Vector2 _actionScrollPos;
+    private Vector2 _contentScrollPos;
     
     public static void Open(Cutscene cutscene)
     {
@@ -132,14 +138,19 @@ public class CutsceneEditorWindow : ExtendedEditorWindow
         
         EditorGUILayout.BeginHorizontal();
         
-        EditorGUILayout.BeginVertical("box", GUILayout.MaxWidth(150), GUILayout.ExpandHeight(true));
+        EditorGUILayout.BeginVertical("box", GUILayout.Width(235), GUILayout.ExpandHeight(true));
+        _actionScrollPos =
+            EditorGUILayout.BeginScrollView(_actionScrollPos, GUILayout.ExpandHeight(true));
         DrawField("_triggerOnlyOnce", false);
-        if (_cutscene._triggerOnlyOnce) DrawField("_cutsceneName", false);
+        if (_cutscene._triggerOnlyOnce) DrawField("_ID", false);
         GUILayout.Space(15);
         DrawSidebar(_currentProperty);
+        EditorGUILayout.EndScrollView();
         EditorGUILayout.EndVertical();
         
         EditorGUILayout.BeginVertical("box", GUILayout.ExpandHeight(true));
+        _contentScrollPos =
+            EditorGUILayout.BeginScrollView(_contentScrollPos, GUILayout.ExpandHeight(true));
         if (selectedProperty != null)
         {
             DrawProperties(selectedProperty, true);
@@ -177,6 +188,8 @@ public class CutsceneEditorWindow : ExtendedEditorWindow
         {
             EditorGUILayout.LabelField("Select action to view details");
         }
+        
+        GUILayout.EndScrollView();
         EditorGUILayout.EndVertical();
         
         EditorGUILayout.EndHorizontal();

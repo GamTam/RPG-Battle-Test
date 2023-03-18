@@ -10,6 +10,8 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private BattleLoadScene _sceneLoader;
     [SerializeField] private bool _skipTextboxCloseAnimation;
     [TextArea(3, 4)] [SerializeField] private string[] _dialogue;
+    [SerializeField] private string _battleScene;
+    [SerializeField] private bool _forceBottom;
 
     [HideInInspector] public PlayerInput _playerInput;
     private bool _triggeredDialogue;
@@ -33,7 +35,7 @@ public class DialogueTrigger : MonoBehaviour
         if (_triggeredDialogue && _playerInput.currentActionMap.name == "Overworld")
         {
             _playerInput.SwitchCurrentActionMap("Null");
-            StartCoroutine(_sceneLoader.BattleTransition());
+            StartCoroutine(_sceneLoader.BattleTransition(_battleScene));
             enabled = false;
         }
     }
@@ -42,7 +44,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         string[] dialogue = (string[]) _dialogue.Clone();
         
-        FindObjectOfType<DialogueManager>().StartText(dialogue, gameObject.transform, _spriteRenderer, _skipTextboxCloseAnimation);
+        FindObjectOfType<DialogueManager>().StartText(dialogue, gameObject.transform, _spriteRenderer, _skipTextboxCloseAnimation, _forceBottom);
     }
     
     public void OnTriggerEnter2D(Collider2D other)

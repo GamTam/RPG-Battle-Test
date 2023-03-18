@@ -15,6 +15,8 @@ public class BattleLoadScene : MonoBehaviour
         float movementDuration = 0.1f;
         float timeElapsed = 0;
      
+        Globals.Input.SwitchCurrentActionMap("Null");
+        
         Globals.MusicManager.Stop();
         Globals.SoundManager.Play("battleStart");
         
@@ -41,7 +43,7 @@ public class BattleLoadScene : MonoBehaviour
         }
         _whiteFlash.color = new Color(1, 1, 1, 0);
         
-        StartCoroutine(Globals.LoadScene("Battle Scene", true));
+        StartCoroutine(Globals.LoadScene(scene, true));
         yield return new WaitForSeconds(0.5f);
         Globals.BeginSceneLoad = true;
     }
