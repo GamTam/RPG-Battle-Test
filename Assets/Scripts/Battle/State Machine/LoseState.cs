@@ -41,6 +41,27 @@ namespace Battle.State_Machine
             }
 
             _battleManager.SetBattleText($"* You were defeated...", true);
+            
+            while (_battleManager.dialogueVertexAnimator.textAnimating)
+            {
+                if (_battleManager._confirm.triggered)
+                {
+                    _battleManager.dialogueVertexAnimator.QuickEnd();
+                }
+                yield return null;
+            }
+
+            while (true)
+            {
+                if (_battleManager._confirm.triggered)
+                {
+                    break;
+                }
+                            
+                yield return null;
+            }
+            
+            Application.Quit();
         }
     }
 }

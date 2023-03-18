@@ -10,11 +10,20 @@ public class FollowerController : MonoBehaviour
     [SerializeField] private Rigidbody2D _char;
     [SerializeField] private Animator _animator;
     [SerializeField] private int _queueDelay;
+    [SerializeField] private int _charIndex;
+    
+    [SerializeField] private PlayerStats _stats;
 
     private Queue<Vector3> _posQueue = new Queue<Vector3>();
     private Queue<PlayerDir> _facingQueue = new Queue<PlayerDir>();
     private Vector2 _newMove;
     private PlayerDir _facing;
+
+    private void Start()
+    {
+        if (Globals.PlayerStatsList[_charIndex] != null) _stats = Globals.PlayerStatsList[_charIndex];
+        else Globals.PlayerStatsList[_charIndex] = _stats;
+    }
 
     private void FixedUpdate()
     {

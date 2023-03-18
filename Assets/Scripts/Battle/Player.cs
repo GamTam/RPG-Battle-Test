@@ -33,6 +33,11 @@ public class Player : Battleable
     
     void Awake()
     {
+        foreach (PlayerStats playerStats in Globals.PlayerStatsList)
+        {
+            Debug.Log(playerStats);
+        }
+        
         PlayerStats stats = Globals.PlayerStatsList[_playerIndex];
 
         _name = stats.Name;

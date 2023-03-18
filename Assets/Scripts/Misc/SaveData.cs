@@ -12,7 +12,7 @@ public class SaveData : MonoBehaviour
 
     private void Awake()
     {
-        LoadFromJson(false);
+        // LoadFromJson(false);
         // if (SceneManager.GetActiveScene().name != _save.CurrentScene) SceneManager.LoadScene(_save.CurrentScene);
     }
 
@@ -63,7 +63,7 @@ public class SaveDataFormatter
     public string CurrentScene;
     public Vector3 PlayerPos;
     public List<sItem> Items;
-    public List<PlayerStats> PlayerStats;
+    public PlayerStats[] PlayerStats;
     public List<string> PlayedCutscenes;
     public PlayerDir PlayerDir;
 }

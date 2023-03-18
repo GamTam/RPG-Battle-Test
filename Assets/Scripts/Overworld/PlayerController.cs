@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
 
         _facing = Globals.PlayerDir;
         
-        if (Globals.PlayerStatsList.Count > 0) _stats = Globals.PlayerStatsList[0];
-        else Globals.PlayerStatsList.Add(_stats);
+        if (Globals.PlayerStatsList[0] != null) _stats = Globals.PlayerStatsList[0];
+        else Globals.PlayerStatsList[0] = _stats;
 
         if (Globals.PlayerPos != Vector3.zero) transform.position = Globals.PlayerPos;
         

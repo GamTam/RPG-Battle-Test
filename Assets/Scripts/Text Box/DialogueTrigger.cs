@@ -33,7 +33,7 @@ public class DialogueTrigger : MonoBehaviour
         if (_triggeredDialogue && _playerInput.currentActionMap.name == "Overworld")
         {
             _playerInput.SwitchCurrentActionMap("Null");
-            StartCoroutine(_sceneLoader.BattleTransition());
+            StartCoroutine(_sceneLoader.BattleTransition("Battle Scene - Boss"));
             enabled = false;
         }
     }
