@@ -64,7 +64,7 @@ public class MusicManager : MonoBehaviour
         musicPlaying?.source.Stop();
     }
 
-    public Music Play (string name)
+    public Music Play (string name, float point=0)
     {
         Music s = allMusic.Find(x => x.name == name);
         if (s == null) return null;
@@ -85,7 +85,7 @@ public class MusicManager : MonoBehaviour
         musicPlaying = s;
 
         s.source.volume = 1;
-        s.source.time = 0;
+        s.source.time = point;
         s.source.Play();
 
         return s;

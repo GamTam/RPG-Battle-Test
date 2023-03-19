@@ -179,6 +179,16 @@ public static class Globals
             return str;
         }
     }
+    
+    public static void UnloadAllScenesExcept(string sceneName) {
+        int c = SceneManager.sceneCount;
+        for (int i = 0; i < c; i++) {
+            Scene scene = SceneManager.GetSceneAt (i);
+            if (scene.name != sceneName) {
+                SceneManager.UnloadSceneAsync (scene);
+            }
+        }
+    }
 
     public static IEnumerator LoadScene(string scene, bool additive) {
         yield return null;

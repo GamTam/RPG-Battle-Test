@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -40,7 +41,29 @@ namespace Battle.State_Machine
                 yield return null;
             }
 
-            _battleManager.SetBattleText($"* You defeated the enemies!", true);
+            _battleManager.SetBattleText("* You defeated the enemies!", true);
+            
+            while (_battleManager.dialogueVertexAnimator.textAnimating)
+            {
+                if (_battleManager._confirm.triggered)
+                {
+                    _battleManager.dialogueVertexAnimator.QuickEnd();
+                }
+                yield return null;
+            }
+
+            while (true)
+            {
+                if (_battleManager._confirm.triggered)
+                {
+                    break;
+                }
+                            
+                yield return null;
+            }
+            _battleManager._soundManager.Play("confirm");
+
+            _battleManager._inBattle = false;
         }
     }
 }
