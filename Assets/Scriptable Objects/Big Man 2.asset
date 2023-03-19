@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Big Man 2
   m_EditorClassIdentifier: 
   Name: Toximound
-  Level: 15
-  HP: 124
-  Pow: 12
-  Def: 4
-  Speed: 1704
+  Level: 1
+  HP: 6
+  Pow: 5
+  Def: 1
+  Speed: 8
   Attacks:
   - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
   Description:
