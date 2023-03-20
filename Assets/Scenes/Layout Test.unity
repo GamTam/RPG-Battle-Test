@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 610636080}
   - component: {fileID: 610636079}
   - component: {fileID: 610636078}
+  - component: {fileID: 610636081}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -207,152 +208,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1530063051
+--- !u!114 &610636081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610636077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+--- !u!1001 &631043457
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -9165969860047746949, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -9165969860047746949, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8274713709847032531, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8274713709847032531, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -6379777376174100452, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -6379777376174100452, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -6237452217309220593, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -6237452217309220593, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -6076778246602752976, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -6076778246602752976, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -5958424287933549635, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -5958424287933549635, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -5560543567178644002, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -5560543567178644002, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -5491195835657886200, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -5491195835657886200, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -4402075292126893130, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -4402075292126893130, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -4378796735847421005, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -4378796735847421005, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -3508341262970953107, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -3508341262970953107, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -2999365767116770036, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -2999365767116770036, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -817746176214608957, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -817746176214608957, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 28576882702150762, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 28576882702150762, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1495526216605833761, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1495526216605833761, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1678510610692415497, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1678510610692415497, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1840499658063895529, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1840499658063895529, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.72
+      value: -9.1
       objectReference: {fileID: 0}
     - target: {fileID: 1840499658063895529, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.5
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1840499658063895529, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -386,105 +292,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1890164699149935391, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1890164699149935391, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2155846788173395726, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2155846788173395726, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2663059584368717935, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
       propertyPath: m_Name
       value: Forest
-      objectReference: {fileID: 0}
-    - target: {fileID: 3414742040029129224, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3414742040029129224, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3763582329643860286, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3763582329643860286, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5769524942215386658, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5769524942215386658, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6210705278775540400, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6210705278775540400, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7615372869209806961, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7615372869209806961, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7663064951843290963, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7663064951843290963, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8184453621403009319, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8184453621403009319, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8602846580544216690, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8602846580544216690, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8768399795747048885, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8768399795747048885, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8866684571911693400, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8866684571911693400, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}
-      propertyPath: m_ChunkCullingBounds.y
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -5765183769023986340, guid: 2106313e0c3cf7948978726f58a5bb5b, type: 3}

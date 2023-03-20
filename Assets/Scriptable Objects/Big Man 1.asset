@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Big Man 1
   m_EditorClassIdentifier: 
   Name: Dune-Dwelling Slimeamander
-  Level: 15
-  HP: 515
+  Level: 1
+  HP: 15
   Pow: 12
   Def: 3
-  Speed: 200
+  Speed: 10
   Attacks:
   - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
   Description:
