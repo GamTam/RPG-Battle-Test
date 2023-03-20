@@ -116,10 +116,14 @@ public class MusicManager : MonoBehaviour
         StartCoroutine(fadeTo(length, 0, musicPlaying));
     }
     
-    public void fadeIn()
+    public void fadeIn(string song = "", float setPoint = 0, float duration = 0.1f)
     {
-        goToPoint();
-        StartCoroutine(fadeTo(0.1f, 1, musicPlaying));
+        if (string.IsNullOrEmpty(song)) goToPoint();
+        else Play(song, setPoint);
+
+        musicPlaying.source.volume = 0;
+        
+        StartCoroutine(fadeTo(duration, 1, musicPlaying));
     }
     
     public IEnumerator fadeTo(float duration, float targetVolume, Music audioSource=null)

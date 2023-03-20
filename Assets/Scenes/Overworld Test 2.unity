@@ -1933,7 +1933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 4726418287747263974}
   _load: {fileID: 530344133}
-  _stepInterval: 1
+  _stepInterval: 10
   _chance:
   - Scene: Battle Scene
     Chance: 0

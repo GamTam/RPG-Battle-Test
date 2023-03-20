@@ -69,39 +69,41 @@ public class BattleLoadScene : MonoBehaviour
         _battle = FindObjectOfType<BattleManager>();
 
         while (_battle._inBattle) yield return null;
-
-        _whiteFlash.color = new Color(0, 0, 0, 0);
-        Globals.MusicManager.fadeOut(2);
         
-        movementDuration = 2f;
-        timeElapsed = 0;
-            
-        while (timeElapsed < movementDuration)
-        {
-            timeElapsed += Time.deltaTime;
-            _whiteFlash.color = new Color(0, 0, 0, Mathf.Lerp(0, 1, timeElapsed / movementDuration));
-            yield return null;
-        }
+        _fieldEffects.SetActive(true);
+        _monochromeVolume.weight = 0;
 
-        yield return new WaitForSeconds(1);
+        while (_battle._mat.GetFloat("_alpha") > 0) yield return null;
+
+        // movementDuration = 2f;
+        // timeElapsed = 0;
+        //
+        // Globals.SoundManager.Play("battleEnd");
+        //
+        // yield return new WaitForSeconds(0.5f);
+        //
+        // while (timeElapsed < movementDuration)
+        // {
+        //     timeElapsed += Time.deltaTime;
+        //     _whiteFlash.color = new Color(1, 1, 1, Mathf.Lerp(0, 1, timeElapsed / movementDuration));
+        //     yield return null;
+        // }
+        
         Globals.UnloadAllScenesExcept(_scene.name);
-        
         
         Globals.InBattle = false;
         Globals.GameState = _state;
         Globals.Input.SwitchCurrentActionMap(_prevControlState);
-        if (continueMusic) Globals.MusicManager.Play(_prevSong, _prevSongPlace);
-        _fieldEffects.SetActive(true);
-        _monochromeVolume.weight = 0;
+        if (continueMusic) Globals.MusicManager.fadeIn(_prevSong, _prevSongPlace, 0.5f);
         
         movementDuration = 2f;
         timeElapsed = 0;
             
-        while (timeElapsed < movementDuration)
+        /*while (timeElapsed < movementDuration)
         {
             timeElapsed += Time.deltaTime;
             _whiteFlash.color = new Color(0, 0, 0, Mathf.Lerp(1, 0, timeElapsed / movementDuration));
             yield return null;
-        }
+        }*/
     }
 }
