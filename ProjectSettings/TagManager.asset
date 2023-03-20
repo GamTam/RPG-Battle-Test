@@ -9,6 +9,7 @@ TagManager:
   - Battle Manager
   - NPC
   - UI
+  - AudioDavid
   layers:
   - Default
   - TransparentFX

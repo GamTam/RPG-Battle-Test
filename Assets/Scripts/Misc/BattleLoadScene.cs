@@ -69,7 +69,7 @@ public class BattleLoadScene : MonoBehaviour
         _battle = FindObjectOfType<BattleManager>();
 
         while (_battle._inBattle) yield return null;
-        
+
         _fieldEffects.SetActive(true);
         _monochromeVolume.weight = 0;
 
