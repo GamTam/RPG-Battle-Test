@@ -2181,6 +2181,7 @@ MonoBehaviour:
   _whiteFlash: {fileID: 1877939768}
   _monochromeVolume: {fileID: 100052664}
   _fieldEffects: {fileID: 1333386973}
+  _battle: {fileID: 0}
 --- !u!114 &530344134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96564,14 +96565,14 @@ MonoBehaviour:
   _stats:
     Name: Bobbie
     Level: 0
-    HP: 6
-    MaxHP: 6
+    HP: 10000
+    MaxHP: 10000
     MP: 10
     MaxMP: 10
-    Pow: 0
+    Pow: 1000
     Def: 0
     Luck: 0
-    Speed: 0
+    Speed: 100000
     EXP: 0
     Attacks: []
     PFP: {fileID: 21300000, guid: 7afa1bf23b94a2742bafed6115f363cc, type: 3}
@@ -96996,14 +96997,14 @@ MonoBehaviour:
   _stats:
     Name: Jo
     Level: 0
-    HP: 6
-    MaxHP: 6
+    HP: 10000
+    MaxHP: 10000
     MP: 3
     MaxMP: 3
-    Pow: 0
+    Pow: 1000
     Def: 0
     Luck: 0
-    Speed: 0
+    Speed: 100000
     EXP: 0
     Attacks: []
     PFP: {fileID: 21300000, guid: 61ed285c9c635cc46837e571e35438ac, type: 3}
@@ -97691,14 +97692,14 @@ MonoBehaviour:
   _stats:
     Name: Raine
     Level: 0
-    HP: 6
-    MaxHP: 6
+    HP: 10000
+    MaxHP: 10000
     MP: 4
     MaxMP: 8
-    Pow: 0
+    Pow: 1000
     Def: 0
     Luck: 0
-    Speed: 0
+    Speed: 100000
     EXP: 0
     Attacks: []
     PFP: {fileID: 21300000, guid: 75c8946dae36cdb408087a9b6d493612, type: 3}
@@ -111479,6 +111480,7 @@ MonoBehaviour:
   _whiteFlash: {fileID: 1877939768}
   _monochromeVolume: {fileID: 100052664}
   _fieldEffects: {fileID: 1333386973}
+  _battle: {fileID: 0}
 --- !u!61 &1609672718
 BoxCollider2D:
   m_ObjectHideFlags: 0

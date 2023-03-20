@@ -57,6 +57,7 @@ public class BattleManager : MonoBehaviour
     [TextArea(4, 4)] public string _startingText;
 
     public List<sItem> _items = new List<sItem>();
+    public bool _inBattle = true;
     
     public DialogueVertexAnimator dialogueVertexAnimator;
     public bool _selectingPlayers;

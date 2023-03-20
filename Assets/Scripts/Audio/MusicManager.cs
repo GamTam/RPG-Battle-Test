@@ -64,7 +64,7 @@ public class MusicManager : MonoBehaviour
         musicPlaying?.source.Stop();
     }
 
-    public Music Play (string name)
+    public Music Play (string name, float point=0)
     {
         Music s = allMusic.Find(x => x.name == name);
         if (s == null) return null;
@@ -85,7 +85,7 @@ public class MusicManager : MonoBehaviour
         musicPlaying = s;
 
         s.source.volume = 1;
-        s.source.time = 0;
+        s.source.time = point;
         s.source.Play();
 
         return s;
@@ -116,10 +116,14 @@ public class MusicManager : MonoBehaviour
         StartCoroutine(fadeTo(length, 0, musicPlaying));
     }
     
-    public void fadeIn()
+    public void fadeIn(string song = "", float setPoint = 0, float duration = 0.1f)
     {
-        goToPoint();
-        StartCoroutine(fadeTo(0.1f, 1, musicPlaying));
+        if (string.IsNullOrEmpty(song)) goToPoint();
+        else Play(song, setPoint);
+
+        musicPlaying.source.volume = 0;
+        
+        StartCoroutine(fadeTo(duration, 1, musicPlaying));
     }
     
     public IEnumerator fadeTo(float duration, float targetVolume, Music audioSource=null)
