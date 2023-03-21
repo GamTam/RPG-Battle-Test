@@ -29,7 +29,7 @@ public class FollowerController : MonoBehaviour
     {
         MoveChar();
 
-        _animator.Play(!_player.IsMoving ? $"idle{_facing.ToString()}" : $"walk{_facing.ToString()}");
+        if (Globals.GameState == GameState.Play) _animator.Play(!_player.IsMoving ? $"idle{_facing.ToString()}" : $"walk{_facing.ToString()}");
     }
 
     private void MoveChar()

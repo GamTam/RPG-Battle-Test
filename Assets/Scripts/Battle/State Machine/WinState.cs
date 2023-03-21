@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -40,7 +41,55 @@ namespace Battle.State_Machine
                 yield return null;
             }
 
-            _battleManager.SetBattleText($"* You defeated the enemies!", true);
+            _battleManager.SetBattleText("* You defeated the enemies!", true);
+            
+            while (_battleManager.dialogueVertexAnimator.textAnimating)
+            {
+                if (_battleManager._confirm.triggered)
+                {
+                    _battleManager.dialogueVertexAnimator.QuickEnd();
+                }
+                yield return null;
+            }
+
+            while (true)
+            {
+                if (_battleManager._confirm.triggered)
+                {
+                    break;
+                }
+                            
+                yield return null;
+            }
+            _battleManager._soundManager.Play("confirm");
+
+            GameObject textBox = _battleManager._textBox.gameObject.transform.parent.gameObject;
+            Vector3 textBoxPos = textBox.transform.localPosition;
+            textBoxPos.y -= 300f;
+            
+            _battleManager.InitFinalSlide(textBox.gameObject, textBoxPos, textBox.transform.localScale, 3);
+            _battleManager.InitFinalSlide(_battleManager.gameObject, _battleManager.transform.localPosition, new Vector3(1, 2, 1), 3);
+
+            yield return new WaitForSeconds(0.25f);
+            
+            foreach (Battleable obj in _battleManager._fighters)
+            {
+                _battleManager.InitFinalSlide(obj.gameObject, new Vector3(obj.transform.localPosition.x - 500, obj.transform.localPosition.y, obj.transform.localPosition.z), 3);
+            }
+            
+            Globals.MusicManager.fadeOut(2);
+            
+            _battleManager._inBattle = false;
+            
+            movementDuration = 2;
+            timeElapsed = 0;
+            
+            while (timeElapsed < movementDuration)
+            {
+                timeElapsed += Time.deltaTime;
+                _battleManager._mat.SetFloat("_alpha", Mathf.Lerp(1, 0, timeElapsed / movementDuration));
+                yield return null;
+            }
         }
     }
 }
