@@ -193,7 +193,6 @@ public static class Globals
     public static IEnumerator LoadScene(string scene, bool additive) {
         yield return null;
 
-        //Begin to load the Scene you specify
         AsyncOperation asyncOperation;
         if (additive) asyncOperation = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
         else asyncOperation = SceneManager.LoadSceneAsync(scene);
@@ -202,15 +201,11 @@ public static class Globals
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
         };
-        //Don't let the Scene activate until you allow it to
         asyncOperation.allowSceneActivation = false;
-        //When the load is still in progress, output the Text and progress bar
         while (!asyncOperation.isDone)
         {
-            // Check if the load has finished
             if (asyncOperation.progress >= 0.9f)
             {
-                //Wait to you press the space key to activate the Scene
                 if (BeginSceneLoad)
                 {
                     asyncOperation.allowSceneActivation = true;
