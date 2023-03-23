@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SpinWheel : MonoBehaviour
@@ -141,7 +142,6 @@ public class SpinWheel : MonoBehaviour
     IEnumerator End()
     {
         yield return new WaitForSeconds(3.0f);
-        Debug.Log("WORK");
-        Globals.LoadScene("Overworld Test 2", true);
+        Globals.UnloadAllScenesExcept(SceneManager.GetActiveScene().name);
     }
 }
