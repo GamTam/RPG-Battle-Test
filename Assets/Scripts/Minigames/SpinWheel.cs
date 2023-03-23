@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SpinWheel : MonoBehaviour
@@ -38,7 +39,7 @@ public class SpinWheel : MonoBehaviour
             _backgrounds[0].SetActive(true);
         }
         StartCoroutine(StartDelay(3.7f));
-        _soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManagerDavid>();
+        _soundManager = GameObject.FindGameObjectWithTag("AudioDavid").GetComponent<SoundManagerDavid>();
         _timeElapsed = 0f;
         _counter = 0;
         for(int i = 0; i < _options.Length; i++)
@@ -135,5 +136,12 @@ public class SpinWheel : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         _dialogueManagerScript.counter = number;
         _dialogueManager.SetActive(true);
+        StartCoroutine(End());
+    }
+
+    IEnumerator End()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Globals.UnloadAllScenesExcept(SceneManager.GetActiveScene().name);
     }
 }

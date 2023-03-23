@@ -23,7 +23,7 @@ public class DialogueManagerDavid : MonoBehaviour
     void OnEnable()
     {
         // Start the dialogue when the game object is enabled
-        _soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManagerDavid>();
+        _soundManager = GameObject.FindGameObjectWithTag("AudioDavid").GetComponent<SoundManagerDavid>();
         dialogueContainer.SetActive(true);
         StartDialogue(dialogue[counter]);
         isTalking = true;

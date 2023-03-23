@@ -27,15 +27,16 @@ public class FollowerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        _char.velocity = Vector2.zero;
+        if (Globals.GameState != GameState.Play) return;
+        
         MoveChar();
 
-        if (Globals.GameState == GameState.Play) _animator.Play(!_player.IsMoving ? $"idle{_facing.ToString()}" : $"walk{_facing.ToString()}");
+        _animator.Play(!_player.IsMoving ? $"idle{_facing.ToString()}" : $"walk{_facing.ToString()}");
     }
 
     private void MoveChar()
     {
-        _char.velocity = Vector2.zero;
-        
         if (!_player.IsMoving) return;
         
         _posQueue.Enqueue(_target.transform.position);

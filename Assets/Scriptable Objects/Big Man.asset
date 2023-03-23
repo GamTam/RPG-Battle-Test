@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Big Man
   m_EditorClassIdentifier: 
   Name: Vehemous Molerat
-  Level: 15
-  HP: 404
-  Pow: 7
-  Def: 2
-  Speed: 1492
+  Level: 1
+  HP: 8
+  Pow: 3
+  Def: 1
+  Speed: 6
   Attacks:
   - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
   Description:

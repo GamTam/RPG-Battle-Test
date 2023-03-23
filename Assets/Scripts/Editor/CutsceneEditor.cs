@@ -14,32 +14,6 @@ public class CutsceneEditor : Editor
         Cutscene cutscene = target as Cutscene;
         
         if (GUILayout.Button("Open Editor")) CutsceneEditorWindow.Open(cutscene);
-        
-        /*toolbarInt = GUILayout.Toolbar(toolbarInt, toolbarStrings);
-
-        switch (toolbarInt)
-        {
-            case 0:
-                string dialogue = EditorGUILayout.TextArea("");
-                GUILayout.Button("Add Speech Bubble Action");
-                break;
-
-            case 1:
-                GUILayout.Button("Add Movement Action");
-                break;
-
-            case 2:
-                GUILayout.Button("Add Animation Action");
-                break;
-            case 3:
-                GUILayout.Button("Add Wait Action");
-                break;
-        }*/
-        
-        // if (GUILayout.Button("Speech Bubble")) cutscene.AddAction(new DialogueAction());
-        // if (GUILayout.Button("Move Object")) cutscene.AddAction(new MoveObjAction());
-        // if (GUILayout.Button("Set Animation")) cutscene.AddAction(new PlayAnimAction());
-        // if (GUILayout.Button("Wait")) cutscene.AddAction(new WaitAction());
 
         // base.OnInspectorGUI();
     }
