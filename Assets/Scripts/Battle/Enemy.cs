@@ -28,6 +28,7 @@ public class Enemy : Battleable
         _speed = _baseEnemy.Speed;
         _attacks = _baseEnemy.Attacks;
         _description = _baseEnemy.Description;
+        _exp = _baseEnemy.EXP;
 
         _image.material = new Material(_image.material);
         _mat = _image.material;

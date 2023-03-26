@@ -96219,7 +96219,7 @@ MonoBehaviour:
   _charIndex: 2
   _stats:
     Name: Bobbie
-    Level: 0
+    Level: 1
     HP: 10000
     MaxHP: 10000
     MP: 10
@@ -96229,6 +96229,7 @@ MonoBehaviour:
     Luck: 0
     Speed: 100000
     EXP: 0
+    MinRequirement: 8
     Attacks: []
     PFP: {fileID: 21300000, guid: 7afa1bf23b94a2742bafed6115f363cc, type: 3}
     DeadPFP: {fileID: 21300000, guid: 67e5f7f8d5fbf024fab71d6bf0f762be, type: 3}
@@ -96564,7 +96565,7 @@ MonoBehaviour:
   _charIndex: 3
   _stats:
     Name: Jo
-    Level: 0
+    Level: 1
     HP: 10000
     MaxHP: 10000
     MP: 3
@@ -96574,6 +96575,7 @@ MonoBehaviour:
     Luck: 0
     Speed: 100000
     EXP: 0
+    MinRequirement: 11
     Attacks: []
     PFP: {fileID: 21300000, guid: 61ed285c9c635cc46837e571e35438ac, type: 3}
     DeadPFP: {fileID: 21300000, guid: cc0491828bc58b64498938ae3f475a81, type: 3}
@@ -97130,7 +97132,7 @@ MonoBehaviour:
   _charIndex: 1
   _stats:
     Name: Raine
-    Level: 0
+    Level: 1
     HP: 10000
     MaxHP: 10000
     MP: 4
@@ -97140,6 +97142,7 @@ MonoBehaviour:
     Luck: 0
     Speed: 100000
     EXP: 0
+    MinRequirement: 13
     Attacks: []
     PFP: {fileID: 21300000, guid: 75c8946dae36cdb408087a9b6d493612, type: 3}
     DeadPFP: {fileID: 21300000, guid: 7380239a681aa0c459ea1177cd6e5872, type: 3}
@@ -112474,6 +112477,10 @@ PrefabInstance:
       value: Cecilia
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272638, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
+      propertyPath: _stats.Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4726418287289272638, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: _stats.MaxHP
       value: 17
       objectReference: {fileID: 0}
@@ -112489,6 +112496,10 @@ PrefabInstance:
       propertyPath: _stats.DeadPFP
       value: 
       objectReference: {fileID: 21300000, guid: 5fc02d848c884f54d88a593aff8e897c, type: 3}
+    - target: {fileID: 4726418287289272638, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
+      propertyPath: _stats.MinRequirement
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272639, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: m_RootOrder
       value: 4

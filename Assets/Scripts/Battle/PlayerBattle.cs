@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = System.Random;
 
-public class Player : Battleable
+public class PlayerBattle : Battleable
 {
     [SerializeField] private int _playerIndex;
     [SerializeField] private Sprite _PFP;
@@ -27,6 +27,7 @@ public class Player : Battleable
     [HideInInspector] public int _MP;
     [HideInInspector] public int _maxMP;
     [SerializeField] public List<AttackSO> _attacks;
+    [HideInInspector] public PlayerStats _stats;
     
     private bool _hpSliding;
     private bool _mpSliding;
@@ -38,24 +39,24 @@ public class Player : Battleable
             Debug.Log(playerStats);
         }
         
-        PlayerStats stats = Globals.PlayerStatsList[_playerIndex];
+        _stats = Globals.PlayerStatsList[_playerIndex];
 
-        _name = stats.Name;
+        _name = _stats.Name;
 
-        _HP = stats.HP;
-        _MP = stats.MP;
+        _HP = _stats.HP;
+        _MP = _stats.MP;
         
-        _maxHP = stats.MaxHP;
-        _maxMP = stats.MaxMP;
-        _speed = stats.Speed;
-        _pow = stats.Pow;
-        _def = stats.Def;
-        _luck = stats.Luck;
-        _exp = stats.EXP;
-        _level = stats.Level;
+        _maxHP = _stats.MaxHP;
+        _maxMP = _stats.MaxMP;
+        _speed = _stats.Speed;
+        _pow = _stats.Pow;
+        _def = _stats.Def;
+        _luck = _stats.Luck;
+        _exp = _stats.EXP;
+        _level = _stats.Level;
 
-        _PFP = stats.PFP;
-        _deadPFP = stats.DeadPFP;
+        _PFP = _stats.PFP;
+        _deadPFP = _stats.DeadPFP;
         
         _PFPSlot.sprite = _PFP;
         _PFPSlot.material = new Material(_PFPSlot.material);
@@ -67,12 +68,26 @@ public class Player : Battleable
         _smallMagicSlider.maxValue = _maxMP;
 
         _redSliders[0].maxValue = _maxHP;
-        _redSliders[0].value = _maxHP;
+        _redSliders[0].value = _HP;
         _redSliders[1].maxValue = _maxHP;
-        _redSliders[1].value = _maxHP;
+        _redSliders[1].value = _HP;
 
         StartingLocation = transform.localPosition;
         transform.localPosition = new Vector2(transform.localPosition.x - 500, transform.localPosition.y);
+    }
+
+    public void WriteStatsToGlobal()
+    {
+        _stats.HP = Mathf.Max(_HP, 1);
+        _stats.MP = Mathf.Max(_MP, 0);
+        _stats.MaxHP = _maxHP;
+        _stats.MaxMP = _maxMP;
+        _stats.Level = _level;
+        _stats.Pow = _pow;
+        _stats.Def = _def;
+        _stats.Luck = _luck;
+        _stats.Speed = _speed;
+        _stats.EXP = _exp;
     }
 
     private void LateUpdate()

@@ -11,10 +11,10 @@ namespace Battle.State_Machine
 {
     public class PlayerTurn : State
     {
-        private Player _player;
+        private PlayerBattle _player;
         private Random _rand = new Random();
         
-        public PlayerTurn(BattleManager bm, Player player) : base(bm)
+        public PlayerTurn(BattleManager bm, PlayerBattle player) : base(bm)
         {
             _player = player;
         }
@@ -39,18 +39,18 @@ namespace Battle.State_Machine
                 goto movedIcons;
             }
 
-            Player currentPlayer = null;
-            Player startingPlayer = null;
+            PlayerBattle currentPlayer = null;
+            PlayerBattle startingPlayer = null;
             int i = 0;
             foreach (Battleable obj in _battleManager._fighters)
             {
-                if(obj.GetType() != typeof(Player)) continue;
+                if(obj.GetType() != typeof(PlayerBattle)) continue;
                 int point = Globals.Mod(i + _battleManager._currentPlayerIndex, _battleManager._players.Count);
                 
-                if (point == 0) currentPlayer = (Player) obj;
-                if (point == 1) startingPlayer = (Player) obj;
+                if (point == 0) currentPlayer = (PlayerBattle) obj;
+                if (point == 1) startingPlayer = (PlayerBattle) obj;
 
-                ((Player) obj).StartingLocation = new Vector2(obj.transform.localPosition.x, _battleManager._profilePoints[(_battleManager._players.Count - point) % _battleManager._players.Count].y);
+                ((PlayerBattle) obj).StartingLocation = new Vector2(obj.transform.localPosition.x, _battleManager._profilePoints[(_battleManager._players.Count - point) % _battleManager._players.Count].y);
                 i--;
             }
             
@@ -88,8 +88,8 @@ namespace Battle.State_Machine
                 timeElapsed += Time.deltaTime;
                 foreach (Battleable obj in _battleManager._fighters)
                 {
-                    if(obj.GetType() != typeof(Player)) continue;
-                    obj.gameObject.transform.localPosition = Vector3.Lerp(obj.gameObject.transform.localPosition, ((Player) obj).StartingLocation, Time.deltaTime * 5);
+                    if(obj.GetType() != typeof(PlayerBattle)) continue;
+                    obj.gameObject.transform.localPosition = Vector3.Lerp(obj.gameObject.transform.localPosition, ((PlayerBattle) obj).StartingLocation, Time.deltaTime * 5);
                 }
                 yield return null;
             }
@@ -98,8 +98,8 @@ namespace Battle.State_Machine
 
             foreach (Battleable obj in _battleManager._fighters)
             {
-                if(obj.GetType() != typeof(Player)) continue;
-                _battleManager.InitFinalSlide(obj.gameObject, ((Player) obj).StartingLocation);
+                if(obj.GetType() != typeof(PlayerBattle)) continue;
+                _battleManager.InitFinalSlide(obj.gameObject, ((PlayerBattle) obj).StartingLocation);
             }
             
             foreach (Animator anim in _battleManager._players)
@@ -239,7 +239,7 @@ namespace Battle.State_Machine
                     float enemySpeed = 0;
                     foreach (Battleable bat in _battleManager._fighters)
                     {
-                        if (bat.GetType() == typeof(Player)) partySpeed += bat._speed;
+                        if (bat.GetType() == typeof(PlayerBattle)) partySpeed += bat._speed;
                         else enemySpeed += bat._speed;
                     }
 
@@ -520,7 +520,7 @@ namespace Battle.State_Machine
                         yield break;
                     }
                     
-                    Player target = EventSystem.current.currentSelectedGameObject.GetComponent<Player>();
+                    PlayerBattle target = EventSystem.current.currentSelectedGameObject.GetComponent<PlayerBattle>();
 
                     foreach (Animator player in _battleManager._players)
                     {

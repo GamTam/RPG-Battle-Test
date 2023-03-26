@@ -23,12 +23,12 @@ namespace Battle.State_Machine
                 yield return null;
             }
             
-            Player player;
+            PlayerBattle player;
 
             do
             {
                 var target = _rand.Next(_battleManager._players.Count);
-                player = _battleManager._players[target].gameObject.GetComponent<Player>();
+                player = _battleManager._players[target].gameObject.GetComponent<PlayerBattle>();
 
                 if (player._HP > 0) break;
             } while (true);
