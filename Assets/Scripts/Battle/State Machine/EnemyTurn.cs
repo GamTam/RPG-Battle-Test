@@ -16,13 +16,8 @@ namespace Battle.State_Machine
 
         public override IEnumerator EnterState()
         {
-            _battleManager.SetBattleText($"* {_enemy.gameObject.name.ToUpper()}'s turn!", true);
-            
-            while (_battleManager.dialogueVertexAnimator.textAnimating)
-            {
-                yield return null;
-            }
-            
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_enemy.gameObject.name.ToUpper()}'s turn!", true));
+
             PlayerBattle player;
 
             do
@@ -35,7 +30,7 @@ namespace Battle.State_Machine
 
             yield return new WaitForSeconds(1f);
 
-            _battleManager.SetBattleText($"* {_enemy.gameObject.name.ToUpper()} attacks {player._name.ToUpper()}!");
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_enemy.gameObject.name.ToUpper()} attacks {player._name.ToUpper()}!"));
             
             yield return new WaitForSeconds(1);
 
@@ -51,26 +46,12 @@ namespace Battle.State_Machine
             player.InitSetRedSlider(player._HP);
             yield return new WaitForSeconds(0.5f);
                     
-            _battleManager.SetBattleText($"* {player._name.ToUpper()} took <color=red>{damage}</color> damage!");
-                    
-            while (_battleManager.dialogueVertexAnimator.textAnimating)
-            {
-                yield return null;
-            }
-                        
-            yield return new WaitForSeconds(0.5f);
-            
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {player._name.ToUpper()} took <color=red>{damage}</color> damage!"));
+
             if (player._HP <= 0)
             {
-                _battleManager.SetBattleText($"<color=red>* {player._name.ToUpper()} defeated!</color>");
                 _battleManager._deadPlayers.Add(player.gameObject.GetComponent<Animator>());
-                
-                while (_battleManager.dialogueVertexAnimator.textAnimating)
-                {
-                    yield return null;
-                }
-                        
-                yield return new WaitForSeconds(0.5f);
+                yield return _battleManager.StartCoroutine(_battleManager.BattleText($"<color=red>* {player._name.ToUpper()} defeated!</color>"));
             }
             _battleManager.PickTurn();
         }

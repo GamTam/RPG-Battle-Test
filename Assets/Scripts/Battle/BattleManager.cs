@@ -374,7 +374,7 @@ public class BattleManager : MonoBehaviour
     
     
 
-    public IEnumerator BattleText(string message, bool reset)
+    public IEnumerator BattleText(string message, bool reset = false)
     {
         SetBattleText(message, reset);
             

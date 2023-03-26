@@ -65,30 +65,10 @@ namespace Battle.State_Machine
 
             yield return new WaitForSeconds(1.5f);
             
-            _battleManager.SetBattleText(_battleManager._startingText);
             _battleManager._playerInput.SwitchCurrentActionMap("Menu");
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText(_battleManager._startingText));
             
-            while (_battleManager.dialogueVertexAnimator.textAnimating)
-            {
-                if (_battleManager._confirm.triggered)
-                {
-                    _battleManager.dialogueVertexAnimator.QuickEnd();
-                }
-                yield return null;
-            }
-
-            while (true)
-            {
-                _battleManager._playerInput.SwitchCurrentActionMap("Menu");
-                if (_battleManager._confirm.triggered)
-                {
-                    break;
-                }
-                            
-                yield return null;
-            }
             _battleManager._playerInput.SwitchCurrentActionMap("Null");
-            _battleManager._soundManager.Play("confirm");
 
             movementDuration = 1;
             timeElapsed = 0;

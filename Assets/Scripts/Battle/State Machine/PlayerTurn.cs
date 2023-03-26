@@ -128,8 +128,7 @@ namespace Battle.State_Machine
             movedIcons:
             if (_player._HP <= 0)
             {
-                _battleManager.SetBattleText($"* {_player._name.ToUpper()} is unable to participate!");
-                yield return new WaitForSeconds(2f);
+                yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_player._name.ToUpper()} is unable to participate!"));
                 _battleManager.PickTurn();
                 yield break;
             }
@@ -145,6 +144,7 @@ namespace Battle.State_Machine
 
         public override IEnumerator OnClick()
         {
+            yield return null;
             switch (EventSystem.current.currentSelectedGameObject.name)
             {
                 case "Fight":
@@ -218,16 +218,9 @@ namespace Battle.State_Machine
                     if (!_battleManager._canFlee)
                     {
                         _battleManager._soundManager.Play("confirm");
-                        _battleManager.SetBattleText("* Cannot flee!", true);
-                        
-                        while (_battleManager.dialogueVertexAnimator.textAnimating)
-                        {
-                            yield return null;
-                        }
+                        yield return _battleManager.StartCoroutine(_battleManager.BattleText("* Cannot flee!", true));
 
-                        yield return new WaitForSeconds(1);
-
-                        _battleManager.SetBattleText($"* {_player._name.ToUpper()}'s turn!", true);
+                        yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_player._name.ToUpper()}'s turn!", true));
                         _battleManager.EnableButtons();
                         yield break;
                     }
@@ -250,37 +243,17 @@ namespace Battle.State_Machine
 
                     int chance = _rand.Next(101);
                     
-                    _battleManager.SetBattleText("* You tried to escape...");
-                    
-                    while (_battleManager.dialogueVertexAnimator.textAnimating)
-                    {
-                        yield return null;
-                    }
-                    
-                    yield return new WaitForSeconds(1);
+                    yield return _battleManager.StartCoroutine(_battleManager.BattleText("* You tried to escape..."));
 
                     if (chance > threshold)
                     {
-                        _battleManager.SetBattleText("* Escaped!");
+                        yield return _battleManager.StartCoroutine(_battleManager.BattleText("* Escaped!"));
                         
-                        while (_battleManager.dialogueVertexAnimator.textAnimating)
-                        {
-                            yield return null;
-                        }
-                        
-                        yield return new WaitForSeconds(1);
                         Application.Quit();
                     }
                     else
                     {
-                        _battleManager.SetBattleText("* ...but failed.");
-                        
-                        while (_battleManager.dialogueVertexAnimator.textAnimating)
-                        {
-                            yield return null;
-                        }
-                        
-                        yield return new WaitForSeconds(1);
+                        yield return _battleManager.StartCoroutine(_battleManager.BattleText("* ...but failed."));
                     }
                     
                     _battleManager.PickTurn();
@@ -304,12 +277,7 @@ namespace Battle.State_Machine
             
                     _battleManager.ClearBattleText();
                     
-                    _battleManager.SetBattleText($"* {_player._name.ToUpper()} attacked {enemy.gameObject.name.ToUpper()}!", true);
-                    
-                    while (_battleManager.dialogueVertexAnimator.textAnimating)
-                    {
-                        yield return null;
-                    }
+                    yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_player._name.ToUpper()} attacked {enemy.gameObject.name.ToUpper()}!", true));
 
                     damage = Globals.DamageFormula(_player._pow, enemy._def, out crit, _player._luck);
                     if (crit) damage *= 2;
@@ -330,40 +298,21 @@ namespace Battle.State_Machine
 
                     if (crit)
                     {
-                        _battleManager.SetBattleText("<anim:shake>* A critical hit!</anim>");
-
-                        while (_battleManager.dialogueVertexAnimator.textAnimating)
-                        {
-                            yield return null;
-                        }
-                        yield return new WaitForSeconds(0.5f);
+                        yield return _battleManager.StartCoroutine(_battleManager.BattleText("<anim:shake>* A critical hit!</anim>"));
                     }
 
-                    _battleManager.SetBattleText($"* {enemy.gameObject.name.ToUpper()} took <color=red>{damage}</color> damage!");
+                    yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {enemy.gameObject.name.ToUpper()} took <color=red>{damage}</color> damage!"));
                     
-                    while (_battleManager.dialogueVertexAnimator.textAnimating)
-                    {
-                        yield return null;
-                    }
-                        
-                    yield return new WaitForSeconds(0.5f);
                     enemy._slider.gameObject.SetActive(false);
 
                     if (enemy._HP <= 0)
                     {
-                        _battleManager.SetBattleText($"* {_player._name.ToUpper()} <color=red>defeated {enemy.gameObject.name.ToUpper()}</color>!");
+                        yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_player._name.ToUpper()} <color=red>defeated {enemy.gameObject.name.ToUpper()}</color>!"));
                         _battleManager._deadEnemies.Add(enemy);
                         enemy._killable = true;
                         _battleManager._soundManager.Play("enemyDie");
-                        while (_battleManager.dialogueVertexAnimator.textAnimating)
-                        {
-                            yield return null;
-                        }
-                        
-                        yield return new WaitForSeconds(0.5f);
                     }
                     
-                    yield return new WaitForSeconds(0.5f);
                     break;
                 case "Check":
                     _battleManager._enemySelectionController.Disable();            
@@ -373,27 +322,7 @@ namespace Battle.State_Machine
                     for(int i=0; i < enemy._description.Length; i++)
                     {
                         yield return null;
-                        _battleManager.SetBattleText(enemy._description[i], true);
-                        
-                        while (_battleManager.dialogueVertexAnimator.textAnimating)
-                        {
-                            if (_battleManager._confirm.triggered)
-                            {
-                                _battleManager.dialogueVertexAnimator.QuickEnd();
-                            }
-                            yield return null;
-                        }
-
-                        while (true)
-                        {
-                            if (_battleManager._confirm.triggered)
-                            {
-                                break;
-                            }
-                            
-                            yield return null;
-                        }
-                        _battleManager._soundManager.Play("confirm");
+                        yield return _battleManager.StartCoroutine(_battleManager.BattleText(enemy._description[i], true));
                     }
                     
                     break;
@@ -436,12 +365,7 @@ namespace Battle.State_Machine
                     
                     _battleManager.ClearBattleText();
                     
-                    _battleManager.SetBattleText($"* {_player._name.ToUpper()} used {attack.Name.ToUpper()} on {enemy.gameObject.name.ToUpper()}!", true);
-                    
-                    while (_battleManager.dialogueVertexAnimator.textAnimating)
-                    {
-                        yield return null;
-                    }
+                    yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_player._name.ToUpper()} used {attack.Name.ToUpper()} on {enemy.gameObject.name.ToUpper()}!", true));
 
                     damage = Globals.DamageFormula(_player._pow + attack.Strength, enemy._def, out crit, _player._luck);
                     if (crit) damage *= 2;
@@ -462,40 +386,21 @@ namespace Battle.State_Machine
 
                     if (crit)
                     {
-                        _battleManager.SetBattleText("<anim:shake>* A critical hit!</anim>");
-
-                        while (_battleManager.dialogueVertexAnimator.textAnimating)
-                        {
-                            yield return null;
-                        }
-                        yield return new WaitForSeconds(0.5f);
+                        yield return _battleManager.StartCoroutine(_battleManager.BattleText("<anim:shake>* A critical hit!</anim>"));
                     }
 
-                    _battleManager.SetBattleText($"* {enemy.gameObject.name.ToUpper()} took <color=red>{damage}</color> damage!");
+                    yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {enemy.gameObject.name.ToUpper()} took <color=red>{damage}</color> damage!"));
                     
-                    while (_battleManager.dialogueVertexAnimator.textAnimating)
-                    {
-                        yield return null;
-                    }
-                        
-                    yield return new WaitForSeconds(0.5f);
                     enemy._slider.gameObject.SetActive(false);
 
                     if (enemy._HP <= 0)
                     {
-                        _battleManager.SetBattleText($"* {_player._name.ToUpper()} <color=red>defeated {enemy.gameObject.name.ToUpper()}</color>!");
                         _battleManager._deadEnemies.Add(enemy);
                         enemy._killable = true;
                         _battleManager._soundManager.Play("enemyDie");
-                        while (_battleManager.dialogueVertexAnimator.textAnimating)
-                        {
-                            yield return null;
-                        }
+                        yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_player._name.ToUpper()} <color=red>defeated {enemy.gameObject.name.ToUpper()}</color>!"));
                         
-                        yield return new WaitForSeconds(0.5f);
                     }
-                    
-                    yield return new WaitForSeconds(0.5f);
 
                     break;
                 
@@ -549,12 +454,7 @@ namespace Battle.State_Machine
 
                     _battleManager.ClearBattleText();
                     
-                    _battleManager.SetBattleText($"* {_player._name.ToUpper()} gave a {item.Name.ToUpper()} to {target._name.ToUpper()}!", true);
-                    
-                    while (_battleManager.dialogueVertexAnimator.textAnimating)
-                    {
-                        yield return null;
-                    }
+                    yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_player._name.ToUpper()} gave a {item.Name.ToUpper()} to {target._name.ToUpper()}!", true));
                     
                     switch (item.CostType)
                     {
@@ -570,14 +470,7 @@ namespace Battle.State_Machine
                     
                     yield return new WaitForSeconds(0.5f);
                     
-                    
-                    _battleManager.SetBattleText($"* Healed {item.Strength} {item.CostType}!");
-                    
-                    while (_battleManager.dialogueVertexAnimator.textAnimating)
-                    {
-                        yield return null;
-                    }
-                    yield return new WaitForSeconds(0.5f);
+                    yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* Healed {item.Strength} {item.CostType}!"));
 
                     break;
             }
