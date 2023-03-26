@@ -374,7 +374,7 @@ public class BattleManager : MonoBehaviour
     
     
 
-    public IEnumerator BattleText(string message, bool reset = false)
+    public IEnumerator BattleText(string message, bool reset = false, bool autoEnd = false)
     {
         SetBattleText(message, reset);
             
@@ -387,18 +387,37 @@ public class BattleManager : MonoBehaviour
             yield return null;
         }
 
-        while (true)
+        while (!autoEnd)
         {
             if (_confirm.triggered)
             {
+                yield return null;
+                _soundManager.Play("confirm");
                 break;
             }
                             
             yield return null;
         }
-        
-        yield return null;
-        _soundManager.Play("confirm");
+    }
+
+    public IEnumerator FadeOutPlayerText()
+    {
+        float timeElapsed = 0;
+        float movementDuration = 1;
+        while (timeElapsed < movementDuration)
+        {
+            timeElapsed += Time.deltaTime;
+            _nameTagText.color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+            _nameTagImage.color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+                            
+            foreach (Image img in _buttonImages)
+            {
+                img.color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+                img.GetComponentInChildren<TMP_Text>().color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+            }
+
+            yield return null;
+        }
     }
 
     public void ClearBattleText()

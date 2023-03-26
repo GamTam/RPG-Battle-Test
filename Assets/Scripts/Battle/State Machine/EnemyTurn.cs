@@ -16,7 +16,7 @@ namespace Battle.State_Machine
 
         public override IEnumerator EnterState()
         {
-            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_enemy.gameObject.name.ToUpper()}'s turn!", true));
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_enemy.gameObject.name.ToUpper()}'s turn!", true, autoEnd:true));
 
             PlayerBattle player;
 
@@ -30,7 +30,7 @@ namespace Battle.State_Machine
 
             yield return new WaitForSeconds(1f);
 
-            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_enemy.gameObject.name.ToUpper()} attacks {player._name.ToUpper()}!"));
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {_enemy.gameObject.name.ToUpper()} attacks {player._name.ToUpper()}!", autoEnd:true));
             
             yield return new WaitForSeconds(1);
 
@@ -46,12 +46,14 @@ namespace Battle.State_Machine
             player.InitSetRedSlider(player._HP);
             yield return new WaitForSeconds(0.5f);
                     
-            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {player._name.ToUpper()} took <color=red>{damage}</color> damage!"));
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {player._name.ToUpper()} took <color=red>{damage}</color> damage!", autoEnd:true));
+            yield return new WaitForSeconds(0.5f);
 
             if (player._HP <= 0)
             {
                 _battleManager._deadPlayers.Add(player.gameObject.GetComponent<Animator>());
-                yield return _battleManager.StartCoroutine(_battleManager.BattleText($"<color=red>* {player._name.ToUpper()} defeated!</color>"));
+                yield return _battleManager.StartCoroutine(_battleManager.BattleText($"<color=red>* {player._name.ToUpper()} defeated!</color>", autoEnd:true));
+                yield return new WaitForSeconds(0.5f);
             }
             _battleManager.PickTurn();
         }

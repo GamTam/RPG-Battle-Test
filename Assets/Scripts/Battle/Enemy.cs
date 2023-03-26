@@ -16,6 +16,7 @@ public class Enemy : Battleable
     [HideInInspector] public string[] _description;
     float fade = 1;
     [HideInInspector] public bool _killable;
+    [HideInInspector] public Vector3 _slidePoint;
     
     void Awake()
     {
@@ -40,6 +41,7 @@ public class Enemy : Battleable
         
         StartingLocation = transform.localPosition;
         transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y + 900f);
+        _slidePoint = transform.localPosition;
     }
 
     private void LateUpdate()

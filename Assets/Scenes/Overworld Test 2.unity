@@ -1846,9 +1846,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 4726418287747263974}
   _load: {fileID: 530344133}
-  _stepInterval: 0
+  _stepInterval: 5
   _chance:
-  - Scene: Battle Scene - Boss
+  - Scene: Battle Scene
+    Chance: 0
+  - Scene: Battle Scene 2
     Chance: 0
   _timer: 0
 --- !u!4 &530344135

@@ -76,8 +76,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4281677109
+  m_fontColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -234,6 +234,7 @@ MonoBehaviour:
   _minHeight: 50
   _talkTail: {fileID: 3095547606338494172}
   _scale: 0.1
+  _forceBottom: 0
 --- !u!1 &2444468307801532045
 GameObject:
   m_ObjectHideFlags: 0
