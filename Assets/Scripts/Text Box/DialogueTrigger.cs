@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private BattleLoadScene _sceneLoader;
+    [SerializeField] private TMP_FontAsset _font;
     [SerializeField] private bool _skipTextboxCloseAnimation;
     [TextArea(3, 4)] [SerializeField] private string[] _dialogue;
     [SerializeField] private string _battleScene;

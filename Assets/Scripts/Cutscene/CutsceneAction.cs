@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -23,6 +24,7 @@ public class DialogueAction : CutsceneAction
 {
     [SerializeField] private SpriteRenderer Speaker;
     [SerializeField] private bool SkipCloseAnimation;
+    [SerializeField] private TMP_FontAsset _font;
     [SerializeField] [TextArea(3, 4)] private string[] Dialogue;
 
     public DialogueAction()
@@ -33,7 +35,7 @@ public class DialogueAction : CutsceneAction
     public override IEnumerator Play()
     {
         DialogueManager manager = Object.FindObjectOfType<DialogueManager>();
-        manager.StartText(Dialogue, Speaker.gameObject.transform, Speaker, SkipCloseAnimation);
+        manager.StartText(Dialogue, Speaker.gameObject.transform, Speaker, SkipCloseAnimation, font:_font);
 
         while (!manager._done)
         {
