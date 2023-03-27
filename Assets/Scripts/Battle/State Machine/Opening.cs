@@ -18,7 +18,7 @@ namespace Battle.State_Machine
 
             Color nameColor = _battleManager._nameTagText.color;
             Color[] buttonColor = new Color[_battleManager._buttonImages.Count];
-            Player firstPlayer = null;
+            PlayerBattle firstPlayer = null;
             
             _battleManager._nameTagText.color = Color.clear;
             _battleManager._nameTagImage.color = Color.clear;
@@ -65,30 +65,10 @@ namespace Battle.State_Machine
 
             yield return new WaitForSeconds(1.5f);
             
-            _battleManager.SetBattleText(_battleManager._startingText);
             _battleManager._playerInput.SwitchCurrentActionMap("Menu");
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText(_battleManager._startingText));
             
-            while (_battleManager.dialogueVertexAnimator.textAnimating)
-            {
-                if (_battleManager._confirm.triggered)
-                {
-                    _battleManager.dialogueVertexAnimator.QuickEnd();
-                }
-                yield return null;
-            }
-
-            while (true)
-            {
-                _battleManager._playerInput.SwitchCurrentActionMap("Menu");
-                if (_battleManager._confirm.triggered)
-                {
-                    break;
-                }
-                            
-                yield return null;
-            }
             _battleManager._playerInput.SwitchCurrentActionMap("Null");
-            _battleManager._soundManager.Play("confirm");
 
             movementDuration = 1;
             timeElapsed = 0;
@@ -98,9 +78,9 @@ namespace Battle.State_Machine
                 timeElapsed += Time.deltaTime;
                 foreach (Battleable obj in _battleManager._fighters)
                 {
-                    if(obj.GetType() != typeof(Player)) continue;
-                    if (firstPlayer == null) firstPlayer = (Player) obj;
-                    obj.gameObject.transform.localPosition = Vector3.Lerp(obj.gameObject.transform.localPosition, ((Player) obj).StartingLocation, Time.deltaTime * 5);
+                    if(obj.GetType() != typeof(PlayerBattle)) continue;
+                    if (firstPlayer == null) firstPlayer = (PlayerBattle) obj;
+                    obj.gameObject.transform.localPosition = Vector3.Lerp(obj.gameObject.transform.localPosition, ((PlayerBattle) obj).StartingLocation, Time.deltaTime * 5);
                 }
                 yield return null;
             }
@@ -109,8 +89,8 @@ namespace Battle.State_Machine
             
             foreach (Battleable obj in _battleManager._fighters)
             {
-                if(obj.GetType() != typeof(Player)) continue;
-                _battleManager.InitFinalSlide(obj.gameObject, ((Player) obj).StartingLocation);
+                if(obj.GetType() != typeof(PlayerBattle)) continue;
+                _battleManager.InitFinalSlide(obj.gameObject, ((PlayerBattle) obj).StartingLocation);
             }
 
             foreach (Animator anim in _battleManager._players)

@@ -217,6 +217,33 @@ public static class Globals
 
         BeginSceneLoad = false;
     }
+
+    public static int LevelUpLut(int input)
+    {
+        switch (input)
+        {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+                return 1;
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+                return 2;
+            case 15:
+                return 3;
+        }
+
+        return 4;
+    }
 }
 
 [Serializable]
@@ -240,10 +267,13 @@ public class PlayerStats
     public int Luck;
     public int Speed;
     public int EXP;
+    public int MinRequirement;
     public List<AttackSO> Attacks;
     
     public Sprite PFP;
     public Sprite DeadPFP;
+
+    public int ExpForNextLevel => Mathf.RoundToInt((float) (4 * Math.Pow(Level, 3)) / 5) + MinRequirement;
 }
 
 public enum GameState

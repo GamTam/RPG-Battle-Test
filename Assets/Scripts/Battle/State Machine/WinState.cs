@@ -16,7 +16,7 @@ namespace Battle.State_Machine
         {
             _battleManager._musicManager.fadeOut(0.25f);
             yield return new WaitForSeconds(0.5f);
-            _battleManager._musicManager.Play("Victory");
+            _battleManager._musicManager.Play(_battleManager._winSong);
             
             foreach (Animator anim in _battleManager._players)
             {
@@ -40,28 +40,30 @@ namespace Battle.State_Machine
 
                 yield return null;
             }
-
-            _battleManager.SetBattleText("* You defeated the enemies!", true);
             
-            while (_battleManager.dialogueVertexAnimator.textAnimating)
-            {
-                if (_battleManager._confirm.triggered)
-                {
-                    _battleManager.dialogueVertexAnimator.QuickEnd();
-                }
-                yield return null;
-            }
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText(_battleManager._winText, true));
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* Gained {_battleManager._XPTotal} XP!", true));
 
-            while (true)
+            foreach (Battleable obj in _battleManager._fighters)
             {
-                if (_battleManager._confirm.triggered)
+                if(obj.GetType() != typeof(PlayerBattle)) continue;
+                PlayerBattle player = (PlayerBattle) obj;
+
+                if (player._HP <= 0)
                 {
-                    break;
+                    player.WriteStatsToGlobal();
+                    continue;
                 }
-                            
-                yield return null;
+                player._exp += _battleManager._XPTotal;
+                
+                Debug.Log($"{player._name}: {player._exp}, {player._stats.ExpForNextLevel}");
+                if (player._exp >= player._stats.ExpForNextLevel)
+                {
+                    yield return _battleManager.StartCoroutine(LevelUp(player));
+                }
+                
+                player.WriteStatsToGlobal();
             }
-            _battleManager._soundManager.Play("confirm");
 
             GameObject textBox = _battleManager._textBox.gameObject.transform.parent.gameObject;
             Vector3 textBoxPos = textBox.transform.localPosition;
@@ -89,6 +91,50 @@ namespace Battle.State_Machine
                 timeElapsed += Time.deltaTime;
                 _battleManager._mat.SetFloat("_alpha", Mathf.Lerp(1, 0, timeElapsed / movementDuration));
                 yield return null;
+            }
+        }
+
+        public IEnumerator LevelUp(PlayerBattle player)
+        {
+            player._level += 1;
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {player._name} has reached level {player._level}!", true));
+
+            Random rand = new Random();
+            int statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
+
+            player._maxHP += statIncrease;
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* HP increased by {statIncrease}!", false));
+            
+            statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
+
+            player._maxMP += statIncrease;
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* MP increased by {statIncrease}!", false));
+            
+            statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
+
+            player._pow += statIncrease;
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* Attack increased by {statIncrease}!", false));
+            
+            statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
+
+            player._def += statIncrease;
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* Defense increased by {statIncrease}!", false));
+            
+            statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
+
+            player._speed += statIncrease;
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* Speed increased by {statIncrease}!", false));
+            
+            statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
+
+            player._luck += statIncrease;
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* Luck increased by {statIncrease}!", false));
+            
+            player.WriteStatsToGlobal();
+            
+            if (player._exp >= player._stats.ExpForNextLevel)
+            {
+                yield return _battleManager.StartCoroutine(LevelUp(player));
             }
         }
     }
