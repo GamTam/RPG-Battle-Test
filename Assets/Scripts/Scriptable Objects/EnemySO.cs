@@ -11,6 +11,7 @@ public class EnemySO : ScriptableObject
     public int Pow;
     public int Def;
     public int Speed;
+    public int EXP;
     public AttackSO[] Attacks;
     [TextArea(3, 5)] public string[] Description;
 }

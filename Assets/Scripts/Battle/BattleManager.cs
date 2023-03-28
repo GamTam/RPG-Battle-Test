@@ -14,6 +14,7 @@ using Image = UnityEngine.UI.Image;
 public class BattleManager : MonoBehaviour
 {
     public string _song;
+    public string _winSong = "Victory";
     [SerializeField] private GameObject _playerList;
     [SerializeField] private GameObject _enemyList;
     [SerializeField] private MeshRenderer _background;
@@ -25,6 +26,7 @@ public class BattleManager : MonoBehaviour
     private List<string> _textBoxText = new List<string>();
     private int _currentTextBoxLine;
     public bool _canFlee;
+    public int _XPTotal;
     
     [Header("Player Box")]
     public TMP_Text _nameTagText;
@@ -55,6 +57,7 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public InputAction _back;
     
     [TextArea(4, 4)] public string _startingText;
+    [TextArea(4, 4)] public string _winText = "* You defeated the enemies!";
 
     public List<sItem> _items = new List<sItem>();
     public bool _inBattle = true;
@@ -91,6 +94,7 @@ public class BattleManager : MonoBehaviour
         {
             _enemies.Add((Enemy) chara);
             _fighters.Add(chara);
+            _XPTotal += chara._exp;
         }
         
         _currentPlayerIndex = 0;
@@ -204,9 +208,9 @@ public class BattleManager : MonoBehaviour
         
         if (_fighters[_currentFighterIndex]._HP > 0)
         {
-            if (_fighters[_currentFighterIndex].GetType() == typeof(Player))
+            if (_fighters[_currentFighterIndex].GetType() == typeof(PlayerBattle))
             {
-                SwitchStates(new PlayerTurn(this, (Player) _fighters[_currentFighterIndex]));
+                SwitchStates(new PlayerTurn(this, (PlayerBattle) _fighters[_currentFighterIndex]));
                 _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Count;
             }
             else
@@ -217,7 +221,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        if (_fighters[_currentFighterIndex].GetType() == typeof(Player))
+        if (_fighters[_currentFighterIndex].GetType() == typeof(PlayerBattle))
         {
             _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Count;
         }
@@ -251,10 +255,10 @@ public class BattleManager : MonoBehaviour
         int i = 0;
         foreach (Battleable bat in _fighters)
         {
-            if (bat.GetType() != typeof(Player)) continue;
+            if (bat.GetType() != typeof(PlayerBattle)) continue;
             bat.transform.localPosition = _profilePoints[(i + _currentPlayerIndex) % _players.Count];
-            Vector2 vec = ((Player) bat).StartingLocation;
-            ((Player) bat).StartingLocation = new Vector2(vec.x, bat.transform.localPosition.y);
+            Vector2 vec = ((PlayerBattle) bat).StartingLocation;
+            ((PlayerBattle) bat).StartingLocation = new Vector2(vec.x, bat.transform.localPosition.y);
             i++;
         }
     }
@@ -366,6 +370,54 @@ public class BattleManager : MonoBehaviour
         int startIndex = Globals.RemoveRichText(processedStr).Length - Globals.RemoveRichText(processedText).Length;
         
         _textCoroutines.Add(StartCoroutine(dialogueVertexAnimator.AnimateTextIn(commands, processedStr, "typewriter", null, startIndex)));
+    }
+    
+    
+
+    public IEnumerator BattleText(string message, bool reset = false, bool autoEnd = false)
+    {
+        SetBattleText(message, reset);
+            
+        while (dialogueVertexAnimator.textAnimating)
+        {
+            if (_confirm.triggered)
+            {
+                dialogueVertexAnimator.QuickEnd();
+            }
+            yield return null;
+        }
+
+        while (!autoEnd)
+        {
+            if (_confirm.triggered)
+            {
+                yield return null;
+                _soundManager.Play("confirm");
+                break;
+            }
+                            
+            yield return null;
+        }
+    }
+
+    public IEnumerator FadeOutPlayerText()
+    {
+        float timeElapsed = 0;
+        float movementDuration = 1;
+        while (timeElapsed < movementDuration)
+        {
+            timeElapsed += Time.deltaTime;
+            _nameTagText.color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+            _nameTagImage.color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+                            
+            foreach (Image img in _buttonImages)
+            {
+                img.color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+                img.GetComponentInChildren<TMP_Text>().color = Color.Lerp(Color.white, Color.clear, timeElapsed/movementDuration);
+            }
+
+            yield return null;
+        }
     }
 
     public void ClearBattleText()

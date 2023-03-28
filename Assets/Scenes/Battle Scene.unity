@@ -2183,6 +2183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _song: Test Battle
+  _winSong: Victory
   _playerList: {fileID: 264117426}
   _enemyList: {fileID: 1516180279}
   _background: {fileID: 676816602}
@@ -2247,6 +2248,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   _startingText: '* The sand has gained sentience and started attacking!'
+  _winText: '* You defeated the enemies!'
   _items:
   - Item: {fileID: 11400000, guid: 244ee2a2de44b66499b56025780d0385, type: 2}
     Count: 10

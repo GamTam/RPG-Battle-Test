@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour
         _advanceText = _playerInput.actions["confirm"];
     }
 
-    public void StartText(String[] linesIn, Transform parentPos, SpriteRenderer spriteRenderer, bool skipTextBoxCloseAnimation=false, bool forceBottom=false)
+    public void StartText(String[] linesIn, Transform parentPos, SpriteRenderer spriteRenderer, bool skipTextBoxCloseAnimation=false, bool forceBottom=false, TMP_FontAsset font = null)
     {
         this._skipTextBoxCloseAnimation = skipTextBoxCloseAnimation;
         
@@ -40,6 +40,7 @@ public class DialogueManager : MonoBehaviour
         tempBoxSettings.ParentPos = parentPos;
         tempBoxSettings.SpriteRenderer = spriteRenderer;
         tempBoxSettings._forceBottom = forceBottom;
+        if (font != null) tempBoxSettings._textMeshPro.font = font;
         tempBoxSettings.Open();
 
         TMP_Text[] texts = _tempBox.GetComponentsInChildren<TMP_Text>();
