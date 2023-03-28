@@ -38,7 +38,7 @@ namespace Battle.State_Machine
             
             yield return new WaitForSeconds(0.5f);
             
-            Globals.MusicManager.Play(_battleManager._song);
+            if (!_battleManager._overworldMusic) Globals.MusicManager.Play(_battleManager._song);
             
             float movementDuration = 4;
             float timeElapsed = 0;

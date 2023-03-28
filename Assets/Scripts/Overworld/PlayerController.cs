@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         _save = _playerInput.actions["Save"];
         _load = _playerInput.actions["Load"];
 
-        Globals.MusicManager.Play("SubconForest");
+        Globals.MusicManager.Play("CasinoUnderground");
     }
     
     void Update()

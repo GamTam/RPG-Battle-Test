@@ -2064,6 +2064,7 @@ MonoBehaviour:
     Chance: 0
   - Scene: Battle Scene 2
     Chance: 0
+  _continueOverworldMusic: 0
   _timer: 0
 --- !u!4 &530344135
 Transform:

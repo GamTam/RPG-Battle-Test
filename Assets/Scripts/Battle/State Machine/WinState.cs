@@ -14,9 +14,12 @@ namespace Battle.State_Machine
 
         public override IEnumerator EnterState()
         {
-            _battleManager._musicManager.fadeOut(0.25f);
-            yield return new WaitForSeconds(0.5f);
-            _battleManager._musicManager.Play(_battleManager._winSong);
+            if (!_battleManager._overworldMusic)
+            {
+                _battleManager._musicManager.fadeOut(0.25f);
+                yield return new WaitForSeconds(0.5f);
+                _battleManager._musicManager.Play(_battleManager._winSong);
+            }
             
             foreach (Animator anim in _battleManager._players)
             {
@@ -79,7 +82,7 @@ namespace Battle.State_Machine
                 _battleManager.InitFinalSlide(obj.gameObject, new Vector3(obj.transform.localPosition.x - 500, obj.transform.localPosition.y, obj.transform.localPosition.z), 3);
             }
             
-            Globals.MusicManager.fadeOut(2);
+            if (!_battleManager._overworldMusic) Globals.MusicManager.fadeOut(2);
             
             _battleManager._inBattle = false;
             
@@ -97,38 +100,32 @@ namespace Battle.State_Machine
         public IEnumerator LevelUp(PlayerBattle player)
         {
             player._level += 1;
-            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {player._name} has reached level {player._level}!", true));
+            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* {player._name} has reached level {player._level}!"));
 
             Random rand = new Random();
             int statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
 
             player._maxHP += statIncrease;
-            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* HP increased by {statIncrease}!", false));
             
             statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
 
             player._maxMP += statIncrease;
-            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* MP increased by {statIncrease}!", false));
             
             statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
 
             player._pow += statIncrease;
-            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* Attack increased by {statIncrease}!", false));
             
             statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
 
             player._def += statIncrease;
-            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* Defense increased by {statIncrease}!", false));
             
             statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
 
             player._speed += statIncrease;
-            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* Speed increased by {statIncrease}!", false));
             
             statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
 
             player._luck += statIncrease;
-            yield return _battleManager.StartCoroutine(_battleManager.BattleText($"* Luck increased by {statIncrease}!", false));
             
             player.WriteStatsToGlobal();
             

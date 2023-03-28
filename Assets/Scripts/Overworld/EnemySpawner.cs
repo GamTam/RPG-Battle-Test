@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private BattleLoadScene _load;
     [SerializeField] private float _stepInterval;
     [SerializeField] private BattleChance[] _chance;
+    [SerializeField] private bool _continueOverworldMusic = true;
 
     [SerializeField] [ReadOnly] [AllowNesting] private float _timer = 0;
     private float _totalOdds;
@@ -39,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
 
             int random = Random.Range(0, _chance.Length);
 
-            StartCoroutine(_load.BattleTransition(_chance[random].Scene));
+            StartCoroutine(_load.BattleTransition(_chance[random].Scene, stopCurrentSong:_continueOverworldMusic));
         }
     }
 }

@@ -11,9 +11,9 @@ public class ChestTrigger : DialogueTrigger
 
     public void Start()
     {
-        _ID = Globals.EncryptString($"{SceneManager.GetActiveScene().name} {(int) transform.position.x * (int) transform.position.y * (int) transform.position.z}", "Treasure");
+        _ID = Globals.EncryptString($"{SceneManager.GetActiveScene().name} {transform.position.x * transform.position.y * transform.position.z}", "Treasure");
 
-        Debug.Log(_ID);
+        Debug.Log(Globals.DecryptString(_ID, "Treasure"));
         if (Globals.OpenedChests.Contains(_ID))
         {
             enabled = false;

@@ -48,6 +48,7 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public int _currentPlayerIndex;
     [HideInInspector] public int _turnIndex;
     [HideInInspector] public int _currentButton = 0;
+    [HideInInspector] public bool _overworldMusic;
     
     [HideInInspector] public bool _cancelMovement;
     

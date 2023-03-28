@@ -282,7 +282,7 @@ namespace Battle.State_Machine
                             _battleManager.InitFinalSlide(obj.gameObject, new Vector3(obj.transform.localPosition.x - 500, obj.transform.localPosition.y, obj.transform.localPosition.z), 3);
                         }
                         
-                        Globals.MusicManager.fadeOut(2);
+                        if (!_battleManager._overworldMusic) Globals.MusicManager.fadeOut(2);
                         
                         _battleManager._inBattle = false;
                         

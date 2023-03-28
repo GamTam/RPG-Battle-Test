@@ -18,7 +18,7 @@ public class BattleLoadScene : MonoBehaviour
     private string _prevSong;
     private float _prevSongPlace;
 
-    public IEnumerator BattleTransition(string scene = "Battle Scene", bool continueMusic = true)
+    public IEnumerator BattleTransition(string scene = "Battle Scene", bool continueMusic = true, bool stopCurrentSong = true)
     {
         _scene = SceneManager.GetActiveScene();
         _state = Globals.GameState;
@@ -34,7 +34,8 @@ public class BattleLoadScene : MonoBehaviour
             _prevSong = Globals.MusicManager.GetMusicPlaying().name;
             _prevSongPlace = Globals.MusicManager.GetMusicPlaying().source.time;
         }
-        Globals.MusicManager.Stop();
+        
+        if (!stopCurrentSong) Globals.MusicManager.Stop();
         Globals.SoundManager.Play("battleStart");
         
         while (timeElapsed < movementDuration)
@@ -61,13 +62,14 @@ public class BattleLoadScene : MonoBehaviour
         _whiteFlash.color = new Color(1, 1, 1, 0);
         
         StartCoroutine(Globals.LoadScene(scene, true));
-        yield return new WaitForSeconds(0.5f);
+        if (!stopCurrentSong) yield return new WaitForSeconds(0.5f);
         Globals.BeginSceneLoad = true;
 
         while (Globals.BeginSceneLoad) yield return null;
 
         SceneManager.SetActiveScene(_scene);
         _battle = FindObjectOfType<BattleManager>();
+        _battle._overworldMusic = stopCurrentSong;
 
         while (_battle._inBattle) yield return null;
 
@@ -81,6 +83,6 @@ public class BattleLoadScene : MonoBehaviour
         Globals.InBattle = false;
         Globals.GameState = _state;
         Globals.Input.SwitchCurrentActionMap(_prevControlState);
-        if (continueMusic) Globals.MusicManager.fadeIn(_prevSong, _prevSongPlace, 0.5f);
+        if (continueMusic && !stopCurrentSong) Globals.MusicManager.fadeIn(_prevSong, _prevSongPlace, 0.5f);
     }
 }
