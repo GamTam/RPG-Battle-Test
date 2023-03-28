@@ -1,17 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] protected SpriteRenderer _spriteRenderer;
     [SerializeField] private BattleLoadScene _sceneLoader;
-    [SerializeField] private bool _skipTextboxCloseAnimation;
+    [SerializeField] private TMP_FontAsset _font;
+    [SerializeField] protected bool _skipTextboxCloseAnimation;
     [TextArea(3, 4)] [SerializeField] private string[] _dialogue;
     [SerializeField] private string _battleScene;
-    [SerializeField] private bool _forceBottom;
+    [SerializeField] protected bool _forceBottom;
 
     [HideInInspector] public PlayerInput _playerInput;
     private bool _triggeredDialogue;
@@ -40,7 +42,7 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
     
-    public void TriggerDialogue()
+    public virtual void TriggerDialogue()
     {
         string[] dialogue = (string[]) _dialogue.Clone();
         

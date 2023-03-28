@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public PlayerInput _playerInput;
     [HideInInspector] public InputAction _moveVector;
     [HideInInspector] public InputAction _interact;
+    [HideInInspector] public InputAction _save;
+    [HideInInspector] public InputAction _load;
     [HideInInspector] public bool _interacting;
 
     private Vector2 _prevMoveVector;
@@ -38,6 +40,8 @@ public class PlayerController : MonoBehaviour
         _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
         _moveVector = _playerInput.actions["Overworld/Move"];
         _interact = _playerInput.actions["Interact"];
+        _save = _playerInput.actions["Save"];
+        _load = _playerInput.actions["Load"];
 
         Globals.MusicManager.Play("SubconForest");
     }
@@ -54,6 +58,16 @@ public class PlayerController : MonoBehaviour
         _interacting = _interact.triggered;
         
         Vector2 moveVector = _moveVector.ReadValue<Vector2>();
+
+        if (_save.triggered)
+        {
+            FindObjectOfType<SaveData>().SaveIntoJson();
+        }
+        
+        if (_load.triggered)
+        {
+            FindObjectOfType<SaveData>().LoadFromJson();
+        }
 
         #region Set Animation
 

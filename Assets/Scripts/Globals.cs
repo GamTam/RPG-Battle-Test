@@ -2,6 +2,9 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Security;
+using System.Security.Cryptography;
+using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -28,6 +31,7 @@ public static class Globals
     public static PlayerDir PlayerDir = PlayerDir._d;
 
     public static List<string> PlayedCutscenes = new List<string>();
+    public static List<string> OpenedChests = new List<string>();
 
     public static bool BeginSceneLoad;
     public static GameState GameState = GameState.Play;
@@ -243,6 +247,58 @@ public static class Globals
         }
 
         return 4;
+    }
+    
+    public static string EncryptString(string plainText, string password)
+    {
+        try
+        {
+            string privatekey = "hgfedcba";
+            byte[] privatekeyByte = { };
+            privatekeyByte = Encoding.UTF8.GetBytes(privatekey);
+            byte[] _keybyte = { };
+            _keybyte = Encoding.UTF8.GetBytes(password);
+            byte[] inputtextbyteArray = System.Text.Encoding.UTF8.GetBytes(plainText);
+            using (DESCryptoServiceProvider dsp = new DESCryptoServiceProvider())
+            {
+                var memstr = new MemoryStream();
+                var crystr = new CryptoStream(memstr, dsp.CreateEncryptor(_keybyte, privatekeyByte), CryptoStreamMode.Write);
+                crystr.Write(inputtextbyteArray, 0, inputtextbyteArray.Length);
+                crystr.FlushFinalBlock();
+                return Convert.ToBase64String(memstr.ToArray());
+            }
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
+    }
+    
+    public static string DecryptString(string encrypted, string password)
+    {
+        try
+        {
+            string privatekey = "hgfedcba";
+            byte[] privatekeyByte = { };
+            privatekeyByte = Encoding.UTF8.GetBytes(privatekey);
+            byte[] _keybyte = { };
+            _keybyte = Encoding.UTF8.GetBytes(password);
+            byte[] inputtextbyteArray = new byte[encrypted.Replace(" ", "+").Length];
+            //This technique reverses base64 encoding when it is received over the Internet.
+            inputtextbyteArray = Convert.FromBase64String(encrypted.Replace(" ", "+"));
+            using (DESCryptoServiceProvider dEsp = new DESCryptoServiceProvider())
+            {
+                var memstr = new MemoryStream();
+                var crystr = new CryptoStream(memstr, dEsp.CreateDecryptor(_keybyte, privatekeyByte), CryptoStreamMode.Write);
+                crystr.Write(inputtextbyteArray, 0, inputtextbyteArray.Length);
+                crystr.FlushFinalBlock();
+                return Encoding.UTF8.GetString(memstr.ToArray());
+            }
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
     }
 }
 
