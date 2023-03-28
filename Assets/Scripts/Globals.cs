@@ -248,56 +248,56 @@ public static class Globals
 
         return 4;
     }
-
-    private static readonly string KeySalt = "asdad@!#!@#ADasD!@#@!#@!#!@#";
-    private static readonly string initializationVectorIVKey = "HR$2pIjHR$2pIj12";
     
     public static string EncryptString(string plainText, string password)
     {
-        byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-
-        var RijndaelAlgo = new RijndaelManaged() {Mode = CipherMode.CBC, Padding = PaddingMode.Zeros};
-        byte[] keyBytes =
-            new Rfc2898DeriveBytes(password, Encoding.ASCII.GetBytes(KeySalt)).GetBytes(RijndaelAlgo.KeySize);
-        Debug.Log(keyBytes.Length);
-        var encryptor = RijndaelAlgo.CreateEncryptor(keyBytes, Encoding.ASCII.GetBytes(initializationVectorIVKey));
-
-        byte[] cipherTextBytes;
-
-        using (var memoryStream = new MemoryStream())
+        try
         {
-            using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+            string privatekey = "hgfedcba";
+            byte[] privatekeyByte = { };
+            privatekeyByte = Encoding.UTF8.GetBytes(privatekey);
+            byte[] _keybyte = { };
+            _keybyte = Encoding.UTF8.GetBytes(password);
+            byte[] inputtextbyteArray = System.Text.Encoding.UTF8.GetBytes(plainText);
+            using (DESCryptoServiceProvider dsp = new DESCryptoServiceProvider())
             {
-                cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
-                cryptoStream.FlushFinalBlock();
-                cipherTextBytes = memoryStream.ToArray();
-                cryptoStream.Close();
+                var memstr = new MemoryStream();
+                var crystr = new CryptoStream(memstr, dsp.CreateEncryptor(_keybyte, privatekeyByte), CryptoStreamMode.Write);
+                crystr.Write(inputtextbyteArray, 0, inputtextbyteArray.Length);
+                crystr.FlushFinalBlock();
+                return Convert.ToBase64String(memstr.ToArray());
             }
-            memoryStream.Close();
         }
-
-        return Convert.ToBase64String(cipherTextBytes);
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
     }
     
     public static string DecryptString(string encrypted, string password)
     {
-        // Convert the encrypted string to a byte array
-        byte[] encryptedBytes = Convert.FromBase64String(encrypted);
- 
-        // Derive the password using the PBKDF2 algorithm
-        Rfc2898DeriveBytes passwordBytes = new Rfc2898DeriveBytes(password, 20);
- 
-        // Use the password to decrypt the encrypted string
-        Aes encryptor = Aes.Create();
-        encryptor.Key = passwordBytes.GetBytes(32);
-        encryptor.IV = passwordBytes.GetBytes(16);
-        using (MemoryStream ms = new MemoryStream())
+        try
         {
-            using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+            string privatekey = "hgfedcba";
+            byte[] privatekeyByte = { };
+            privatekeyByte = Encoding.UTF8.GetBytes(privatekey);
+            byte[] _keybyte = { };
+            _keybyte = Encoding.UTF8.GetBytes(password);
+            byte[] inputtextbyteArray = new byte[encrypted.Replace(" ", "+").Length];
+            //This technique reverses base64 encoding when it is received over the Internet.
+            inputtextbyteArray = Convert.FromBase64String(encrypted.Replace(" ", "+"));
+            using (DESCryptoServiceProvider dEsp = new DESCryptoServiceProvider())
             {
-                cs.Write(encryptedBytes, 0, encryptedBytes.Length);
+                var memstr = new MemoryStream();
+                var crystr = new CryptoStream(memstr, dEsp.CreateDecryptor(_keybyte, privatekeyByte), CryptoStreamMode.Write);
+                crystr.Write(inputtextbyteArray, 0, inputtextbyteArray.Length);
+                crystr.FlushFinalBlock();
+                return Encoding.UTF8.GetString(memstr.ToArray());
             }
-            return System.Text.Encoding.UTF8.GetString(ms.ToArray());
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
         }
     }
 }
