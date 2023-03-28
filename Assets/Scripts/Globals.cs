@@ -2,6 +2,9 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Security;
+using System.Security.Cryptography;
+using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -28,6 +31,7 @@ public static class Globals
     public static PlayerDir PlayerDir = PlayerDir._d;
 
     public static List<string> PlayedCutscenes = new List<string>();
+    public static List<string> OpenedChests = new List<string>();
 
     public static bool BeginSceneLoad;
     public static GameState GameState = GameState.Play;
@@ -243,6 +247,58 @@ public static class Globals
         }
 
         return 4;
+    }
+
+    private static readonly string KeySalt = "asdad@!#!@#ADasD!@#@!#@!#!@#";
+    private static readonly string initializationVectorIVKey = "HR$2pIjHR$2pIj12";
+    
+    public static string EncryptString(string plainText, string password)
+    {
+        byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+
+        var RijndaelAlgo = new RijndaelManaged() {Mode = CipherMode.CBC, Padding = PaddingMode.Zeros};
+        byte[] keyBytes =
+            new Rfc2898DeriveBytes(password, Encoding.ASCII.GetBytes(KeySalt)).GetBytes(RijndaelAlgo.KeySize);
+        Debug.Log(keyBytes.Length);
+        var encryptor = RijndaelAlgo.CreateEncryptor(keyBytes, Encoding.ASCII.GetBytes(initializationVectorIVKey));
+
+        byte[] cipherTextBytes;
+
+        using (var memoryStream = new MemoryStream())
+        {
+            using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+            {
+                cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
+                cryptoStream.FlushFinalBlock();
+                cipherTextBytes = memoryStream.ToArray();
+                cryptoStream.Close();
+            }
+            memoryStream.Close();
+        }
+
+        return Convert.ToBase64String(cipherTextBytes);
+    }
+    
+    public static string DecryptString(string encrypted, string password)
+    {
+        // Convert the encrypted string to a byte array
+        byte[] encryptedBytes = Convert.FromBase64String(encrypted);
+ 
+        // Derive the password using the PBKDF2 algorithm
+        Rfc2898DeriveBytes passwordBytes = new Rfc2898DeriveBytes(password, 20);
+ 
+        // Use the password to decrypt the encrypted string
+        Aes encryptor = Aes.Create();
+        encryptor.Key = passwordBytes.GetBytes(32);
+        encryptor.IV = passwordBytes.GetBytes(16);
+        using (MemoryStream ms = new MemoryStream())
+        {
+            using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+            {
+                cs.Write(encryptedBytes, 0, encryptedBytes.Length);
+            }
+            return System.Text.Encoding.UTF8.GetString(ms.ToArray());
+        }
     }
 }
 
