@@ -282,7 +282,7 @@ namespace Battle.State_Machine
                             _battleManager.InitFinalSlide(obj.gameObject, new Vector3(obj.transform.localPosition.x - 500, obj.transform.localPosition.y, obj.transform.localPosition.z), 3);
                         }
                         
-                        Globals.MusicManager.fadeOut(2);
+                        if (!_battleManager._overworldMusic) Globals.MusicManager.fadeOut(2);
                         
                         _battleManager._inBattle = false;
                         
@@ -309,8 +309,6 @@ namespace Battle.State_Machine
                 yield break;
             }
 
-            yield return null;
-            
             Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
             string textBoxSelection = _battleManager._selectionBoxes[0].GetSelectedButtonText().Split("\n")[0];
 
@@ -321,6 +319,7 @@ namespace Battle.State_Machine
             switch (_battleManager._buttons[_battleManager._currentButton].gameObject.name)
             {
                 case "Fight":
+                    yield return null;
                     _battleManager._enemySelectionController.Disable();            
             
                     _battleManager.ClearBattleText();
@@ -366,6 +365,7 @@ namespace Battle.State_Machine
                     
                     break;
                 case "Check":
+                    yield return null;
                     _battleManager._enemySelectionController.Disable();            
             
                     _battleManager.ClearBattleText();
@@ -385,6 +385,7 @@ namespace Battle.State_Machine
                         yield break;
                     }
 
+                    yield return null;
                     _battleManager._enemySelectionController.Disable();
                     _battleManager._selectionBoxes[0].ResetButtons();
                     _battleManager._selectionBoxes[0].gameObject.SetActive(false);
@@ -458,7 +459,6 @@ namespace Battle.State_Machine
                     yield return new WaitForSeconds(0.5f);
 
                     break;
-                
                 case "Item":
                     if (!_battleManager._selectingPlayers)
                     {
@@ -479,6 +479,8 @@ namespace Battle.State_Machine
 
                         yield break;
                     }
+
+                    yield return null;
                     
                     PlayerBattle target = EventSystem.current.currentSelectedGameObject.GetComponent<PlayerBattle>();
 

@@ -48,6 +48,7 @@ public class BattleManager : MonoBehaviour
     [HideInInspector] public int _currentPlayerIndex;
     [HideInInspector] public int _turnIndex;
     [HideInInspector] public int _currentButton = 0;
+    [HideInInspector] public bool _overworldMusic;
     
     [HideInInspector] public bool _cancelMovement;
     
@@ -75,7 +76,7 @@ public class BattleManager : MonoBehaviour
         _confirm = _playerInput.actions["Menu/Confirm"];
         _back = _playerInput.actions["Menu/Cancel"];
         
-        Globals.Items = _items;
+        // Globals.Items = _items;
         
         _background.material = new Material(_background.material);
         _mat = _background.material;
