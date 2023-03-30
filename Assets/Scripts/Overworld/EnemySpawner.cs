@@ -37,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
         if (_timer >= _stepInterval * _randomOffset)
         {
             _timer = 0;
+            _randomOffset = Random.Range(0f, 2f);
 
             int random = Random.Range(0, _chance.Length);
 

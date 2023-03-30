@@ -6,16 +6,23 @@ using UnityEngine.SceneManagement;
 public class ChestTrigger : DialogueTrigger
 {
     [SerializeField] private sItem[] _rewards;
+    [SerializeField] private Sprite _openedSprite;
     private string _ID;
-    private string _encryptedID;
+    private Animator _animator;
+    private SpriteRenderer _sprite;
 
     public void Start()
     {
+        _animator = GetComponent<Animator>();
+        _sprite = GetComponent<SpriteRenderer>();
+        
         _ID = Globals.EncryptString($"{SceneManager.GetActiveScene().name} {transform.position.x * transform.position.y * transform.position.z}", "Treasure");
 
         Debug.Log(Globals.DecryptString(_ID, "Treasure"));
         if (Globals.OpenedChests.Contains(_ID))
         {
+            _animator.enabled = false;
+            _sprite.sprite = _openedSprite;
             enabled = false;
         }
     }
@@ -53,6 +60,7 @@ public class ChestTrigger : DialogueTrigger
             }
         }
         
+        _animator.Play("Chest Open");
         FindObjectOfType<DialogueManager>().StartText(dialogue, gameObject.transform, _spriteRenderer, _skipTextboxCloseAnimation, _forceBottom);
         enabled = false;
     }

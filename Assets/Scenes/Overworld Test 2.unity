@@ -322,6 +322,7 @@ MonoBehaviour:
     Count: 15
   - Item: {fileID: 11400000, guid: 9ab724caecac9104db1244fa31d3438a, type: 2}
     Count: 30
+  _openedSprite: {fileID: 1343051679, guid: 8bb082f4c1d6a14429231c68d7db68e4, type: 3}
 --- !u!1 &100052663
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,7 +2028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &530344133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112206,7 +112207,7 @@ MonoBehaviour:
   - rid: 2009989091725934592
   - rid: 2009989081661177889
   - rid: 2009989232440115200
-  _triggerOnlyOnce: 0
+  _triggerOnlyOnce: 1
   _ID: Test Cutscene
   references:
     version: 2
