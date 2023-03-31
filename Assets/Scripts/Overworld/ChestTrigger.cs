@@ -50,6 +50,7 @@ public class ChestTrigger : DialogueTrigger
                 {
                     item.Count += _rewards[i].Count;
                     found = true;
+                    Globals.Items[j] = item;
                     break;
                 }
             }
