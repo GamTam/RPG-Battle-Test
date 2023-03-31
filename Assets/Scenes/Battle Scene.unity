@@ -960,6 +960,7 @@ MonoBehaviour:
   _rectTransform: {fileID: 199220725}
   _description: []
   _killable: 0
+  _slidePoint: {x: 0, y: 0, z: 0}
 --- !u!222 &199220728
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2191,6 +2192,7 @@ MonoBehaviour:
   _enemySelectionController: {fileID: 1696178253}
   _textBox: {fileID: 1274762956}
   _canFlee: 1
+  _XPTotal: 0
   _nameTagText: {fileID: 1136997477}
   _nameTagImage: {fileID: 6355899}
   _buttons:
@@ -2218,6 +2220,7 @@ MonoBehaviour:
   _currentPlayerIndex: -1
   _turnIndex: -1
   _currentButton: 0
+  _overworldMusic: 0
   _cancelMovement: 0
   _playerInput: {fileID: 0}
   _moveVector:
@@ -2827,7 +2830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &691652717
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6496,6 +6499,7 @@ MonoBehaviour:
   _rectTransform: {fileID: 1733865475}
   _description: []
   _killable: 0
+  _slidePoint: {x: 0, y: 0, z: 0}
 --- !u!222 &1733865479
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7306,6 +7310,7 @@ MonoBehaviour:
   _rectTransform: {fileID: 1908948393}
   _description: []
   _killable: 0
+  _slidePoint: {x: 0, y: 0, z: 0}
 --- !u!222 &1908948397
 CanvasRenderer:
   m_ObjectHideFlags: 0
