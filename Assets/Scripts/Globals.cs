@@ -253,16 +253,14 @@ public static class Globals
     {
         try
         {
-            string privatekey = "hgfedcba";
-            byte[] privatekeyByte = { };
-            privatekeyByte = Encoding.UTF8.GetBytes(privatekey);
-            byte[] _keybyte = { };
-            _keybyte = Encoding.UTF8.GetBytes(password);
-            byte[] inputtextbyteArray = System.Text.Encoding.UTF8.GetBytes(plainText);
+            string privateKey = "hgfedcba";
+            byte[] privateKeyByte = Encoding.UTF8.GetBytes(privateKey);
+            byte[] keyByte = Encoding.UTF8.GetBytes(password);
+            byte[] inputtextbyteArray = Encoding.UTF8.GetBytes(plainText);
             using (DESCryptoServiceProvider dsp = new DESCryptoServiceProvider())
             {
                 var memstr = new MemoryStream();
-                var crystr = new CryptoStream(memstr, dsp.CreateEncryptor(_keybyte, privatekeyByte), CryptoStreamMode.Write);
+                var crystr = new CryptoStream(memstr, dsp.CreateEncryptor(keyByte, privateKeyByte), CryptoStreamMode.Write);
                 crystr.Write(inputtextbyteArray, 0, inputtextbyteArray.Length);
                 crystr.FlushFinalBlock();
                 return Convert.ToBase64String(memstr.ToArray());
@@ -278,18 +276,14 @@ public static class Globals
     {
         try
         {
-            string privatekey = "hgfedcba";
-            byte[] privatekeyByte = { };
-            privatekeyByte = Encoding.UTF8.GetBytes(privatekey);
-            byte[] _keybyte = { };
-            _keybyte = Encoding.UTF8.GetBytes(password);
-            byte[] inputtextbyteArray = new byte[encrypted.Replace(" ", "+").Length];
-            //This technique reverses base64 encoding when it is received over the Internet.
-            inputtextbyteArray = Convert.FromBase64String(encrypted.Replace(" ", "+"));
+            string privateKey = "hgfedcba";
+            byte[] privateKeyByte  = Encoding.UTF8.GetBytes(privateKey);
+            byte[] keyByte = Encoding.UTF8.GetBytes(password);
+            byte[] inputtextbyteArray = Convert.FromBase64String(encrypted.Replace(" ", "+"));
             using (DESCryptoServiceProvider dEsp = new DESCryptoServiceProvider())
             {
                 var memstr = new MemoryStream();
-                var crystr = new CryptoStream(memstr, dEsp.CreateDecryptor(_keybyte, privatekeyByte), CryptoStreamMode.Write);
+                var crystr = new CryptoStream(memstr, dEsp.CreateDecryptor(keyByte, privateKeyByte), CryptoStreamMode.Write);
                 crystr.Write(inputtextbyteArray, 0, inputtextbyteArray.Length);
                 crystr.FlushFinalBlock();
                 return Encoding.UTF8.GetString(memstr.ToArray());

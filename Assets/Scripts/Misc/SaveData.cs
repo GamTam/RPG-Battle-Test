@@ -35,14 +35,14 @@ public class SaveData : MonoBehaviour
         _save.PlayerDir = Globals.PlayerDir;
         
         string jason = JsonUtility.ToJson(_save, true);
-        System.IO.File.WriteAllText(Application.persistentDataPath + $"/FILE_{Globals.SaveFile}.oddsmaker", jason);
+        File.WriteAllText(Application.persistentDataPath + $"/FILE_{Globals.SaveFile}.oddsmaker", jason);
     }
 
     public void LoadFromJson()
     {
         if (!File.Exists(Application.persistentDataPath + $"/FILE_{Globals.SaveFile}.oddsmaker")) return;
         
-        string jason = System.IO.File.ReadAllText(Application.persistentDataPath + $"/FILE_{Globals.SaveFile}.oddsmaker");
+        string jason = File.ReadAllText(Application.persistentDataPath + $"/FILE_{Globals.SaveFile}.oddsmaker");
         _save = JsonUtility.FromJson<SaveDataFormatter>(jason);
         
         Globals.PlayerPos = _save.PlayerPos;
