@@ -122,3 +122,9 @@ public class WaitAction : CutsceneAction
         yield return new WaitForSeconds(_waitTime);
     }
 }
+
+[Serializable]
+public class VideoAction : CutsceneAction
+{
+    
+}
