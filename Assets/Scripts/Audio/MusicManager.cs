@@ -15,7 +15,6 @@ public class MusicManager : MonoBehaviour
 
     public static float currentPoint = 0;
 
-    // Start is called before the first frame update
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -64,7 +63,7 @@ public class MusicManager : MonoBehaviour
         musicPlaying?.source.Stop();
     }
 
-    public Music Play (string name, float point=0)
+    public Music Play (string name, float point=0, bool dontStopPreviousSong=false)
     {
         Music s = allMusic.Find(x => x.name == name);
         if (s == null) return null;
@@ -76,7 +75,7 @@ public class MusicManager : MonoBehaviour
 
         try
         {
-            if (musicPlaying.source.isPlaying)
+            if (musicPlaying.source.isPlaying && !dontStopPreviousSong)
             {
                 fadeOut();
             }
@@ -100,6 +99,15 @@ public class MusicManager : MonoBehaviour
                 musicPlaying.source.time -= (musicPlaying.loopEnd - musicPlaying.loopStart);
             }
         }
+    }
+
+    public void FadeVariation(string song, float duration = 1f)
+    {
+        Music music = musicPlaying;
+        StartCoroutine(fadeTo(duration, 0, music));
+        Play(song, musicPlaying.source.time, true);
+        musicPlaying.source.volume = 0;
+        StartCoroutine(fadeTo(duration, 1, musicPlaying));
     }
 
     public void fadeOut(float length=0.1f)

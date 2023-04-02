@@ -309,7 +309,7 @@ namespace Battle.State_Machine
                 yield break;
             }
 
-            Enemy enemy = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Enemy>();
+            Enemy enemy = EventSystem.current.currentSelectedGameObject.GetComponent<Enemy>();
             string textBoxSelection = _battleManager._selectionBoxes[0].GetSelectedButtonText().Split("\n")[0];
 
             int damage;

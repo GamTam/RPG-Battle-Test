@@ -27,9 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Minigames/Wheel.unity
     guid: c3b40db4fa4fa4f4799380b9ba421184
   - enabled: 1
-    path: Assets/Scenes/Minigames/Poker.unity
-    guid: f9291bb69e8472e42aa744f2aeef1a01
-  - enabled: 1
-    path: Assets/Scenes/Minigames/Matching.unity
-    guid: 94a5a34f3c5b66b448c1555ed6214905
+    path: Assets/Scenes/Battles/John Fight.unity
+    guid: 7edd89852da41c247b0ebc4fa3986c9b
   m_configObjects: {}

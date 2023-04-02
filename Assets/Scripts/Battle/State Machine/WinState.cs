@@ -83,6 +83,7 @@ namespace Battle.State_Machine
             }
             
             if (!_battleManager._overworldMusic) Globals.MusicManager.fadeOut(2);
+            //Globals.MusicManager.FadeVariation("Minigame_Mono");
             
             _battleManager._inBattle = false;
             
