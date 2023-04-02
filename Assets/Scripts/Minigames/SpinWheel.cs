@@ -11,6 +11,7 @@ public class SpinWheel : MonoBehaviour
     [SerializeField] public GameObject _dialogueManager;
     [SerializeField] public DialogueManagerDavid _dialogueManagerScript;
     [SerializeField] public GameObject[] _backgrounds;
+    [SerializeField] public GameObject _guy;
 
     SoundManagerDavid _soundManager;
 
@@ -24,17 +25,19 @@ public class SpinWheel : MonoBehaviour
 
     bool _functionality;
 
-    public static bool _desert = true;
+    public static bool _desert;
 
     void Start()
     {
         if(_desert)
         {
+            _guy.SetActive(false);
             _backgrounds[1].SetActive(true);
             _backgrounds[0].SetActive(false);
         }
         else
         {
+            _guy.SetActive(true);
             _backgrounds[1].SetActive(false);
             _backgrounds[0].SetActive(true);
         }

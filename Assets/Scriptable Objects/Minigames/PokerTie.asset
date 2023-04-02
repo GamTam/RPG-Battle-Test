@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: PokerTie
   m_EditorClassIdentifier: 
   lines:
-  - dialogueText: '* HOLY SHIT YOU
+  - dialogueText: '* LADIES AND
 
-      TIED!^
+      GENTLEMEN, ^WE
 
-      *NOTHING HAPPENS'
+      GOT A TIE!^
+
+      *
+      NOTHING HAPPENS'
     hit: 0
     shaking: 0
     changeMusicBefore: 0

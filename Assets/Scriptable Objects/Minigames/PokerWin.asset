@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: PokerWin
   m_EditorClassIdentifier: 
   lines:
-  - dialogueText: '* HOLY SHIT YOU
+  - dialogueText: '* LADIES AND
 
-      WON! ^+10 XP!'
+      GENTLEMEN, ^WE
+
+      GOT A WINNER!^
+
+      *
+      +10 XP!'
     hit: 0
     shaking: 0
     changeMusicBefore: 0

@@ -713,7 +713,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d2a2d262660e7847b10e1d521d1f3ab, type: 2}
+  - {fileID: 2100000, guid: 4bc5d8ae697d7d84c923fdc332c42378, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1164,6 +1164,7 @@ MonoBehaviour:
   _backgrounds:
   - {fileID: 509821848}
   - {fileID: 2013704425}
+  _guy: {fileID: 204957953}
 --- !u!1 &791582812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,7 +2046,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4bc5d8ae697d7d84c923fdc332c42378, type: 2}
+  - {fileID: 2100000, guid: 515d65e94181e294b9587d7eec0f8a32, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -32,7 +32,7 @@ public class Poker : MonoBehaviour
     void Update()
     {
         // Change Input later
-        if(Input.GetKeyDown(KeyCode.Return) && _intro._functionality)
+        if(Input.GetKeyDown(KeyCode.Space) && _intro._functionality)
         {  
             _intro._functionality = false;
             EventSystem.current.SetSelectedGameObject(null);

@@ -34,10 +34,21 @@ MonoBehaviour:
 
       A CARD TO DRAFT!^
 
-      * THEN
-      PRESS ''Enter'' TO
 
-      GET NEW CARDS!'
+      * THEN
+      PRESS ''Space'' TO
+
+      GET NEW CARDS!^
+
+
+      * GET AS MANY OF THE
+
+      SAME
+      CARDS AS YOU
+
+      CAN!
+
+'
     hit: 0
     shaking: 0
     changeMusicBefore: 0

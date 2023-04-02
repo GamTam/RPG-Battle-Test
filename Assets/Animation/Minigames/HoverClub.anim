@@ -22,7 +22,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -2.159783
+        value: 250
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -31,7 +31,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.25
-        value: -1.75
+        value: 200
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -40,7 +40,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.5
-        value: -2.16
+        value: 250
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -50,14 +50,14 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_Pivot.y
+    attribute: m_AnchoredPosition.y
     path: 
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: a20cbffb0753c0242863dcd12eb22700, type: 3}
+      value: {fileID: 21300000, guid: f140afa9af268cc4c97dcd535fda9bde, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -71,7 +71,7 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 2952582672
+      attribute: 538195251
       script: {fileID: 0}
       typeID: 224
       customType: 28
@@ -84,7 +84,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: a20cbffb0753c0242863dcd12eb22700, type: 3}
+    - {fileID: 21300000, guid: f140afa9af268cc4c97dcd535fda9bde, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -111,7 +111,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -2.159783
+        value: 250
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -120,7 +120,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.25
-        value: -1.75
+        value: 200
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -129,7 +129,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.5
-        value: -2.16
+        value: 250
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -139,7 +139,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_Pivot.y
+    attribute: m_AnchoredPosition.y
     path: 
     classID: 224
     script: {fileID: 0}
