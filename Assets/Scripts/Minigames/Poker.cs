@@ -63,13 +63,15 @@ public class Poker : MonoBehaviour
                 }
                 else
                 {
-                    for(int j = 0; j < _intro._numbersSelected.Length; j++)
-                    {
-                        if(_intro._numbersSelected[j])
-                        {
+                    //idk why that for loop was there. Got rid of it, but will keep incase everything breaks.
+
+                    //for(int j = 0; j < _intro._numbersSelected.Length; j++)
+                    //{
+                    //    if(_intro._numbersSelected[j])
+                    //    {
                             StartCoroutine(AnotherDelay(i, _intro._numbers[i]));
-                        }
-                    }
+                    //    }
+                    //}
                 }
                 StartCoroutine(ShowNewCards(3.25f));
             }

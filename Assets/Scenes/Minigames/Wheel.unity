@@ -259,7 +259,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 24fbb8b9b2c8e5445960658b03bdb266, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2092,6 +2092,111 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2060547141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2060547143}
+  - component: {fileID: 2060547142}
+  m_Layer: 0
+  m_Name: CasinoManager
+  m_TagString: CasinoManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2060547142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060547141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129db86bd2ad61444a0d0291e9994301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _song: 
+  _winSong: Victory
+  _playerList: {fileID: 0}
+  _enemyList: {fileID: 0}
+  _background: {fileID: 0}
+  _mat: {fileID: 0}
+  _enemySelectionController: {fileID: 0}
+  _textBox: {fileID: 0}
+  _canFlee: 0
+  _XPTotal: 0
+  _nameTagText: {fileID: 0}
+  _nameTagImage: {fileID: 0}
+  _buttons: []
+  _selectionBoxes: []
+  _buttonImages: []
+  _fighters: []
+  _players: []
+  _enemies: []
+  _profilePoints: []
+  _musicManager: {fileID: 0}
+  _soundManager: {fileID: 0}
+  _deadPlayers: []
+  _deadEnemies: []
+  _currentPlayerIndex: 0
+  _turnIndex: 0
+  _currentButton: 0
+  _overworldMusic: 0
+  _cancelMovement: 0
+  _playerInput: {fileID: 0}
+  _moveVector:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _confirm:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _back:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _startingText: 
+  _winText: '* You defeated the enemies!'
+  _items: []
+  _inBattle: 1
+  _selectingPlayers: 0
+--- !u!4 &2060547143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060547141}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8949014, y: 2.0524254, z: 5.201536}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2065548986
 GameObject:

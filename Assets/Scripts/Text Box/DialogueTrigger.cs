@@ -9,6 +9,7 @@ public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] protected SpriteRenderer _spriteRenderer;
     [SerializeField] private BattleLoadScene _sceneLoader;
+    [SerializeField] private CasinoLoadScene _casinoSceneLoader;
     [SerializeField] private TMP_FontAsset _font;
     [SerializeField] protected bool _skipTextboxCloseAnimation;
     [TextArea(3, 4)] [SerializeField] private string[] _dialogue;
@@ -19,6 +20,8 @@ public class DialogueTrigger : MonoBehaviour
     private bool _triggeredDialogue;
     
     [SerializeField] private bool _talkable = false;
+
+    [SerializeField] private bool _casinoGame;
 
     private void Start()
     {
@@ -32,12 +35,24 @@ public class DialogueTrigger : MonoBehaviour
             _triggeredDialogue = true;
             TriggerDialogue();
         }
+
+        if(_casinoGame)
+        {
+            //TEST - delete if needed
+            if (_casinoSceneLoader == null) return;
+            if (_triggeredDialogue && _playerInput.currentActionMap.name == "Overworld")
+            {
+                _playerInput.SwitchCurrentActionMap("Null");
+                StartCoroutine(_casinoSceneLoader.BattleTransition(_battleScene, stopCurrentSong:false));
+                enabled = false;
+            }
+        }
         
         if (_sceneLoader == null) return;
         if (_triggeredDialogue && _playerInput.currentActionMap.name == "Overworld")
         {
             _playerInput.SwitchCurrentActionMap("Null");
-            StartCoroutine(_sceneLoader.BattleTransition(_battleScene));
+            StartCoroutine(_sceneLoader.BattleTransition(_battleScene, stopCurrentSong:false));
             enabled = false;
         }
     }

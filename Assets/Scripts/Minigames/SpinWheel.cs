@@ -13,6 +13,8 @@ public class SpinWheel : MonoBehaviour
     [SerializeField] public GameObject[] _backgrounds;
     [SerializeField] public GameObject _guy;
 
+    [SerializeField] public CasinoLoadScene _casinoLoad;
+
     SoundManagerDavid _soundManager;
 
     bool _spinning;
@@ -145,6 +147,9 @@ public class SpinWheel : MonoBehaviour
     IEnumerator End()
     {
         yield return new WaitForSeconds(3.0f);
+        Debug.Log("Work?");
+        _casinoLoad = FindObjectOfType<CasinoLoadScene>();
+        _casinoLoad.IWantThisCodeToRun();
         Globals.UnloadAllScenesExcept(SceneManager.GetActiveScene().name);
     }
 }
