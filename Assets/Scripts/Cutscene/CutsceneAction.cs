@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Video;
 using Object = UnityEngine.Object;
 
 [Serializable]
@@ -126,5 +127,37 @@ public class WaitAction : CutsceneAction
 [Serializable]
 public class VideoAction : CutsceneAction
 {
-    
+    [SerializeField] private VideoClip _video;
+    [SerializeField] private float _playbackSpeed = 1;
+
+    private VideoPlayer _videoPlayer;
+
+    public VideoAction()
+    {
+        Name = "Play Video";
+    }
+
+    public override IEnumerator Play()
+    {
+        _videoPlayer = Object.FindObjectOfType<VideoPlayer>();
+        _videoPlayer.playbackSpeed = _playbackSpeed;
+        _videoPlayer.clip = _video;
+        _videoPlayer.Prepare();
+        Material mat = _videoPlayer.gameObject.GetComponent<MeshRenderer>().materials[0];
+        mat.color = new Color(1, 1, 1, 1);
+
+        while (!_videoPlayer.isPrepared)
+        {
+            yield return null;
+        }
+        
+        _videoPlayer.Play();
+        
+        do
+        {
+            yield return null;
+        } while (_videoPlayer.isPlaying);
+
+        mat.color = new Color(1, 1, 1, 0);
+    }
 }
