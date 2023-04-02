@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D _char;
     [SerializeField] private Animator _animator;
     [SerializeField] private PlayerStats _stats;
+    [SerializeField] private string _song;
     
     [HideInInspector] public PlayerInput _playerInput;
     [HideInInspector] public InputAction _moveVector;
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
         _save = _playerInput.actions["Save"];
         _load = _playerInput.actions["Load"];
 
-        Globals.MusicManager.Play("CasinoUnderground");
+        Globals.MusicManager.Play(_song);
     }
     
     void Update()

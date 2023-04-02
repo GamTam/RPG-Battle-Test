@@ -12,7 +12,6 @@ public class Enemy : Battleable
     public bool _selected;
     public RectTransform _rectTransform;
     
-    private AttackSO[] _attacks;
     [HideInInspector] public string[] _description;
     float fade = 1;
     [HideInInspector] public bool _killable;
@@ -27,7 +26,6 @@ public class Enemy : Battleable
         _pow = _baseEnemy.Pow;
         _def = _baseEnemy.Def;
         _speed = _baseEnemy.Speed;
-        _attacks = _baseEnemy.Attacks;
         _description = _baseEnemy.Description;
         _exp = _baseEnemy.EXP;
 
