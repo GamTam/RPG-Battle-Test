@@ -22,7 +22,7 @@ public class CutsceneEditor : Editor
 public class CutsceneEditorWindow : ExtendedEditorWindow
 {
     int toolbarInt = 0;
-    string[] toolbarStrings = {"Speech Bubble", "Move Object", "Set Animation", "Wait"};
+    string[] toolbarStrings = {"Speech Bubble", "Move Object", "Set Animation", "Wait", "Play Video"};
     private static Cutscene _cutscene;
     private static CutsceneEditorWindow _window;
 
@@ -59,6 +59,9 @@ public class CutsceneEditorWindow : ExtendedEditorWindow
                 case 3:
                     _cutscene.AddAction(new WaitAction(), selectedPropertyIndex);
                     break;
+                case 4:
+                    _cutscene.AddAction(new VideoAction(), selectedPropertyIndex);
+                    break;
             }
             _window._serializedObject = new SerializedObject(_cutscene);
         }
@@ -77,6 +80,9 @@ public class CutsceneEditorWindow : ExtendedEditorWindow
                     break;
                 case 3:
                     _cutscene.AddAction(new WaitAction(), selectedPropertyIndex + 1);
+                    break;
+                case 4:
+                    _cutscene.AddAction(new VideoAction(), selectedPropertyIndex);
                     break;
             }
 
@@ -98,6 +104,9 @@ public class CutsceneEditorWindow : ExtendedEditorWindow
                     break;
                 case 3:
                     _cutscene.AddAction(new WaitAction());
+                    break;
+                case 4:
+                    _cutscene.AddAction(new VideoAction(), selectedPropertyIndex);
                     break;
             }
 
