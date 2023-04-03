@@ -14,21 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Vehemous Molerat
   Level: 1
-  HP: 8
-  Pow: 3
+  HP: 84
+  Pow: 5
   Def: 1
-  Speed: 6
-  EXP: 10
-  Attacks:
-  - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
+  Speed: 8
+  EXP: 4
   Description:
   - "* The Vehemous Molerat is a hybrid of several animals that\n  managed to escape
     its confines."
-  - '* Max HP is 404<p:short>
+  - '* Max HP is 84<p:short>
 
-    * Attack is 7<p:short>
+    * Attack is 5<p:short>
 
-    * Defense is 2'
+    * Defense is 1'
   - '* Its tail is incredibly poisonous.<p:short>
 
     * Try to not get hit by it.'

@@ -323,7 +323,7 @@ public class PlayerStats
     public Sprite PFP;
     public Sprite DeadPFP;
 
-    public int ExpForNextLevel => Mathf.RoundToInt((float) (4 * Math.Pow(Level, 3)) / 5) + MinRequirement;
+    public int ExpForNextLevel => Mathf.RoundToInt((float) (4 * Math.Pow(Level, 4.5)) / 5) + MinRequirement;
 }
 
 public enum GameState

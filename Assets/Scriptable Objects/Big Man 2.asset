@@ -14,21 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Toximound
   Level: 1
-  HP: 6
-  Pow: 5
+  HP: 43
+  Pow: 4
   Def: 1
-  Speed: 8
-  EXP: 7
-  Attacks:
-  - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
+  Speed: 10
+  EXP: 3
   Description:
   - "* Toximounds are living piles of sand that occupy the\n  desert regions."
   - "* After years of toxic waste being thrown on it,<p:short>\n  they finally gained
     sentience."
-  - '* Max HP is 124<p:short>
+  - '* Max HP is 43<p:short>
 
-    * Attack is 12<p:short>
+    * Attack is 4<p:short>
 
-    * Defense is 4'
+    * Defense is 1'
   - "* They feel that existence is a curse,<p:short> and are \n  looking to exact
     revenge on the ones who\n  gave them sentience to begin with."

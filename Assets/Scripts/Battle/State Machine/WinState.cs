@@ -112,11 +112,11 @@ namespace Battle.State_Machine
 
             player._maxMP += statIncrease;
             
-            statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
+            statIncrease = Globals.LevelUpLut(rand.Next(1, 11));
 
             player._pow += statIncrease;
             
-            statIncrease = Globals.LevelUpLut(rand.Next(1, 16));
+            statIncrease = Globals.LevelUpLut(rand.Next(1, 11));
 
             player._def += statIncrease;
             

@@ -14,20 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Dune-Dwelling Slimeamander
   Level: 1
-  HP: 15
-  Pow: 12
+  HP: 73
+  Pow: 6
   Def: 3
-  Speed: 10
-  EXP: 15
-  Attacks:
-  - {fileID: 11400000, guid: 65600f07a3aee3243a00bcfa05d3ecc8, type: 2}
+  Speed: 9
+  EXP: 7
   Description:
   - '* No way.<p:short>
 
     * Dune-Dwelling Slimeamander.'
-  - '* Max HP is 515<p:short>
+  - '* Max HP is 73<p:short>
 
-    * Attack is 12<p:short>
+    * Attack is 6<p:short>
 
     * Defense is 3'
   - '* He''s just a silly little guy :)'

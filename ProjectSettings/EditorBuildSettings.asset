@@ -27,6 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Minigames/Wheel.unity
     guid: c3b40db4fa4fa4f4799380b9ba421184
   - enabled: 1
-    path: Assets/Scenes/Battles/John Fight.unity
-    guid: 7edd89852da41c247b0ebc4fa3986c9b
+    path: Assets/Scenes/Battles/DesertMiniboss.unity
+    guid: ae33545bec1350c41bb44cbd2ee9f80c
   m_configObjects: {}
