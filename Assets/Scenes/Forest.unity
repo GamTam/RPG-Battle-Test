@@ -1210,7 +1210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &300709248
 Transform:
   m_ObjectHideFlags: 0
@@ -1404,7 +1404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &314094922
 Transform:
   m_ObjectHideFlags: 0
@@ -1814,7 +1814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &499350388
 Transform:
   m_ObjectHideFlags: 0
@@ -2028,7 +2028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &530344133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2061,9 +2061,7 @@ MonoBehaviour:
   _load: {fileID: 530344133}
   _stepInterval: 5
   _chance:
-  - Scene: Battle Scene
-    Chance: 0
-  - Scene: Battle Scene 2
+  - Scene: Battle Scene - Boss
     Chance: 0
   _continueOverworldMusic: 1
   _timer: 0
@@ -95919,7 +95917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968560754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.43, y: 1.88, z: 10}
+  m_LocalPosition: {x: -18.9, y: 1.7, z: 10}
   m_LocalScale: {x: 1.03, y: 1.03, z: 1.03}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -96197,8 +96195,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007663306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8884, y: 12.1965, z: 0}
-  m_LocalScale: {x: 72.41761, y: 34.232338, z: 1}
+  m_LocalPosition: {x: 52.4186, y: 30.0608, z: 0}
+  m_LocalScale: {x: 183.02827, y: 69.960625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 761325581}
@@ -97420,7 +97418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314949623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1543623, y: 0.0018683072, z: 10}
+  m_LocalPosition: {x: 0.09512242, y: -0.012143964, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -111289,7 +111287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609672711}
   m_LocalRotation: {x: -0.37406042, y: 0.24215533, z: -0.10184249, w: 0.8894199}
-  m_LocalPosition: {x: 44.68, y: -24.57, z: 20}
+  m_LocalPosition: {x: 122.11, y: 38.12, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -112394,8 +112392,6 @@ MonoBehaviour:
   - rid: 2009989081661177883
   - rid: 2009989081661177882
   - rid: 2009989081661177881
-  - rid: 2009989081661177878
-  - rid: 2009989081661177879
   - rid: 2009989081661177880
   - rid: 2009989081661177873
   - rid: 2009989081661177876
@@ -112418,11 +112414,11 @@ MonoBehaviour:
         Name: Speech Bubble
         PlayWithNext: 0
         Parent: {fileID: 1911304409}
-        Speaker: {fileID: 1523710088}
+        Speaker: {fileID: 1027986466}
         SkipCloseAnimation: 0
         _font: {fileID: 0}
         Dialogue:
-        - Hey guys...
+        - What the heck is that!?
         - "I don't think we should \nhead up there..."
         - It seems dangerous.
     - rid: 2009989081661177875
@@ -112462,25 +112458,6 @@ MonoBehaviour:
         - 'At the very least, we should wait
 
           until we''re stronger.'
-    - rid: 2009989081661177878
-      type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
-      data:
-        Name: Play Animation
-        PlayWithNext: 0
-        Parent: {fileID: 1911304409}
-        _animator: {fileID: 1289365874}
-        _animation: walk_u
-    - rid: 2009989081661177879
-      type: {class: MoveObjAction, ns: , asm: Assembly-CSharp}
-      data:
-        Name: Move Object
-        PlayWithNext: 0
-        Parent: {fileID: 1911304409}
-        _relative: 1
-        _gameObject: {fileID: 1289365870}
-        _speed: 10
-        MoveList:
-        - {x: 0, y: 2}
     - rid: 2009989081661177880
       type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
       data:
@@ -112488,7 +112465,7 @@ MonoBehaviour:
         PlayWithNext: 0
         Parent: {fileID: 1911304409}
         _animator: {fileID: 1289365874}
-        _animation: idle_d
+        _animation: idle_u
     - rid: 2009989081661177881
       type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
       data:
@@ -112504,7 +112481,7 @@ MonoBehaviour:
         PlayWithNext: 0
         Parent: {fileID: 1911304409}
         _animator: {fileID: 1015526954}
-        _animation: idl_u
+        _animation: idle_u
     - rid: 2009989081661177883
       type: {class: PlayAnimAction, ns: , asm: Assembly-CSharp}
       data:
@@ -112601,7 +112578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911304407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.26, y: 25.32, z: 0}
+  m_LocalPosition: {x: 122.32, y: 34.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -112872,6 +112849,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272638, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
+      propertyPath: _song
+      value: CasinoUnderground
+      objectReference: {fileID: 0}
+    - target: {fileID: 4726418287289272638, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: _stats.HP
       value: 17
       objectReference: {fileID: 0}
@@ -112929,11 +112910,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272639, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.43
+      value: -18.9
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272639, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.88
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 4726418287289272639, guid: 8d3fbb9423eddf7448f2ee0130795f46, type: 3}
       propertyPath: m_LocalPosition.z
