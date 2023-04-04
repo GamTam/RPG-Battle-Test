@@ -1,30 +1,3 @@
-﻿using UnityEngine;
-
-namespace NaughtyAttributes.Test
-{
-    public class RequiredTest : MonoBehaviour
-    {
-        [Required]
-        public Transform trans0;
-
-        public RequiredNest1 nest1;
-    }
-
-    [System.Serializable]
-    public class RequiredNest1
-    {
-        [Required]
-        [AllowNesting] // Because it's nested we need to explicitly allow nesting
-        public Transform trans1;
-
-        public RequiredNest2 nest2;
-    }
-
-    [System.Serializable]
-    public class RequiredNest2
-    {
-        [Required("trans2 is invalid custom message - hohoho")]
-        [AllowNesting] // Because it's nested we need to explicitly allow nesting
-        public Transform trans2;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:b9c2e513b63650ec388aef465741a488ff0dc09ca12a550c8863f32be94b23da
+size 697

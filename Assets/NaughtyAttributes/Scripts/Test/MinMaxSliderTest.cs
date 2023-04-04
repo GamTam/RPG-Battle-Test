@@ -1,28 +1,3 @@
-using UnityEngine;
-
-namespace NaughtyAttributes.Test
-{
-    public class MinMaxSliderTest : MonoBehaviour
-    {
-        [MinMaxSlider(0.0f, 1.0f)]
-        public Vector2 minMaxSlider0 = new Vector2(0.25f, 0.75f);
-
-        public MinMaxSliderNest1 nest1;
-    }
-
-    [System.Serializable]
-    public class MinMaxSliderNest1
-    {
-        [MinMaxSlider(0.0f, 1.0f)]
-        public Vector2 minMaxSlider1 = new Vector2(0.25f, 0.75f);
-
-        public MinMaxSliderNest2 nest2;
-    }
-
-    [System.Serializable]
-    public class MinMaxSliderNest2
-    {
-        [MinMaxSlider(1, 11)]
-        public Vector2Int minMaxSlider2 = new Vector2Int(6, 11);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a91fa5bc945669f41363a17e44434413b14b116401c97523ad052674ccf5c48a
+size 646

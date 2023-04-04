@@ -1,31 +1,3 @@
-﻿using UnityEngine;
-
-namespace NaughtyAttributes.Test
-{
-    public class ExpandableTest : MonoBehaviour
-    {
-        // See #294
-        public int precedingField = 5;
-
-        [Expandable]
-        public ScriptableObject obj0;
-
-        public ExpandableScriptableObjectNest1 nest1;
-    }
-
-    [System.Serializable]
-    public class ExpandableScriptableObjectNest1
-    {
-        [Expandable]
-        public ScriptableObject obj1;
-
-        public ExpandableScriptableObjectNest2 nest2;
-    }
-
-    [System.Serializable]
-    public class ExpandableScriptableObjectNest2
-    {
-        [Expandable]
-        public ScriptableObject obj2;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:817ebe75a4bfd6930abb83e6408da71e9f019c2377c3b5eb3bd53c4c3ee6aa15
+size 643

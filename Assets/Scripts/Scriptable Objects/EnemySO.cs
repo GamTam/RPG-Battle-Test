@@ -1,16 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "New Enemy", menuName = "RPG Battle/Enemy")]
-public class EnemySO : ScriptableObject
-{
-    public string Name;
-    public int Level;
-    public int HP;
-    public int Pow;
-    public int Def;
-    public int Speed;
-    public int EXP;
-    [TextArea(3, 5)] public string[] Description;
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:00dd6a2ba4b06938b61babebe4ffa0bd12a42b684ae1c7095602b3452db6e87d
+size 394
