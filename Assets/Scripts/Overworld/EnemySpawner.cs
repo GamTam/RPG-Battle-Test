@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
             _totalOdds += _chance[i].Chance;
         }
 
-        _randomOffset = Random.Range(0f, 2f);
+        _randomOffset = Random.Range(1f, 2.5f);
         Debug.Log(_randomOffset);
     }
 
@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
         if (_timer >= _stepInterval * _randomOffset)
         {
             _timer = 0;
-            _randomOffset = Random.Range(0f, 2f);
+            _randomOffset = Random.Range(1f, 2.5f);
 
             int random = Random.Range(0, _chance.Length);
 

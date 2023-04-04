@@ -15,9 +15,9 @@ MonoBehaviour:
   Name: Red Thing
   Level: 5
   HP: 340
-  Pow: 13
-  Def: 8
-  Speed: 18
+  Pow: 11
+  Def: 4
+  Speed: 15
   EXP: 30
   Description:
   - '* Oh my god, its Red Thing'
