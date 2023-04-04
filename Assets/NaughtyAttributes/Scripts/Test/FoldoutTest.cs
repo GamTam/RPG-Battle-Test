@@ -1,32 +1,3 @@
-﻿using UnityEngine;
-
-namespace NaughtyAttributes.Test
-{
-    public class FoldoutTest : MonoBehaviour
-    {
-        [Foldout("Integers")]
-        public int int0;
-        [Foldout("Integers")]
-        public int int1;
-
-        [Foldout("Floats")]
-        public float float0;
-        [Foldout("Floats")]
-        public float float1;
-
-        [Foldout("Sliders")]
-        [MinMaxSlider(0, 1)]
-        public Vector2 slider0;
-        [Foldout("Sliders")]
-        [MinMaxSlider(0, 1)]
-        public Vector2 slider1;
-
-        public string str0;
-        public string str1;
-
-        [Foldout("Transforms")]
-        public Transform trans0;
-        [Foldout("Transforms")]
-        public Transform trans1;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:30f8fd42facb9c657cd903b8110e1841312aaaae495cb68e086f4b7d40cf7b62
+size 711

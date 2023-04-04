@@ -1,28 +1,3 @@
-﻿using UnityEngine;
-
-namespace NaughtyAttributes.Test
-{
-    public class SceneTest : MonoBehaviour
-    {
-        [Scene]
-        public string scene0;
-
-        public SceneNest1 nest1;
-    }
-
-    [System.Serializable]
-    public class SceneNest1
-    {
-        [Scene]
-        public string scene1;
-
-        public SceneNest2 nest2;
-    }
-
-    [System.Serializable]
-    public struct SceneNest2
-    {
-        [Scene]
-        public int scene2;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:21825ef38f8a52c377435e508a5ecc2586d87f7bec83ebe71c7dd225541cc58b
+size 453

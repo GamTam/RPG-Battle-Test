@@ -1,26 +1,3 @@
-﻿using System;
-
-namespace NaughtyAttributes
-{
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public class HideIfAttribute : ShowIfAttributeBase
-    {
-        public HideIfAttribute(string condition)
-            : base(condition)
-        {
-            Inverted = true;
-        }
-
-        public HideIfAttribute(EConditionOperator conditionOperator, params string[] conditions)
-            : base(conditionOperator, conditions)
-        {
-            Inverted = true;
-        }
-
-        public HideIfAttribute(string enumName, object enumValue)
-            : base(enumName, enumValue as Enum)
-        {
-            Inverted = true;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a4dc52c2d673741a6ab31b8c2247ffe5c050df228dd175a40c29e4970551f9e1
+size 718

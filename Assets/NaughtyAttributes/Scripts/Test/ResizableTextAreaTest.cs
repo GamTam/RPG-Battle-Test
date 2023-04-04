@@ -1,28 +1,3 @@
-﻿using UnityEngine;
-
-namespace NaughtyAttributes.Test
-{
-    public class ResizableTextAreaTest : MonoBehaviour
-    {
-        [ResizableTextArea]
-        public string text0;
-
-        public ResizableTextAreaNest1 nest1;
-    }
-
-    [System.Serializable]
-    public class ResizableTextAreaNest1
-    {
-        [ResizableTextArea]
-        public string text1;
-
-        public ResizableTextAreaNest2 nest2;
-    }
-
-    [System.Serializable]
-    public class ResizableTextAreaNest2
-    {
-        [ResizableTextArea]
-        public string text2;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e54aa647322ad0f42717f85a038595bdd8b09dbbbb7726cda02a743d42caf2cf
+size 548

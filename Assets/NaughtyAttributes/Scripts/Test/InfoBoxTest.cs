@@ -1,28 +1,3 @@
-using UnityEngine;
-
-namespace NaughtyAttributes.Test
-{
-    public class InfoBoxTest : MonoBehaviour
-    {
-        [InfoBox("Normal", EInfoBoxType.Normal)]
-        public int normal;
-
-        public InfoBoxNest1 nest1;
-    }
-
-    [System.Serializable]
-    public class InfoBoxNest1
-    {
-        [InfoBox("Warning", EInfoBoxType.Warning)]
-        public int warning;
-
-        public InfoBoxNest2 nest2;
-    }
-
-    [System.Serializable]
-    public class InfoBoxNest2
-    {
-        [InfoBox("Error", EInfoBoxType.Error)]
-        public int error;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:00e866b29c28794a9827b34f70e22c3cdad5ec4d2dff68cdbba862f77e1cfce2
+size 552

@@ -1,14 +1,3 @@
-{
-    "name": "NaughtyAttributes.Test",
-    "references": [
-        "NaughtyAttributes.Core"
-    ],
-    "optionalUnityReferences": [],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": []
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:86bfa337576cfe9fc1693c44ffed093df6f2cf94a4035e45aa745e79c6aa1438
+size 344

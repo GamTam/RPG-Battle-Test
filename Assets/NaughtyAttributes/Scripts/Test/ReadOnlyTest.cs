@@ -1,30 +1,3 @@
-using UnityEngine;
-
-namespace NaughtyAttributes.Test
-{
-    public class ReadOnlyTest : MonoBehaviour
-    {
-        [ReadOnly]
-        public int readOnlyInt = 5;
-
-        public ReadOnlyNest1 nest1;
-    }
-
-    [System.Serializable]
-    public class ReadOnlyNest1
-    {
-        [ReadOnly]
-        [AllowNesting]
-        public float readOnlyFloat = 3.14f;
-
-        public ReadOnlyNest2 nest2;
-    }
-
-    [System.Serializable]
-    public struct ReadOnlyNest2
-    {
-        [ReadOnly]
-        [AllowNesting]
-        public string readOnlyString;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:7b5ef3e0a3833a88543d50aa188d96c2b346f4f488ea41a79ef4a1951c745120
+size 551

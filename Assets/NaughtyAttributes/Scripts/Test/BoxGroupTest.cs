@@ -1,32 +1,3 @@
-﻿using UnityEngine;
-
-namespace NaughtyAttributes.Test
-{
-    public class BoxGroupTest : MonoBehaviour
-    {
-        [BoxGroup("Integers")]
-        public int int0;
-        [BoxGroup("Integers")]
-        public int int1;
-
-        [BoxGroup("Floats")]
-        public float float0;
-        [BoxGroup("Floats")]
-        public float float1;
-
-        [BoxGroup("Sliders")]
-        [MinMaxSlider(0, 1)]
-        public Vector2 slider0;
-        [BoxGroup("Sliders")]
-        [MinMaxSlider(0, 1)]
-        public Vector2 slider1;
-
-        public string str0;
-        public string str1;
-
-        [BoxGroup]
-        public Transform trans0;
-        [BoxGroup]
-        public Transform trans1;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:178cc7f2be312fafc0bf77f4c4a655cc40ef66cc24c8a4783faa4a9bf2434412
+size 692

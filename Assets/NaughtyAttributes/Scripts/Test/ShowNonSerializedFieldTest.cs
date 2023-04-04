@@ -1,33 +1,3 @@
-using UnityEngine;
-
-namespace NaughtyAttributes.Test
-{
-    public class ShowNonSerializedFieldTest : MonoBehaviour
-    {
-#pragma warning disable 414
-        [ShowNonSerializedField]
-        private ushort myUShort = ushort.MaxValue;
-
-        [ShowNonSerializedField]
-        private short myShort = short.MaxValue;
-
-        [ShowNonSerializedField]
-        private uint myUInt = uint.MaxValue;
-
-        [ShowNonSerializedField]
-        private int myInt = 10;
-
-        [ShowNonSerializedField]
-        private ulong myULong = ulong.MaxValue;
-
-        [ShowNonSerializedField]
-        private long myLong = long.MaxValue;
-
-        [ShowNonSerializedField]
-        private const float PI = 3.14159f;
-
-        [ShowNonSerializedField]
-        private static readonly Vector3 CONST_VECTOR = Vector3.one;
-#pragma warning restore 414
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e0b110a5307166a6903c7a319c72c7cb0e955ce143f19b84a9e12e394d61e7ee
+size 836
