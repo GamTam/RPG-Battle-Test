@@ -1,36 +1,3 @@
-﻿Sound Name	Loop
-select	false
-confirm	false
-checkpoint	false
-blipmale	false
-blipfemale	false
-typewriter	false
-back	false
-evidence	false
-textboxAdvance	false
-court record	false
-cross examination	false
-gavel	false
-realization	false
-reveal	false
-deskSlam	false
-faceReveal	false
-hit	false
-objectionPhoenix	false
-holdItPhoenix	false
-takeThatPhoenix	false
-interjection	false
-record flip	false
-objectionEdgeworth	false
-holdItEdgeworth	false
-takeThatEdgeworth	false
-bigHit	false
-massiveHit	false
-reverseWind	false
-gun	false
-gallery	false
-playerHit	false
-enemyDie	false
-error	false
-battleStart	false
-battleEnd	false
+version https://git-lfs.github.com/spec/v1
+oid sha256:11e40b18acd90445762d2438732330e9dca43715cbef1445c5e5fc004a5cb19c
+size 608

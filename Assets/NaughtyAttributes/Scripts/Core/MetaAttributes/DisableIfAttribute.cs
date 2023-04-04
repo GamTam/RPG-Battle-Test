@@ -1,26 +1,3 @@
-﻿using System;
-
-namespace NaughtyAttributes
-{
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public class DisableIfAttribute : EnableIfAttributeBase
-    {
-        public DisableIfAttribute(string condition)
-            : base(condition)
-        {
-            Inverted = true;
-        }
-
-        public DisableIfAttribute(EConditionOperator conditionOperator, params string[] conditions)
-            : base(conditionOperator, conditions)
-        {
-            Inverted = true;
-        }
-
-        public DisableIfAttribute(string enumName, object enumValue)
-            : base(enumName, enumValue as Enum)
-        {
-            Inverted = true;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:513642a25f12df296d08dd851278bcc273a60320cc944930c7dbff3f0bbaee83
+size 732

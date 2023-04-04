@@ -1,20 +1,3 @@
-﻿using System;
-
-namespace NaughtyAttributes
-{
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = true)]
-    public class HorizontalLineAttribute : DrawerAttribute
-    {
-        public const float DefaultHeight = 2.0f;
-        public const EColor DefaultColor = EColor.Gray;
-
-        public float Height { get; private set; }
-        public EColor Color { get; private set; }
-
-        public HorizontalLineAttribute(float height = DefaultHeight, EColor color = DefaultColor)
-        {
-            Height = height;
-            Color = color;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d2a063175c42772281d6dd5b9422944506a5266de1782a27725cd77c0ee18df5
+size 587

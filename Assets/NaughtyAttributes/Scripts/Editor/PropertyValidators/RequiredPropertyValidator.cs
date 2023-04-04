@@ -1,31 +1,3 @@
-﻿using UnityEditor;
-
-namespace NaughtyAttributes.Editor
-{
-    public class RequiredPropertyValidator : PropertyValidatorBase
-    {
-        public override void ValidateProperty(SerializedProperty property)
-        {
-            RequiredAttribute requiredAttribute = PropertyUtility.GetAttribute<RequiredAttribute>(property);
-
-            if (property.propertyType == SerializedPropertyType.ObjectReference)
-            {
-                if (property.objectReferenceValue == null)
-                {
-                    string errorMessage = property.name + " is required";
-                    if (!string.IsNullOrEmpty(requiredAttribute.Message))
-                    {
-                        errorMessage = requiredAttribute.Message;
-                    }
-
-                    NaughtyEditorGUI.HelpBox_Layout(errorMessage, MessageType.Error, context: property.serializedObject.targetObject);
-                }
-            }
-            else
-            {
-                string warning = requiredAttribute.GetType().Name + " works only on reference types";
-                NaughtyEditorGUI.HelpBox_Layout(warning, MessageType.Warning, context: property.serializedObject.targetObject);
-            }
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:cc8b94ca69bc738885f56add8e37c06ac4da9a62ae2fcf2057f34d21fcc98b77
+size 1219
